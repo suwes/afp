@@ -2,39 +2,22 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anti Fraud Portal</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ═══════ TOKENS — Sitemark-style dark ═══════ */
+/* ═══════ TOKENS (v3 unchanged) ═══════ */
 :root{
-  --bg:       #0c0c0e;
-  --bg-s:     #111115;
-  --bg-c:     #16161a;
-  --bg-e:     #1d1d22;
-  --bg-h:     rgba(255,255,255,.04);
-  --bd:       rgba(255,255,255,.08);
-  --bd2:      rgba(255,255,255,.14);
-  --t1:       rgba(255,255,255,.88);
-  --t2:       rgba(255,255,255,.54);
-  --t3:       rgba(255,255,255,.30);
-  --t4:       rgba(255,255,255,.14);
-  --blue:     #3b82f6;
-  --blue-bg:  rgba(59,130,246,.14);
-  --green:    #22c55e;
-  --green-bg: rgba(34,197,94,.13);
-  --yellow:   #f59e0b;
-  --yellow-bg:rgba(245,158,11,.13);
-  --red:      #ef4444;
-  --red-bg:   rgba(239,68,68,.13);
-  --purple:   #a855f7;
-  --purple-bg:rgba(168,85,247,.13);
-  --r:        4px;   /* chip / button radius */
-  --r-m:      6px;
-  --r-l:      8px;
-  --sw:       232px; /* sidebar width */
-  --th:       48px;  /* topbar height */
-  --tr:       .13s ease;
+  --bg:#0c0c0e; --bg-s:#111115; --bg-c:#16161a; --bg-e:#1d1d22; --bg-h:rgba(255,255,255,.04);
+  --bd:rgba(255,255,255,.08); --bd2:rgba(255,255,255,.14);
+  --t1:rgba(255,255,255,.88); --t2:rgba(255,255,255,.54); --t3:rgba(255,255,255,.30);
+  --blue:#3b82f6; --blue-bg:rgba(59,130,246,.14);
+  --green:#22c55e; --green-bg:rgba(34,197,94,.13);
+  --yellow:#f59e0b; --yellow-bg:rgba(245,158,11,.13);
+  --red:#ef4444; --red-bg:rgba(239,68,68,.13);
+  --purple:#a855f7; --purple-bg:rgba(168,85,247,.13);
+  --r:4px; --r-m:6px; --r-l:8px;
+  --sw:232px; --th:48px; --tr:.13s ease;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'Inter',-apple-system,sans-serif;font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased;}
@@ -49,19 +32,13 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'Inter',-
 .sb-logo{width:26px;height:26px;background:var(--blue);border-radius:var(--r);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .sb-brand{font-size:13px;font-weight:700;letter-spacing:-.02em;color:var(--t1);}
 .sb-brand-sub{font-size:10px;color:var(--t3);}
-
-.sb-nav{flex:1;overflow-y:auto;padding:8px 8px;}
+.sb-nav{flex:1;overflow-y:auto;padding:8px;}
 .nav-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);padding:12px 8px 5px;}
-.ni{
-  display:flex;align-items:center;gap:9px;width:100%;padding:8px 10px;border-radius:var(--r-m);
-  background:transparent;border:none;color:var(--t2);font-size:13px;font-weight:500;
-  cursor:pointer;transition:all var(--tr);text-align:left;font-family:inherit;margin-bottom:1px;
-}
+.ni{display:flex;align-items:center;gap:9px;width:100%;padding:8px 10px;border-radius:var(--r-m);background:transparent;border:none;color:var(--t2);font-size:13px;font-weight:500;cursor:pointer;transition:all var(--tr);text-align:left;font-family:inherit;margin-bottom:1px;}
 .ni:hover{background:var(--bg-h);color:var(--t1);}
 .ni.active{background:var(--bg-e);color:var(--t1);}
 .ni svg{flex-shrink:0;opacity:.7;width:15px;height:15px;}
 .ni.active svg{opacity:1;}
-
 .sb-foot{padding:10px;border-top:1px solid var(--bd);flex-shrink:0;}
 .user-row{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:var(--r-m);background:var(--bg-e);}
 .av{width:26px;height:26px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
@@ -77,12 +54,7 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'Inter',-
 .bc-sep{color:var(--t3);}
 .bc-link{color:var(--t2);cursor:pointer;}
 .bc-link:hover{color:var(--t1);}
-
-.topbar-search{
-  display:flex;align-items:center;gap:7px;margin-left:auto;
-  background:var(--bg-e);border:1px solid var(--bd);border-radius:var(--r-m);
-  padding:5px 11px;width:220px;transition:border-color var(--tr);
-}
+.topbar-search{display:flex;align-items:center;gap:7px;margin-left:auto;background:var(--bg-e);border:1px solid var(--bd);border-radius:var(--r-m);padding:5px 11px;width:220px;transition:border-color var(--tr);}
 .topbar-search:focus-within{border-color:var(--blue);}
 .topbar-search input{background:transparent;border:none;outline:none;color:var(--t1);font-size:12px;font-family:inherit;width:100%;}
 .topbar-search input::placeholder{color:var(--t3);}
@@ -96,11 +68,7 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'Inter',-
 .ptitle{font-size:18px;font-weight:700;letter-spacing:-.03em;margin-bottom:18px;}
 
 /* ═══════ STICKY TOOLBAR ═══════ */
-.sticky-bar{
-  position:sticky;top:0;z-index:20;
-  background:var(--bg);border-bottom:1px solid var(--bd);
-  padding:8px 22px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;
-}
+.sticky-bar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--bd);padding:8px 22px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
 
 /* ═══════ KPI ═══════ */
 .kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px;}
@@ -115,29 +83,33 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'Inter',-
 .kpi-val{font-size:26px;font-weight:700;color:var(--t1);line-height:1;letter-spacing:-.03em;}
 .kpi-sub{font-size:11px;color:var(--t3);margin-top:4px;}
 
-/* ═══════ TABLE ═══════ */
-.table-wrap{overflow-x:auto;}
-table{width:100%;border-collapse:collapse;font-size:12px;}
-thead th{
-  background:var(--bg-e);color:var(--t3);
-  font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;
-  padding:9px 13px;text-align:left;white-space:nowrap;
-  border-bottom:1px solid var(--bd);
-  position:sticky;top:0;z-index:2;user-select:none;
-}
+/* ═══════ TABLE — sticky header + horizontal scroll ═══════ */
+.table-wrap{overflow-x:auto;overflow-y:auto;}
+#casesTable{max-height:none;}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:max-content;}
+thead th{background:var(--bg-e);color:var(--t3);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;padding:6px 12px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:2;user-select:none;}
 .th-sort{cursor:pointer;display:inline-flex;align-items:center;gap:3px;}
 .th-sort:hover{color:var(--t1);}
 tbody tr{border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;transition:background var(--tr);}
 tbody tr:hover{background:var(--bg-h);}
 tbody tr.row-selected{background:var(--blue-bg);}
-td{padding:9px 13px;color:var(--t1);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle;}
+/* [6] Compact rows */
+td{padding:6px 12px;color:var(--t1);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle;}
 .td2{color:var(--t2)!important;}
 .td3{color:var(--t3)!important;font-size:11px;}
 .td-id{font-family:monospace;font-size:11px;color:var(--blue);font-weight:700;}
-.td-amt{color:var(--green);font-weight:600;}
-.td-name{font-weight:500;}
+.td-amt{color:var(--t1);font-weight:600;}
+.td-name{font-weight:500;font-size:12px;}
+.td-sub{font-size:11px;color:var(--t3);}
+/* [6] Pagination */
+.pg-btn{min-width:28px;height:28px;border-radius:var(--r);border:1px solid var(--bd);background:var(--bg-e);color:var(--t2);font-size:12px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all var(--tr);font-family:inherit;padding:0 4px;}
+.pg-btn:hover{border-color:var(--bd2);color:var(--t1);}
+.pg-btn.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+.pg-btn:disabled{opacity:.3;cursor:not-allowed;}
+.pg-sel{background:var(--bg-e);border:1px solid var(--bd);color:var(--t2);padding:4px 8px;border-radius:var(--r);font-size:11px;cursor:pointer;font-family:inherit;outline:none;}
+.pg-sel option{background:var(--bg-c);}
 
-/* ═══════ CHIPS — radius matches button radius ═══════ */
+/* ═══════ CHIPS ═══════ */
 .chip{display:inline-flex;align-items:center;padding:3px 8px;border-radius:var(--r);font-size:11px;font-weight:500;border:1px solid transparent;white-space:nowrap;}
 .chip-open{background:var(--yellow-bg);color:var(--yellow);border-color:rgba(245,158,11,.25);}
 .chip-invest{background:rgba(249,115,22,.13);color:#f97316;border-color:rgba(249,115,22,.25);}
@@ -148,7 +120,6 @@ td{padding:9px 13px;color:var(--t1);max-width:180px;overflow:hidden;text-overflo
 .chip-low{background:var(--green-bg);color:var(--green);border-color:rgba(34,197,94,.25);}
 .chip-area{background:var(--blue-bg);color:var(--blue);border-color:rgba(59,130,246,.2);}
 .chip-sub{background:var(--purple-bg);color:var(--purple);border-color:rgba(168,85,247,.2);}
-.chip-ro{background:rgba(255,255,255,.06);color:var(--t3);border-color:var(--bd);}/* read-only */
 
 /* ═══════ BUTTONS ═══════ */
 .btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--r);font-size:12px;font-weight:600;cursor:pointer;transition:all var(--tr);border:none;white-space:nowrap;font-family:inherit;}
@@ -166,14 +137,6 @@ td{padding:9px 13px;color:var(--t1);max-width:180px;overflow:hidden;text-overflo
 .btn-xs{padding:3px 8px;font-size:11px;}
 .btn-sm{padding:5px 11px;font-size:12px;}
 
-/* sub-status action buttons */
-.btn-ss-open{background:rgba(249,115,22,.14);color:#f97316;border:1px solid rgba(249,115,22,.3);border-radius:var(--r);padding:6px 13px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;transition:all var(--tr);}
-.btn-ss-open:hover{background:rgba(249,115,22,.25);}
-.btn-ss-invest{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(59,130,246,.3);border-radius:var(--r);padding:6px 13px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;transition:all var(--tr);}
-.btn-ss-invest:hover{background:rgba(59,130,246,.22);}
-.btn-ss-close{background:var(--green-bg);color:var(--green);border:1px solid rgba(34,197,94,.3);border-radius:var(--r);padding:6px 13px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;transition:all var(--tr);}
-.btn-ss-close:hover{background:rgba(34,197,94,.22);}
-
 /* ═══════ FORM ═══════ */
 .fg2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .fg{display:flex;flex-direction:column;gap:4px;}
@@ -186,71 +149,84 @@ td{padding:9px 13px;color:var(--t1);max-width:180px;overflow:hidden;text-overflo
 .fs option{background:var(--bg-c);}
 .ft{resize:vertical;min-height:76px;}
 .field-hint{font-size:10px;color:var(--t3);margin-top:2px;}
-/* input filter */
 .fi-sm{background:var(--bg-e);border:1px solid var(--bd);color:var(--t1);padding:6px 9px;border-radius:var(--r);font-size:11px;outline:none;font-family:inherit;transition:border-color var(--tr);}
 .fi-sm:focus{border-color:var(--blue);}
 .fsel{background:var(--bg-e);border:1px solid var(--bd);color:var(--t2);padding:6px 9px;border-radius:var(--r);font-size:11px;outline:none;cursor:pointer;font-family:inherit;}
 .fsel option{background:var(--bg-c);}
 
+/* [2] Date input — white calendar icon */
+input[type=date]{color:var(--t1);color-scheme:dark;}
+input[type=date]::-webkit-calendar-picker-indicator{filter:invert(1) brightness(1.5);cursor:pointer;opacity:.85;}
+
 /* ═══════ DETAIL 2-COL ═══════ */
 .case-header{padding:16px 22px 0;background:var(--bg);position:sticky;top:0;z-index:15;border-bottom:1px solid var(--bd);transition:all .2s;}
 .case-header.compact .case-id-big{font-size:13px;padding-bottom:10px;}
 .case-id-big{font-size:19px;font-weight:700;letter-spacing:-.03em;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-bottom:14px;transition:font-size .2s;}
-
 .detail-2col{display:grid;grid-template-columns:1fr 340px;gap:16px;padding:16px 22px 24px;}
 .col-left{display:flex;flex-direction:column;gap:14px;}
 .col-right{display:flex;flex-direction:column;gap:14px;}
 
-/* ═══════ PAPER SECTIONS ═══════ */
+/* ═══════ SECTION ═══════ */
 .section{background:var(--bg-c);border:1px solid var(--bd);border-radius:var(--r-l);overflow:hidden;}
-.section-head{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:11px 14px;border-bottom:1px solid var(--bd);
-}
+/* Status section needs overflow:visible so AKSI dropdown isn't clipped */
+#statusSection{overflow:visible;}
+.section-head{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid var(--bd);}
 .section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);}
-.section-body{padding:6px 0;}
 
-/* LI — inline editable rows */
+/* ═══════ LI ROWS ═══════ */
 .li-row{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid rgba(255,255,255,.04);}
 .li-row:last-child{border-bottom:none;}
 .li-key{width:150px;flex-shrink:0;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);}
-.li-val{flex:1;font-size:12px;color:var(--t1);word-break:break-word;}
+.li-val{flex:1;font-size:12px;color:var(--t1);word-break:break-word;min-width:0;}
 .li-val.readonly{color:var(--t2);font-style:italic;}
-.li-edit-btn{flex-shrink:0;background:transparent;border:none;cursor:pointer;color:var(--t3);padding:3px;border-radius:var(--r);transition:all var(--tr);display:none;}
-.li-row:hover .li-edit-btn:not(.hidden){display:flex;align-items:center;}
+/* [4] LI Controls: pencil → ✓/✗ */
+.li-controls{display:flex;gap:3px;flex-shrink:0;align-items:center;}
+.li-edit-btn{display:none;background:transparent;border:none;cursor:pointer;color:var(--t3);padding:3px;border-radius:var(--r);transition:all var(--tr);}
+.li-row:hover .li-edit-btn{display:flex;align-items:center;}
 .li-edit-btn:hover{color:var(--blue);background:var(--blue-bg);}
+.li-save-btn,.li-cancel-btn{width:22px;height:22px;border-radius:var(--r);background:transparent;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;font-family:inherit;transition:all var(--tr);}
+.li-save-btn{border:1px solid rgba(34,197,94,.5);color:var(--green);}
+.li-save-btn:hover{background:var(--green-bg);}
+.li-save-btn:disabled{opacity:.4;cursor:not-allowed;}
+.li-cancel-btn{border:1px solid rgba(239,68,68,.5);color:var(--red);}
+.li-cancel-btn:hover{background:var(--red-bg);}
+.li-cancel-btn:disabled{opacity:.4;cursor:not-allowed;}
 .li-input{background:var(--bg-e);border:1px solid var(--blue);color:var(--t1);padding:4px 8px;border-radius:var(--r);font-size:12px;font-family:inherit;width:100%;outline:none;}
+.li-select{background:var(--bg-e);border:1px solid var(--blue);color:var(--t1);padding:4px 8px;border-radius:var(--r);font-size:12px;font-family:inherit;width:100%;outline:none;}
+.li-select option{background:var(--bg-c);}
 
-/* Status flow */
-.status-flow{display:flex;align-items:center;gap:6px;padding:10px 14px;}
+/* ═══════ STATUS FLOW (v3 preserved + moved to top) ═══════ */
+.status-flow{display:flex;align-items:center;gap:6px;padding:12px 14px;}
 .sf-node{display:flex;flex-direction:column;align-items:center;gap:3px;}
 .sf-dot{width:8px;height:8px;border-radius:50%;background:var(--bd2);}
 .sf-dot.done{background:var(--green);}
 .sf-dot.cur{background:var(--blue);box-shadow:0 0 0 3px rgba(59,130,246,.2);}
 .sf-txt{font-size:9px;color:var(--t3);text-align:center;white-space:nowrap;}
 .sf-txt.cur{color:var(--blue);font-weight:600;}
-.sf-line{flex:1;height:1px;background:var(--bd);}
+.sf-line{flex:1;height:1px;background:var(--bd);margin-bottom:10px;}
 .sf-line.done{background:var(--green);}
 
-/* sub-status action buttons */
-.ss-actions{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px;}
+/* [11] AKSI dropdown + TUTUP KASUS — 2 equal-width buttons */
+.status-action-bar{display:flex;gap:8px;padding:10px 14px 12px;}
+.aksi-wrap{flex:1;position:relative;}
+.btn-aksi{width:100%;padding:9px 12px;background:var(--blue-bg);color:var(--blue);border:1px solid rgba(59,130,246,.3);border-radius:var(--r);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all var(--tr);}
+.btn-aksi:hover{background:rgba(59,130,246,.22);}
+.btn-tutup-kasus{flex:1;padding:9px 12px;background:var(--green-bg);color:var(--green);border:1px solid rgba(34,197,94,.3);border-radius:var(--r);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all var(--tr);}
+.btn-tutup-kasus:hover{background:rgba(34,197,94,.22);}
+.aksi-menu{position:absolute;top:calc(100% + 3px);left:0;right:0;background:var(--bg-c);border:1px solid var(--bd);border-radius:var(--r-m);z-index:50;box-shadow:0 6px 24px rgba(0,0,0,.5);overflow:hidden;}
+.aksi-item{display:block;width:100%;padding:9px 14px;text-align:left;background:transparent;border:none;color:var(--t1);font-size:12px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.04);font-family:inherit;}
+.aksi-item:last-child{border-bottom:none;}
+.aksi-item:hover{background:var(--bg-h);}
+.hidden{display:none!important;}
 
-/* DP — detail pribadi rows */
-.dp-row{display:flex;align-items:baseline;gap:8px;padding:8px 14px;border-bottom:1px solid rgba(255,255,255,.04);}
+/* ═══════ DP ROWS ═══════ */
+.dp-row{display:flex;align-items:flex-start;gap:8px;padding:8px 14px;border-bottom:1px solid rgba(255,255,255,.04);}
 .dp-row:last-child{border-bottom:none;}
-.dp-key{width:130px;flex-shrink:0;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--t3);}
+.dp-key{width:130px;flex-shrink:0;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--t3);padding-top:2px;}
 .dp-val{font-size:12px;color:var(--t2);flex:1;word-break:break-word;}
-.dp-val a{color:var(--blue);}
+.dp-val-content{display:flex;flex-wrap:wrap;align-items:center;gap:5px;}
 
-/* Evidence gallery */
-.ev-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;padding:10px 14px;}
-.ev-card{background:var(--bg-e);border:1px solid var(--bd);border-radius:var(--r);padding:10px;text-align:center;cursor:pointer;transition:all var(--tr);}
-.ev-card:hover{border-color:var(--blue);}
-.ev-icon{font-size:22px;margin-bottom:5px;}
-.ev-name{font-size:10px;color:var(--t2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.ev-date{font-size:9px;color:var(--t3);margin-top:2px;}
-
-/* Notes/History items */
+/* ═══════ NH/CH ITEMS ═══════ */
 .nh-item{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.04);}
 .nh-item:last-child{border-bottom:none;}
 .nh-meta{display:flex;justify-content:space-between;margin-bottom:4px;}
@@ -258,15 +234,16 @@ td{padding:9px 13px;color:var(--t1);max-width:180px;overflow:hidden;text-overflo
 .nh-time{font-size:10px;color:var(--t3);}
 .nh-text{font-size:12px;color:var(--t2);line-height:1.6;white-space:pre-wrap;}
 .hist-action{font-size:10px;font-weight:700;text-transform:uppercase;padding:1px 6px;border-radius:var(--r);}
-.ha-CREATE{background:var(--green-bg);color:var(--green);}
+.ha-CREATE,.ha-CLOSE_CASE{background:var(--green-bg);color:var(--green);}
 .ha-UPDATE{background:var(--blue-bg);color:var(--blue);}
 .ha-MOVE_STATUS,.ha-SUB_STATUS{background:rgba(249,115,22,.13);color:#f97316;}
-.ha-CLOSE_CASE{background:var(--green-bg);color:var(--green);}
 .ha-ADD_NOTE{background:var(--purple-bg);color:var(--purple);}
 .ha-ADD_EVIDENCE{background:var(--blue-bg);color:var(--blue);}
 .ha-DELETE{background:var(--red-bg);color:var(--red);}
 
-/* iOS toggle */
+/* Evidence gallery — now list style, see .ev-list */
+
+/* ═══════ iOS TOGGLE ═══════ */
 .toggle-wrap{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--t2);}
 .tog{position:relative;width:32px;height:18px;flex-shrink:0;}
 .tog input{opacity:0;width:0;height:0;}
@@ -311,7 +288,7 @@ td{padding:9px 13px;color:var(--t1);max-width:180px;overflow:hidden;text-overflo
 
 /* ═══════ MISC ═══════ */
 .alert-hi{display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:var(--r);background:var(--red-bg);border:1px solid rgba(239,68,68,.22);font-size:12px;color:#fca5a5;margin-bottom:14px;}
-.empty-state{text-align:center;padding:48px 20px;color:var(--t3);}
+.empty-state{text-align:center;padding:40px 20px;color:var(--t3);}
 .empty-state p{font-size:12px;line-height:1.7;margin-top:6px;}
 .loading{display:flex;align-items:center;justify-content:center;gap:9px;padding:40px;color:var(--t3);}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -325,41 +302,66 @@ a:hover{text-decoration:underline;}
 .t-err{border-left:2px solid var(--red);}
 .t-inf{border-left:2px solid var(--blue);}
 @keyframes tIn{from{transform:translateX(14px);opacity:0;}to{transform:translateX(0);opacity:1;}}
-::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar{width:5px;height:5px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:4px;}
 .ro-badge{font-size:9px;background:rgba(255,255,255,.06);color:var(--t3);padding:1px 5px;border-radius:var(--r);border:1px solid var(--bd);}
+/* ═══════ LOGIN OVERLAY ═══════ */
+.login-overlay{position:fixed;inset:0;background:var(--bg);z-index:500;display:flex;align-items:center;justify-content:center;}
+.login-box{background:var(--bg-c);border:1px solid var(--bd);border-radius:var(--r-l);padding:32px 28px;width:360px;max-width:92vw;text-align:center;}
+.login-logo{width:44px;height:44px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+.login-title{font-size:18px;font-weight:700;margin-bottom:6px;letter-spacing:-.02em;}
+.login-sub{font-size:12px;color:var(--t3);margin-bottom:24px;line-height:1.6;}
+.login-err{font-size:12px;color:var(--red);margin-top:10px;min-height:18px;}
+/* drop zone drag-over */
+#evDropZone.drag-over{border-color:var(--blue);background:var(--blue-bg);}
+/* ev file list (upload modal) */
+.ev-file-item{display:flex;align-items:center;gap:7px;padding:6px 8px;background:var(--bg-e);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:4px;}
+.ev-file-item:last-child{margin-bottom:0;}
+/* [3] Evidence LIST style */
+.ev-list{display:flex;flex-direction:column;}
+.ev-row{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid rgba(255,255,255,.04);}
+.ev-row:last-child{border-bottom:none;}
+.ev-row-icon{width:28px;height:28px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--bg-e);}
+.ev-row-info{flex:1;min-width:0;}
+.ev-row-name{font-size:12px;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ev-row-meta{font-size:10px;color:var(--t3);margin-top:1px;}
+.ev-row-acts{display:flex;gap:4px;flex-shrink:0;}
+/* [4] Minimalist icon action button */
+.icon-btn{width:26px;height:26px;border-radius:var(--r);border:1px solid var(--bd);background:transparent;color:var(--t3);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr);flex-shrink:0;}
+.icon-btn:hover{border-color:var(--bd2);color:var(--t1);background:var(--bg-h);}
+.icon-btn.danger:hover{border-color:rgba(239,68,68,.4);color:var(--red);background:var(--red-bg);}
+/* [4] Minimalist action buttons in DP (phone/address) */
+.act-btn{display:inline-flex;align-items:center;gap:4px;padding:3px 7px;border-radius:var(--r);font-size:10px;font-weight:500;cursor:pointer;border:1px solid var(--bd);background:var(--bg-e);text-decoration:none;font-family:inherit;transition:all var(--tr);color:var(--t2);}
+.act-btn:hover{border-color:var(--bd2);color:var(--t1);text-decoration:none;}
+.act-btn svg{flex-shrink:0;}
+/* ═══════ IMAGE LIGHTBOX ═══════ */
+.lightbox-back{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;}
+.lightbox-back.open{opacity:1;pointer-events:all;}
+.lightbox-inner{position:relative;max-width:92vw;max-height:92vh;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.lightbox-img{max-width:88vw;max-height:82vh;object-fit:contain;border-radius:var(--r-m);box-shadow:0 8px 40px rgba(0,0,0,.7);}
+.lightbox-close{position:absolute;top:-38px;right:0;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background .15s;}
+.lightbox-close:hover{background:rgba(255,255,255,.25);}
+.lightbox-caption{color:rgba(255,255,255,.6);font-size:12px;text-align:center;max-width:80vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 </style>
 </head>
 <body>
 <div class="app">
 
-<!-- ══ SIDEBAR ══ -->
+<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sb-top">
-    <div class="sb-logo">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    </div>
+    <div class="sb-logo"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
     <div><div class="sb-brand">Anti Fraud Portal</div><div class="sb-brand-sub">Risk Management</div></div>
   </div>
   <nav class="sb-nav">
     <div class="nav-label">Main</div>
-    <button class="ni active" data-page="dashboard">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard
-    </button>
-    <button class="ni" data-page="cases">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Cases
-    </button>
-    <button class="ni" data-page="analytics">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics
-    </button>
+    <button class="ni active" data-page="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</button>
+    <button class="ni" data-page="cases"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Cases</button>
+    <button class="ni" data-page="analytics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics</button>
     <div class="nav-label sa-only" style="display:none">Admin</div>
-    <button class="ni sa-only" data-page="admin-users" style="display:none">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Users
-    </button>
-    <button class="ni sa-only" data-page="admin-config" style="display:none">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 1.41 14.14"/><path d="M4.93 4.93A10 10 0 1 0 19.07 19.07"/></svg>Config
-    </button>
+    <button class="ni sa-only" data-page="admin-users" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Users</button>
+    <button class="ni sa-only" data-page="admin-config" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 1.41 14.14"/><path d="M4.93 4.93A10 10 0 1 0 19.07 19.07"/></svg>Config</button>
   </nav>
   <div class="sb-foot">
     <div class="user-row">
@@ -370,24 +372,21 @@ a:hover{text-decoration:underline;}
   </div>
 </aside>
 
-<!-- ══ MAIN ══ -->
+<!-- MAIN -->
 <div class="main">
-
-  <!-- TOPBAR -->
   <div class="topbar">
     <div class="breadcrumb" id="bc"><span>Dashboard</span></div>
+    <!-- [5] Search topbar: Enter → navigate cases + filter -->
     <div class="topbar-search">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--t3);flex-shrink:0"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="tbSearch" placeholder="Cari Case ID, Kurir…" oninput="onTbSearch()">
+      <input type="text" id="tbSearch" placeholder="Cari Case ID, Kurir… (Enter)" oninput="onTbSearch()" onkeydown="onTbSearchKey(event)">
     </div>
-    <button class="tb-btn" onclick="refreshAll()" title="Refresh">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-    </button>
+    <button class="tb-btn" onclick="refreshAll()" title="Refresh"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></button>
   </div>
 
   <div class="page-wrap" id="pageWrap">
 
-    <!-- ╔══ PAGE: DASHBOARD ══╗ -->
+    <!-- PAGE: DASHBOARD -->
     <div class="page active" id="page-dashboard">
       <div class="ptitle">Dashboard</div>
       <div class="kpi-row">
@@ -402,11 +401,9 @@ a:hover{text-decoration:underline;}
       <div class="section" id="dashTable"><div class="loading"><div class="spin"></div>Memuat…</div></div>
     </div>
 
-    <!-- ╔══ PAGE: CASES ══╗ -->
+    <!-- PAGE: CASES -->
     <div class="page" id="page-cases" style="padding:0;display:none;flex-direction:column;">
-
-      <!-- Sticky filter bar -->
-      <div class="sticky-bar" id="stickyBar">
+      <div class="sticky-bar">
         <div style="display:flex;align-items:center;gap:6px;background:var(--bg-e);border:1px solid var(--bd);border-radius:var(--r);padding:5px 10px;width:190px;">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--t3);flex-shrink:0"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           <input type="text" id="srch" class="fi-sm" style="background:transparent;border:none;padding:0;width:100%;" placeholder="Cari…" oninput="onSearch()">
@@ -420,23 +417,18 @@ a:hover{text-decoration:underline;}
         <span style="font-size:11px;color:var(--t3)" id="resCnt"></span>
         <button class="btn btn-blue btn-sm" style="margin-left:auto;" onclick="nav('add-case')">+ Tambah Case</button>
       </div>
-
-      <div style="flex:1;overflow-y:auto;padding:0 22px 22px;">
-        <div class="table-wrap section" id="casesTable">
-          <div class="loading"><div class="spin"></div>Memuat…</div>
-        </div>
+      <div style="flex:1;overflow:hidden;padding:0 22px 22px;display:flex;flex-direction:column;min-height:0;">
+        <div class="table-wrap section" id="casesTable" style="flex:1;overflow:auto;"><div class="loading"><div class="spin"></div>Memuat…</div></div>
+        <!-- [6] Pagination bar -->
+        <div id="paginationBar" style="display:flex;align-items:center;justify-content:space-between;padding:8px 2px 0;flex-shrink:0;flex-wrap:wrap;gap:6px;"></div>
       </div>
     </div>
 
-    <!-- ╔══ PAGE: CASE DETAIL ══╗ -->
+    <!-- PAGE: CASE DETAIL -->
     <div class="page" id="page-detail" style="padding:0;">
-
-      <!-- Sticky case header -->
       <div class="case-header" id="caseHeader">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-          <button class="btn btn-ghost btn-xs" onclick="nav('cases')">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15,18 9,12 15,6"/></svg>Kembali
-          </button>
+          <button class="btn btn-ghost btn-xs" onclick="nav('cases')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15,18 9,12 15,6"/></svg>Kembali</button>
           <span style="font-size:11px;color:var(--t3)" id="detBC">Cases / —</span>
           <div style="margin-left:auto;display:flex;gap:6px;">
             <button class="btn btn-danger-ghost btn-xs sa-only" id="btnDel" onclick="confirmDel()" style="display:none">Hapus</button>
@@ -445,26 +437,27 @@ a:hover{text-decoration:underline;}
         <div class="case-id-big" id="caseIdBig">—</div>
       </div>
 
-      <div class="detail-2col" id="detail2col">
-        <!-- LEFT -->
+      <div class="detail-2col">
+        <!-- LEFT COLUMN -->
         <div class="col-left">
-          <!-- LI: List Info Case -->
+          <!-- [10] Status flow MOVED TO TOP of left column -->
+          <div class="section" id="statusSection">
+            <div class="section-head"><span class="section-label">Status Progress</span></div>
+            <div id="statusFlowBody"></div>
+            <!-- [11] Action bar: BUAT AKSI + TUTUP KASUS -->
+            <div id="ssActionsBody"></div>
+          </div>
+
+          <!-- Case Info (LI) -->
           <div class="section" id="liSection">
             <div class="section-head">
               <span class="section-label">Case Info</span>
-              <span style="font-size:9px;color:var(--t3)">Klik ✏ untuk edit</span>
+              <span style="font-size:9px;color:var(--t3)">Hover baris → ✏ untuk edit</span>
             </div>
             <div id="liBody"></div>
           </div>
 
-          <!-- Status & Sub-Status actions -->
-          <div class="section" id="statusSection">
-            <div class="section-head"><span class="section-label">Status Flow & Aksi</span></div>
-            <div id="statusFlowBody"></div>
-            <div id="ssActionsBody"></div>
-          </div>
-
-          <!-- Notes History (NH) -->
+          <!-- Notes (NH) -->
           <div class="section" id="nhSection">
             <div class="section-head">
               <span class="section-label">Notes</span>
@@ -474,23 +467,16 @@ a:hover{text-decoration:underline;}
           </div>
         </div>
 
-        <!-- RIGHT -->
+        <!-- RIGHT COLUMN -->
         <div class="col-right">
-          <!-- DP: Detail Pribadi -->
           <div class="section" id="dpSection">
-            <div class="section-head">
-              <span class="section-label">Detail Pribadi <span class="ro-badge">Lookup</span></span>
-            </div>
+            <div class="section-head"><span class="section-label">Detail Pribadi <span class="ro-badge">Lookup</span></span></div>
             <div id="dpBody"></div>
           </div>
-
-          <!-- Case History (CH) -->
           <div class="section" id="chSection">
             <div class="section-head"><span class="section-label">Case History</span></div>
             <div id="chBody"><div class="loading"><div class="spin"></div></div></div>
           </div>
-
-          <!-- Evidence Gallery (EU) -->
           <div class="section" id="euSection">
             <div class="section-head">
               <span class="section-label">Evidence</span>
@@ -502,7 +488,7 @@ a:hover{text-decoration:underline;}
       </div>
     </div>
 
-    <!-- ╔══ PAGE: ADD CASE ══╗ -->
+    <!-- PAGE: ADD CASE -->
     <div class="page" id="page-add-case">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
         <button class="btn btn-ghost btn-sm" onclick="nav('cases')">← Kembali</button>
@@ -513,13 +499,13 @@ a:hover{text-decoration:underline;}
           <div class="fg"><div class="flabel">ID Kurir<span class="req">*</span></div><input class="fi" id="a-cid" placeholder="952747"></div>
           <div class="fg"><div class="flabel">Nama Kurir<span class="req">*</span></div><input class="fi" id="a-cnm" placeholder="NOPIARDI"></div>
           <div class="fg"><div class="flabel">Hub</div><input class="fi" id="a-hub" placeholder="Pandan Hub"></div>
-          <div class="fg"><div class="flabel">Area</div><input class="fi" id="a-area" placeholder="Kalimantan Timur"></div>
+          <div class="fg"><div class="flabel">Area</div><input class="fi" id="a-area" placeholder="Kalimantan Timur" oninput="onAreaChange()"></div>
           <div class="fg"><div class="flabel">Amount COD<span class="req">*</span></div>
             <input class="fi" id="a-amt" type="number" placeholder="7887068" oninput="prevPrio()">
             <div class="field-hint">Priority: <strong id="prioPreview" style="color:var(--t2)">—</strong></div>
           </div>
           <div class="fg"><div class="flabel">Nominal Rek Penampung <span class="ro-badge">Lookup</span></div>
-            <input class="fi" id="a-rek" type="number" placeholder="Rp 0 (otomatis dari lookup)" disabled style="opacity:.5;cursor:not-allowed;">
+            <input class="fi" disabled placeholder="Rp 0 (otomatis dari lookup)" style="opacity:.5;cursor:not-allowed;">
             <div class="field-hint">Diisi otomatis via VLOOKUP di sheet</div>
           </div>
           <div class="fg"><div class="flabel">First Update</div><input class="fi" id="a-fup" type="date"></div>
@@ -527,9 +513,9 @@ a:hover{text-decoration:underline;}
             <select class="fs" id="a-stat"><option>Open</option><option>On Investigation</option><option>Case Close</option></select>
           </div>
           <div class="fg"><div class="flabel">Kategori</div><select class="fs" id="a-cat"><option value="">— Pilih —</option></select></div>
-          <div class="fg"><div class="flabel">Assigned To</div><input class="fi" id="a-ato" placeholder="Nama investigator"></div>
-          <div class="fg full"><div class="flabel">Evidence</div>
-            <button type="button" class="btn btn-ghost" onclick="openEvidenceModal('add')">📎 Tambah Evidence (URL / Link)</button>
+          <!-- [1] Assigned To → select dropdown -->
+          <div class="fg"><div class="flabel">Assigned To</div>
+            <select class="fs" id="a-ato"><option value="">— Pilih (isi Area dulu) —</option></select>
           </div>
           <div class="fg full"><div class="flabel">Notes Awal</div><textarea class="ft" id="a-nts" rows="3" placeholder="Deskripsi awal kasus…"></textarea></div>
         </div>
@@ -539,20 +525,22 @@ a:hover{text-decoration:underline;}
       </div>
     </div>
 
-    <!-- ╔══ PAGE: ANALYTICS ══╗ -->
+    <!-- PAGE: ANALYTICS -->
     <div class="page" id="page-analytics">
       <div class="ptitle">Analytics</div>
       <div class="an-grid" id="anContent"><div class="loading" style="grid-column:1/-1"><div class="spin"></div>Memuat…</div></div>
     </div>
 
-    <!-- ╔══ PAGE: ADMIN USERS ══╗ -->
+    <!-- PAGE: ADMIN USERS -->
     <div class="page" id="page-admin-users">
       <div class="ptitle">Users</div>
       <div class="admin-2col">
         <div>
           <div class="section" style="padding:14px;margin-bottom:12px;">
+            <!-- [13] Add username field -->
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
               <input class="fi" id="au-email" type="email" placeholder="email@example.com" style="grid-column:1/-1;">
+              <input class="fi" id="au-username" placeholder="Username / Nama Tampil" style="grid-column:1/-1;">
               <select class="fs" id="au-role"><option value="user">user</option><option value="superadmin">superadmin</option></select>
               <input class="fi" id="au-area" placeholder="Area (e.g. Kalimantan Timur)">
             </div>
@@ -561,44 +549,34 @@ a:hover{text-decoration:underline;}
           <div class="section" id="usersTable"><div class="loading"><div class="spin"></div></div></div>
         </div>
         <div class="section" style="padding:14px;">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:10px;">Informasi Sheet USERS</div>
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:10px;">Informasi</div>
           <div style="font-size:12px;color:var(--t2);line-height:1.7;">
-            <p>• <strong>superadmin</strong>: Akses semua area, bisa delete/edit semua field sensitif.</p>
-            <p>• <strong>user</strong>: Hanya melihat case sesuai area yang di-assign.</p>
-            <p>• Area harus sama persis dengan kolom Area di CASES.</p>
+            <p>• <strong>superadmin</strong>: Akses semua area, delete/edit semua field.</p>
+            <p>• <strong>user</strong>: Hanya melihat case sesuai area.</p>
+            <p>• Username tampil di notes & history. Jika kosong, pakai email.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ╔══ PAGE: ADMIN CONFIG ══╗ -->
+    <!-- PAGE: ADMIN CONFIG -->
     <div class="page" id="page-admin-config">
       <div class="ptitle">Config</div>
       <div class="admin-2col">
-        <!-- Kategori -->
         <div>
           <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:10px;">Kategori Fraud</div>
           <div class="section" style="margin-bottom:14px;">
             <div class="config-tags" id="catTags"></div>
-            <div class="tag-add">
-              <input class="fi" id="addCatInput" placeholder="Nama kategori baru…" style="flex:1;padding:6px 10px;">
-              <button class="btn btn-blue btn-xs" onclick="addCatTag()">+</button>
-            </div>
+            <div class="tag-add"><input class="fi" id="addCatInput" placeholder="Nama kategori baru…" style="flex:1;padding:6px 10px;"><button class="btn btn-blue btn-xs" onclick="addCatTag()">+</button></div>
           </div>
           <button class="btn btn-green btn-sm" onclick="saveCats()" id="btnSaveCat">Simpan Kategori</button>
-
           <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin:18px 0 10px;">Close Reasons</div>
           <div class="section" style="margin-bottom:14px;">
             <div class="config-tags" id="closeTags"></div>
-            <div class="tag-add">
-              <input class="fi" id="addCloseInput" placeholder="Nama close reason baru…" style="flex:1;padding:6px 10px;">
-              <button class="btn btn-blue btn-xs" onclick="addCloseTag()">+</button>
-            </div>
+            <div class="tag-add"><input class="fi" id="addCloseInput" placeholder="Nama close reason baru…" style="flex:1;padding:6px 10px;"><button class="btn btn-blue btn-xs" onclick="addCloseTag()">+</button></div>
           </div>
           <button class="btn btn-green btn-sm" onclick="saveClose()" id="btnSaveClose">Simpan Close Reasons</button>
         </div>
-
-        <!-- Priority Thresholds -->
         <div>
           <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:10px;">Priority Threshold</div>
           <div class="section" style="padding:14px;margin-bottom:12px;">
@@ -614,63 +592,64 @@ a:hover{text-decoration:underline;}
 </div><!-- /main -->
 </div><!-- /app -->
 
-<!-- ════ MODALS ════ -->
-
-<!-- Sub-Status Modal -->
+<!-- SUB-STATUS MODAL -->
 <div class="backdrop" id="ssModal">
   <div class="modal modal-w400">
     <div class="mhdr"><div><div class="mtitle" id="ssMTitle">—</div><div class="msub" id="ssMSub"></div></div><button class="mclose" onclick="closeM('ssModal')">✕</button></div>
     <div class="mbody" id="ssMBody"></div>
-    <div class="mftr">
-      <button class="btn btn-ghost btn-sm" onclick="closeM('ssModal')">Batal</button>
-      <button class="btn btn-blue btn-sm" onclick="submitSS()" id="btnSS">Konfirmasi</button>
-    </div>
+    <div class="mftr"><button class="btn btn-ghost btn-sm" onclick="closeM('ssModal')">Batal</button><button class="btn btn-blue btn-sm" onclick="submitSS()" id="btnSS">Konfirmasi</button></div>
   </div>
 </div>
 
-<!-- Close Case Modal -->
+<!-- CLOSE CASE MODAL -->
 <div class="backdrop" id="closeModal">
   <div class="modal modal-w400">
     <div class="mhdr"><div><div class="mtitle">Tutup Case</div><div class="msub">Pilih alasan penutupan</div></div><button class="mclose" onclick="closeM('closeModal')">✕</button></div>
     <div class="mbody">
-      <div class="fg" style="margin-bottom:12px;">
-        <div class="flabel">Close Reason<span class="req">*</span></div>
-        <select class="fs" id="closeReason"></select>
-      </div>
-      <div class="fg" id="closeOtherWrap" style="display:none;margin-bottom:12px;">
-        <div class="flabel">Keterangan (Other)</div>
-        <input class="fi" id="closeOtherText" placeholder="Tuliskan alasan…">
-      </div>
-      <div class="fg">
-        <div class="flabel">Notes Penutupan</div>
-        <textarea class="ft" id="closeNotes" rows="2" placeholder="Catatan tambahan…"></textarea>
-      </div>
+      <div class="fg" style="margin-bottom:12px;"><div class="flabel">Close Reason<span class="req">*</span></div><select class="fs" id="closeReason"></select></div>
+      <div class="fg" id="closeOtherWrap" style="display:none;margin-bottom:12px;"><div class="flabel">Keterangan (Other)</div><input class="fi" id="closeOtherText" placeholder="Tuliskan alasan…"></div>
+      <div class="fg"><div class="flabel">Notes Penutupan</div><textarea class="ft" id="closeNotes" rows="2" placeholder="Catatan tambahan…"></textarea></div>
     </div>
-    <div class="mftr">
-      <button class="btn btn-ghost btn-sm" onclick="closeM('closeModal')">Batal</button>
-      <button class="btn btn-green btn-sm" onclick="submitClose()" id="btnClose">Tutup Case</button>
-    </div>
+    <div class="mftr"><button class="btn btn-ghost btn-sm" onclick="closeM('closeModal')">Batal</button><button class="btn btn-green btn-sm" onclick="submitClose()" id="btnClose">Tutup Case</button></div>
   </div>
 </div>
 
-<!-- Evidence Modal -->
+<!-- EVIDENCE MODAL — URL link or File upload -->
 <div class="backdrop" id="evModal">
   <div class="modal modal-w400">
-    <div class="mhdr"><div><div class="mtitle">Tambah Evidence</div><div class="msub">URL link dokumen atau foto</div></div><button class="mclose" onclick="closeM('evModal')">✕</button></div>
+    <div class="mhdr"><div><div class="mtitle">Tambah Evidence</div><div class="msub" id="evModalSub">URL link atau upload file</div></div><button class="mclose" onclick="closeM('evModal')">✕</button></div>
     <div class="mbody">
-      <div class="fg" style="margin-bottom:12px;">
-        <div class="flabel">URL / Link Evidence<span class="req">*</span></div>
-        <input class="fi" id="evUrl" placeholder="https://drive.google.com/…">
+      <!-- Tab switcher -->
+      <div style="display:flex;gap:0;margin-bottom:14px;border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;">
+        <button id="evTabUrl" onclick="switchEvTab('url')" style="flex:1;padding:7px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:var(--blue);color:#fff;font-family:inherit;transition:all var(--tr);">🔗 Link URL</button>
+        <button id="evTabFile" onclick="switchEvTab('file')" style="flex:1;padding:7px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:var(--bg-e);color:var(--t2);font-family:inherit;transition:all var(--tr);">📎 Upload File</button>
       </div>
-      <div class="fg" style="margin-bottom:12px;">
-        <div class="flabel">Nama File / Keterangan</div>
-        <input class="fi" id="evName" placeholder="e.g. KTP Scan, Bukti Transfer">
+      <!-- URL panel -->
+      <div id="evPanelUrl">
+        <div class="fg" style="margin-bottom:12px;"><div class="flabel">URL / Link Evidence<span class="req">*</span></div><input class="fi" id="evUrl" placeholder="https://drive.google.com/…"></div>
+        <div class="fg" style="margin-bottom:12px;"><div class="flabel">Nama File / Keterangan</div><input class="fi" id="evName" placeholder="e.g. KTP Scan, Bukti Transfer"></div>
+        <div class="fg"><div class="flabel">Deskripsi</div><textarea class="ft" id="evDesc" rows="2" placeholder="Keterangan tambahan…"></textarea></div>
       </div>
-      <div class="fg">
-        <div class="flabel">Deskripsi</div>
-        <textarea class="ft" id="evDesc" rows="2" placeholder="Keterangan tambahan…"></textarea>
+      <!-- File upload panel -->
+      <div id="evPanelFile" style="display:none;">
+        <div class="fg" style="margin-bottom:10px;">
+          <div class="flabel">Pilih File <span style="color:var(--t3);font-weight:400;text-transform:none;letter-spacing:0">(maks. 5 file, 4.5 MB/file)</span></div>
+          <label style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;border:2px dashed var(--bd);border-radius:var(--r-m);cursor:pointer;transition:border-color var(--tr);background:var(--bg-e);" id="evDropZone">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--t3)"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17,8 12,3 7,8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span style="font-size:12px;color:var(--t2)">Klik atau seret file ke sini</span>
+            <span style="font-size:10px;color:var(--t3)">JPG, PNG, PDF, DOCX, dll · Maks. 5 file sekaligus</span>
+            <input type="file" id="evFile" multiple style="display:none;" onchange="onEvFileSelect(this)" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.txt">
+          </label>
+        </div>
+        <!-- File list -->
+        <div id="evFileList" style="display:none;margin-bottom:10px;"></div>
+        <div class="fg"><div class="flabel">Deskripsi</div><textarea class="ft" id="evFileDesc" rows="2" placeholder="Keterangan untuk semua file…"></textarea></div>
+        <!-- Upload progress -->
+        <div id="evProgress" style="display:none;margin-top:10px;">
+          <div style="font-size:11px;color:var(--t3);margin-bottom:5px;" id="evProgressTxt">Mengupload…</div>
+          <div style="background:var(--bg-e);border-radius:99px;height:5px;overflow:hidden;border:1px solid var(--bd);"><div id="evProgressBar" style="height:100%;background:var(--blue);width:0%;transition:width .3s;border-radius:99px;"></div></div>
+        </div>
       </div>
-      <div style="margin-top:10px;font-size:11px;color:var(--t3);">Untuk upload file, simpan dulu ke Google Drive lalu paste link di sini.</div>
     </div>
     <div class="mftr">
       <button class="btn btn-ghost btn-sm" onclick="closeM('evModal')">Batal</button>
@@ -679,203 +658,443 @@ a:hover{text-decoration:underline;}
   </div>
 </div>
 
-<!-- Add Note Modal -->
+<!-- ADD NOTE MODAL -->
 <div class="backdrop" id="noteModal">
   <div class="modal modal-w400">
     <div class="mhdr"><div><div class="mtitle">Tambah Note</div></div><button class="mclose" onclick="closeM('noteModal')">✕</button></div>
-    <div class="mbody">
-      <textarea class="ft" id="noteText" rows="4" placeholder="Tulis update / catatan…"></textarea>
-    </div>
-    <div class="mftr">
-      <button class="btn btn-ghost btn-sm" onclick="closeM('noteModal')">Batal</button>
-      <button class="btn btn-blue btn-sm" onclick="submitNote()" id="btnNote">Simpan Note</button>
-    </div>
+    <div class="mbody"><textarea class="ft" id="noteText" rows="4" placeholder="Tulis update / catatan…"></textarea></div>
+    <div class="mftr"><button class="btn btn-ghost btn-sm" onclick="closeM('noteModal')">Batal</button><button class="btn btn-blue btn-sm" onclick="submitNote()" id="btnNote">Simpan Note</button></div>
   </div>
 </div>
 
-<!-- Confirm Dialog -->
+<!-- CONFIRM DIALOG -->
 <div class="backdrop" id="confModal">
   <div class="modal modal-w320">
     <div class="mhdr"><div class="mtitle" id="confTitle">Konfirmasi</div><button class="mclose" onclick="closeM('confModal')">✕</button></div>
     <div class="mbody" id="confBody" style="font-size:13px;color:var(--t2);line-height:1.6;"></div>
-    <div class="mftr">
-      <button class="btn btn-ghost btn-sm" onclick="closeM('confModal')">Batal</button>
-      <button class="btn btn-danger btn-sm" id="confOk">Hapus</button>
+    <div class="mftr"><button class="btn btn-ghost btn-sm" onclick="closeM('confModal')">Batal</button><button class="btn btn-danger btn-sm" id="confOk">Hapus</button></div>
+  </div>
+</div>
+
+<!-- LOGIN OVERLAY — shown when no session detected -->
+<div class="login-overlay" id="loginOverlay" style="display:none;">
+  <div class="login-box">
+    <div class="login-logo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
     </div>
+    <div class="login-title">Anti Fraud Portal</div>
+    <div class="login-sub">Masukkan email Google Workspace Anda yang terdaftar untuk mengakses portal ini.</div>
+    <div class="fg" style="text-align:left;margin-bottom:12px;">
+      <div class="flabel">Email<span class="req">*</span></div>
+      <input class="fi" id="loginEmail" type="email" placeholder="nama@perusahaan.com"
+        onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="btn btn-blue" style="width:100%;justify-content:center;padding:10px;" onclick="doLogin()" id="btnLogin">Masuk</button>
+    <div class="login-err" id="loginErr"></div>
+  </div>
+</div>
+
+<!-- IMAGE LIGHTBOX -->
+<div class="lightbox-back" id="lightboxBack" onclick="closeLightbox()">
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
   </div>
 </div>
 
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-/* ════════════════════════════════
-   STATE
-════════════════════════════════ */
-const S={
+/* ═══ STATE ═══ */
+const S = {
   page:'dashboard', allCases:[], curId:null, curUser:null,
   cats:[], closeReasons:[], thresholds:[],
-  sort:{col:'priority',dir:'asc'}, filters:{q:'',st:'',pr:'',cat:'',area:'',hideClosed:true},
-  srchTimer:null, dlgCb:null, ssCurrent:null,
-  pendingEvidenceForNewCase:[]
+  areaUsers: [],
+  sort:{col:'lastUpdate',dir:'desc'}, // [4] default sort: terbaru dari last update
+  filters:{q:'',st:'',pr:'',cat:'',area:'',hideClosed:true},
+  // [6] Pagination
+  pg:{ cur:1, perPage:20 },
+  srchTimer:null, dlgCb:null, ssCurrent:null
 };
-const PORD={High:0,Medium:1,Low:2,'':3};
-const SFLOW=['Open','On Investigation','Case Close'];
-const OPEN_SS=['ASSIGN TO PIC','ASSIGN TO SL','HO CALL'];
-const INV_SS=['SPP','JANJI BAYAR (PTP)','UPDATE TGL JANJI BAYAR (BROKEN PTP)','LUNAS (PAID OFF)','CICIL (TERMIN)','HOLD','PENYITAAN ASET'];
+const PORD = {High:0,Medium:1,Low:2,'':3};
+const SFLOW = ['Open','On Investigation','Case Close'];
+const OPEN_SS = ['ASSIGN TO PIC','ASSIGN TO SL','HO CALL'];
+const INV_SS  = ['SPP','JANJI BAYAR (PTP)','UPDATE TGL JANJI BAYAR (BROKEN PTP)','LUNAS (PAID OFF)','CICIL (TERMIN)','HOLD','PENYITAAN ASET'];
 
-/* ════════════════════════════════
-   INIT
-════════════════════════════════ */
-document.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('.ni[data-page]').forEach(b=>b.addEventListener('click',()=>nav(b.dataset.page)));
-  document.querySelectorAll('.backdrop').forEach(b=>b.addEventListener('click',e=>{if(e.target===b)b.classList.remove('open');}));
-  $('closeReason').addEventListener('change',()=>{$('closeOtherWrap').style.display=$('closeReason').value==='Other'?'':'none';});
-  loadAll();
+/* ═══ INIT ═══ */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.ni[data-page]').forEach(b => b.addEventListener('click', () => nav(b.dataset.page)));
+  document.querySelectorAll('.backdrop').forEach(b => b.addEventListener('click', e => { if (e.target === b) b.classList.remove('open'); }));
+  $('closeReason').addEventListener('change', () => { $('closeOtherWrap').style.display = $('closeReason').value === 'Other' ? '' : 'none'; });
+  // Close AKSI menu on outside click
+  document.addEventListener('click', e => {
+    const wrap = document.querySelector('.aksi-wrap');
+    const menu = $('aksiMenu');
+    if (menu && wrap && !wrap.contains(e.target)) menu.classList.add('hidden');
+  });
+  // [7] Drag & drop on evidence drop zone
+  document.addEventListener('dragover', e => e.preventDefault());
+  const zone = $('evDropZone');
+  if (zone) {
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', e => {
+      e.preventDefault(); zone.classList.remove('drag-over');
+      const file = e.dataTransfer.files[0]; if (!file) return;
+      const inp = $('evFile');
+      try { const dt = new DataTransfer(); dt.items.add(file); inp.files = dt.files; onEvFileSelect(inp); }
+      catch(err) { toast('Drag & drop tidak didukung, gunakan tombol pilih file.','info'); }
+    });
+    zone.addEventListener('click', e => { if (e.target !== $('evFile')) $('evFile').click(); });
+  }
+  checkSession();
 });
-function loadAll(){loadCurrentUser();loadStats();loadCases();loadConfigs();}
-function refreshAll(){loadAll();toast('Data diperbarui','info');}
 
-/* ════════════════════════════════
-   NAVIGATION
-════════════════════════════════ */
-function nav(page){
-  S.page=page;
-  document.querySelectorAll('.page').forEach(p=>{p.classList.remove('active');if(p.id==='page-cases')p.style.display='none';});
-  const el=$('page-'+page.replace(/ /g,'-'));
-  if(el){el.classList.add('active');if(page==='cases')el.style.display='flex';}
-  document.querySelectorAll('.ni[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
-  const labels={dashboard:'Dashboard',cases:'Cases','add-case':'Tambah Case',detail:S.curId||'Detail',analytics:'Analytics','admin-users':'Users','admin-config':'Config'};
-  const bc=$('bc');
-  if(['detail','add-case'].includes(page)){
-    bc.innerHTML=`<span class="bc-link" onclick="nav('cases')">Cases</span><span class="bc-sep">/</span><span>${esc(labels[page]||page)}</span>`;
-  }else{bc.innerHTML=`<span>${esc(labels[page]||page)}</span>`;}
-  if(page==='analytics')renderAnalytics();
-  if(page==='admin-users'){loadUsers();}
-  if(page==='admin-config'){renderThresholds();renderCatTags();renderCloseTags();}
-  if(page==='detail'&&S.curId)openDetail(S.curId);
+// ★ v3.1.1: Check if there's an active session first
+function checkSession() {
+  google.script.run
+    .withSuccessHandler(u => {
+      if (!u || !u.authorized) {
+        showLoginOverlay();
+      } else {
+        hideLoginOverlay();
+        applyUserUI(u);
+        loadAll(true); // true = restore hash after load
+      }
+    })
+    .withFailureHandler(() => showLoginOverlay())
+    .getCurrentUser();
 }
 
-/* ════════════════════════════════
-   CURRENT USER
-════════════════════════════════ */
-function loadCurrentUser(){
-  google.script.run.withSuccessHandler(u=>{
-    S.curUser=u;
-    $('uAv').textContent=u.email?u.email[0].toUpperCase():'?';
-    $('uEmail').textContent=u.email||'—';
-    const rb=$('uRole');rb.textContent=u.role||'—';rb.className='role-chip '+(u.role==='superadmin'?'role-sa':'role-u');
-    if(u.role==='superadmin'){
-      document.querySelectorAll('.sa-only').forEach(el=>{el.style.display='';});
-    }
-  }).getCurrentUser();
+function showLoginOverlay() {
+  const ol = $('loginOverlay');
+  if (ol) { ol.style.display = 'flex'; }
+}
+function hideLoginOverlay() {
+  const ol = $('loginOverlay');
+  if (ol) ol.style.display = 'none';
 }
 
-/* ════════════════════════════════
-   CONFIGS
-════════════════════════════════ */
-function loadConfigs(){
-  google.script.run.withSuccessHandler(r=>{if(r.ok){S.cats=r.data;populateCatFilter();}}).getCategories();
-  google.script.run.withSuccessHandler(r=>{if(r.ok)S.closeReasons=r.data;}).getCloseReasons();
-  google.script.run.withSuccessHandler(r=>{if(r.ok)S.thresholds=r.data;}).getThresholds();
-}
-function populateCatFilter(){
-  const s=$('fCat');s.innerHTML='<option value="">Semua Kategori</option>'+S.cats.map(c=>`<option>${esc(c)}</option>`).join('');
-  const sa=$('a-cat');if(sa)sa.innerHTML='<option value="">— Pilih —</option>'+S.cats.map(c=>`<option>${esc(c)}</option>`).join('');
+// ★ v3.1.1: Login via email — calls verifyUserByEmail on server
+function doLogin() {
+  const emailVal = ($('loginEmail').value || '').trim();
+  if (!emailVal) { $('loginErr').textContent = 'Email tidak boleh kosong.'; return; }
+  $('loginErr').textContent = '';
+  btnLoad('btnLogin', true, 'Memverifikasi…');
+  google.script.run
+    .withSuccessHandler(u => {
+      btnLoad('btnLogin', false, 'Masuk');
+      if (!u || !u.authorized) {
+        $('loginErr').textContent = 'Email tidak terdaftar atau tidak memiliki akses.';
+        return;
+      }
+      hideLoginOverlay();
+      applyUserUI(u);
+      loadAll(false); // fresh login → go to dashboard, no hash restore
+    })
+    .withFailureHandler(e => {
+      btnLoad('btnLogin', false, 'Masuk');
+      $('loginErr').textContent = 'Gagal: ' + (e.message || 'Coba lagi.');
+    })
+    .verifyUserByEmail(emailVal);
 }
 
-/* ════════════════════════════════
-   STATS
-════════════════════════════════ */
-function loadStats(){
-  google.script.run.withSuccessHandler(res=>{
-    if(!res.ok)return;
-    const d=res.data;
-    $('k-open').textContent=d.open;$('k-invest').textContent=d.onInvestigation;
-    $('k-close').textContent=d.caseClosed;$('k-high').textContent=d.highPriority;
-    $('k-amt').textContent=fmtRp(d.totalAmount,true);
-    $('dashAlert').innerHTML=d.highPriority>0?`<div class="alert-hi">⚠ <strong>${d.highPriority} case High Priority</strong> perlu tindakan segera.<button class="btn btn-xs btn-danger-ghost" onclick="quickF('High')" style="margin-left:auto">Lihat</button></div>`:'';
+function applyUserUI(u) {
+  S.curUser = u;
+  $('uAv').textContent = u.email ? u.email[0].toUpperCase() : '?';
+  $('uEmail').textContent = u.username || u.email || '—';
+  const rb = $('uRole'); rb.textContent = u.role || '—';
+  rb.className = 'role-chip ' + (u.role === 'superadmin' ? 'role-sa' : 'role-u');
+  if (u.role === 'superadmin') document.querySelectorAll('.sa-only').forEach(el => el.style.display = '');
+}
+
+function loadAll(restoreHash) {
+  loadCurrentUser();
+  loadStats();
+  loadCases(restoreHash); // [3] pass flag so cases restore hash after load
+  loadConfigs();
+  loadAreaUsers();
+}
+function refreshAll() { loadAll(false); toast('Data diperbarui', 'info'); }
+
+/* ═══ NAV ═══ */
+function nav(page, skipHash) {
+  S.page = page;
+  // [3] Persist state in URL hash so F5 restores position
+  if (!skipHash) {
+    const hash = page === 'detail' && S.curId ? `#detail/${S.curId}` : `#${page}`;
+    history.replaceState(null, '', hash);
+  }
+  document.querySelectorAll('.page').forEach(p => { p.classList.remove('active'); if (p.id === 'page-cases') p.style.display = 'none'; });
+  const el = $('page-' + page.replace(/ /g, '-'));
+  if (el) { el.classList.add('active'); if (page === 'cases') el.style.display = 'flex'; }
+  document.querySelectorAll('.ni[data-page]').forEach(b => b.classList.toggle('active', b.dataset.page === page));
+  const labels = {dashboard:'Dashboard',cases:'Cases','add-case':'Tambah Case',detail:S.curId||'Detail',analytics:'Analytics','admin-users':'Users','admin-config':'Config'};
+  const bc = $('bc');
+  if (['detail','add-case'].includes(page)) {
+    bc.innerHTML = `<span class="bc-link" onclick="nav('cases')">Cases</span><span class="bc-sep">/</span><span>${esc(labels[page]||page)}</span>`;
+  } else { bc.innerHTML = `<span>${esc(labels[page]||page)}</span>`; }
+  if (page === 'analytics') renderAnalytics();
+  if (page === 'admin-users') loadUsers();
+  if (page === 'admin-config') { renderThresholds(); renderCatTags(); renderCloseTags(); }
+  if (page === 'detail' && S.curId) openDetail(S.curId);
+}
+
+// [3] Restore page from URL hash after login/refresh
+function restoreFromHash() {
+  const hash = window.location.hash || '';
+  if (hash.startsWith('#detail/')) {
+    const id = hash.replace('#detail/', '').trim();
+    if (id) { S.curId = id; nav('detail', true); return; }
+  }
+  const pageMap = {'#cases':'cases','#add-case':'add-case','#analytics':'analytics','#admin-users':'admin-users','#admin-config':'admin-config'};
+  const mapped = pageMap[hash];
+  if (mapped) { nav(mapped, true); return; }
+  nav('dashboard', true);
+}
+
+/* ═══ CURRENT USER ═══ */
+function loadCurrentUser() {
+  google.script.run
+    .withSuccessHandler(u => {
+      if (!u || !u.authorized) { showLoginOverlay(); return; }
+      applyUserUI(u);
+    })
+    .withFailureHandler(() => {}) // non-critical — applyUserUI already called from checkSession
+    .getCurrentUser();
+}
+
+/* ═══ CONFIGS ═══ */
+function loadConfigs() {
+  google.script.run.withSuccessHandler(r => { if (r.ok) { S.cats = r.data; populateCatFilter(); } }).getCategories();
+  google.script.run.withSuccessHandler(r => { if (r.ok) S.closeReasons = r.data; }).getCloseReasons();
+  google.script.run.withSuccessHandler(r => { if (r.ok) S.thresholds = r.data; }).getThresholds();
+}
+function populateCatFilter() {
+  const s = $('fCat'); if (s) s.innerHTML = '<option value="">Semua Kategori</option>' + S.cats.map(c => `<option>${esc(c)}</option>`).join('');
+  const sa = $('a-cat'); if (sa) sa.innerHTML = '<option value="">— Pilih —</option>' + S.cats.map(c => `<option>${esc(c)}</option>`).join('');
+}
+
+/* ═══ [1] AREA USERS — for Assign To dropdown ═══ */
+function loadAreaUsers() {
+  google.script.run
+    .withSuccessHandler(r => {
+      if (r.ok) {
+        S.areaUsers = r.data;
+        populateAssignedTo('a-ato', ''); // populate add-case form with all users
+      }
+    })
+    .withFailureHandler(() => {}) // silent fail — non-critical
+    .getUsersForArea('ALL');
+}
+
+function populateAssignedTo(selectId, filterArea) {
+  const sel = $(selectId); if (!sel) return;
+  const filtered = filterArea && filterArea !== 'ALL'
+    ? S.areaUsers.filter(u => u.role === 'superadmin' || u.area === filterArea)
+    : S.areaUsers;
+  const pool = filtered.length ? filtered : S.areaUsers;
+  sel.innerHTML = '<option value="">— Pilih —</option>' +
+    pool.map(u => `<option value="${esc(u.display)}">${esc(u.display)}</option>`).join('');
+}
+
+// When area changes in add-case form, refresh Assigned To options
+function onAreaChange() {
+  const area = v('a-area').trim();
+  populateAssignedTo('a-ato', area);
+}
+
+/* ═══ STATS ═══ */
+function loadStats() {
+  google.script.run.withSuccessHandler(res => {
+    if (!res.ok) return;
+    const d = res.data;
+    $('k-open').textContent = d.open; $('k-invest').textContent = d.onInvestigation;
+    $('k-close').textContent = d.caseClosed; $('k-high').textContent = d.highPriority;
+    $('k-amt').textContent = fmtRp(d.totalAmount, true);
+    $('dashAlert').innerHTML = d.highPriority > 0
+      ? `<div class="alert-hi">⚠ <strong>${d.highPriority} case High Priority</strong> perlu tindakan segera.<button class="btn btn-xs btn-danger-ghost" onclick="quickF('High')" style="margin-left:auto">Lihat</button></div>`
+      : '';
   }).getDashboardStats();
 }
 
-/* ════════════════════════════════
-   CASES
-════════════════════════════════ */
-function loadCases(){
-  $('casesTable').innerHTML=spin();$('dashTable').innerHTML=spin();
-  google.script.run.withSuccessHandler(res=>{
-    if(!res.ok){toast('Error: '+res.message,'error');return;}
-    S.allCases=res.data||[];
-    const areas=[...new Set(S.allCases.map(c=>c.area||'').filter(Boolean))].sort();
-    $('fArea').innerHTML='<option value="">Semua Area</option>'+areas.map(a=>`<option>${esc(a)}</option>`).join('');
+/* ═══ CASES ═══ */
+function loadCases(restoreHash) {
+  $('casesTable').innerHTML = spin(); $('dashTable').innerHTML = spin();
+  google.script.run.withSuccessHandler(res => {
+    if (!res.ok) { toast('Error: ' + res.message, 'error'); return; }
+    S.allCases = res.data || [];
+    const areas = [...new Set(S.allCases.map(c => c.area || '').filter(Boolean))].sort();
+    $('fArea').innerHTML = '<option value="">Semua Area</option>' + areas.map(a => `<option>${esc(a)}</option>`).join('');
+    S.pg.cur = 1; // reset to page 1 on fresh load
     renderCasesTable();
-    const recent=sortCases([...S.allCases]).slice(0,10);
-    renderTable(recent,$('dashTable'),false);
-  }).withFailureHandler(e=>toast('Gagal: '+e.message,'error')).getCases();
+    renderTable(sortCases([...S.allCases]).slice(0, 10), $('dashTable'), false);
+    // [3] Restore hash-based navigation after cases are loaded
+    if (restoreHash) restoreFromHash();
+  }).withFailureHandler(e => toast('Gagal: ' + e.message, 'error')).getCases();
 }
 
-/* ════════════════════════════════
-   FILTER & SORT
-════════════════════════════════ */
-function onSearch(){clearTimeout(S.srchTimer);S.srchTimer=setTimeout(applyF,250);}
-function onTbSearch(){$('srch').value=$('tbSearch').value;applyF();}
-function applyF(){
-  S.filters.q=($('srch').value||'').trim().toLowerCase();
-  S.filters.st=$('fSt').value;S.filters.pr=$('fPr').value;
-  S.filters.cat=$('fCat').value;S.filters.area=$('fArea').value;
-  S.filters.hideClosed=$('togClosed').checked;
+/* ═══ [5] SEARCH TOPBAR — Enter → nav cases + filter ═══ */
+function onTbSearch() {
+  $('srch').value = $('tbSearch').value;
+  applyF();
+}
+function onTbSearchKey(e) {
+  if (e.key === 'Enter') {
+    $('srch').value = $('tbSearch').value;
+    nav('cases');
+    applyF();
+  }
+}
+
+/* ═══ FILTER & SORT ═══ */
+function onSearch() { clearTimeout(S.srchTimer); S.srchTimer = setTimeout(applyF, 250); }
+function applyF() {
+  S.filters.q = ($('srch').value || '').trim().toLowerCase();
+  S.filters.st = $('fSt').value; S.filters.pr = $('fPr').value;
+  S.filters.cat = $('fCat').value; S.filters.area = $('fArea').value;
+  S.filters.hideClosed = $('togClosed').checked;
+  S.pg.cur = 1; // [6] reset to first page on filter change
   renderCasesTable();
 }
-function resetFilters(){
-  ['srch','fSt','fPr','fCat','fArea'].forEach(id=>{const el=$(id);if(el)el.value='';});
-  $('togClosed').checked=true;$('tbSearch').value='';applyF();
+function resetFilters() {
+  ['srch','fSt','fPr','fCat','fArea'].forEach(id => { const el = $(id); if (el) el.value = ''; });
+  $('togClosed').checked = true; $('tbSearch').value = ''; applyF();
 }
-function quickF(pr){nav('cases');$('fPr').value=pr;applyF();}
+function quickF(pr) { nav('cases'); $('fPr').value = pr; applyF(); }
 
-function getFiltered(){
-  const{q,st,pr,cat,area,hideClosed}=S.filters;
-  let r=S.allCases;
-  if(hideClosed)r=r.filter(c=>c.status!=='Case Close');
-  if(q)r=r.filter(c=>[c.caseId,c.courierId,c.courierName,c.hub,c.area].some(v=>String(v||'').toLowerCase().includes(q)));
-  if(st)r=r.filter(c=>c.status===st);
-  if(pr)r=r.filter(c=>c.priority===pr);
-  if(cat)r=r.filter(c=>c.category===cat);
-  if(area)r=r.filter(c=>(c.area||'')===area);
+function getFiltered() {
+  const {q,st,pr,cat,area,hideClosed} = S.filters;
+  let r = S.allCases;
+  if (hideClosed) r = r.filter(c => c.status !== 'Case Close');
+  if (q)    r = r.filter(c => [c.caseId,c.courierId,c.courierName,c.hub,c.area].some(v => String(v||'').toLowerCase().includes(q)));
+  if (st)   r = r.filter(c => c.status === st);
+  if (pr)   r = r.filter(c => c.priority === pr);
+  if (cat)  r = r.filter(c => c.category === cat);
+  if (area) r = r.filter(c => (c.area||'') === area);
   return sortCases(r);
 }
-function sortCases(rows){
-  const{col,dir}=S.sort;
-  return[...rows].sort((a,b)=>{
-    let va,vb;
-    if(col==='priority'){va=PORD[a.priority]??3;vb=PORD[b.priority]??3;}
-    else if(col==='amount'){va=parseFloat(a.amount)||0;vb=parseFloat(b.amount)||0;}
-    else if(col==='dateIn'||col==='lastUpdate'){va=new Date(a[col]||0).getTime();vb=new Date(b[col]||0).getTime();}
-    else if(col==='runningDays'){va=parseInt(a.runningDays)||0;vb=parseInt(b.runningDays)||0;}
-    else{va=String(a[col]||'').toLowerCase();vb=String(b[col]||'').toLowerCase();}
-    let cmp=va<vb?-1:va>vb?1:0;if(dir==='desc')cmp=-cmp;
-    if(cmp===0&&col!=='priority'){cmp=(PORD[a.priority]??3)-(PORD[b.priority]??3);}
+function sortCases(rows) {
+  const {col,dir} = S.sort;
+  return [...rows].sort((a,b) => {
+    let va, vb;
+    if (col==='priority')    { va=PORD[a.priority]??3; vb=PORD[b.priority]??3; }
+    else if (col==='amount') { va=parseFloat(a.amount)||0; vb=parseFloat(b.amount)||0; }
+    else if (col==='dateIn'||col==='lastUpdate') { va=new Date(a[col]||0).getTime(); vb=new Date(b[col]||0).getTime(); }
+    else if (col==='runningDays') { va=parseInt(a.runningDays)||0; vb=parseInt(b.runningDays)||0; }
+    else { va=String(a[col]||'').toLowerCase(); vb=String(b[col]||'').toLowerCase(); }
+    let cmp = va<vb?-1:va>vb?1:0;
+    if (dir==='desc') cmp = -cmp;
+    if (cmp===0 && col!=='priority') cmp = (PORD[a.priority]??3)-(PORD[b.priority]??3);
     return cmp;
   });
 }
-function setSort(col){if(S.sort.col===col)S.sort.dir=S.sort.dir==='asc'?'desc':'asc';else{S.sort.col=col;S.sort.dir='asc';}renderCasesTable();}
+function setSort(col) {
+  if (S.sort.col===col) S.sort.dir=S.sort.dir==='asc'?'desc':'asc';
+  else {S.sort.col=col;S.sort.dir=col==='lastUpdate'?'desc':'asc';}
+  S.pg.cur = 1;
+  renderCasesTable();
+}
 
-/* ════════════════════════════════
-   RENDER TABLES
-════════════════════════════════ */
-function renderCasesTable(){const rows=getFiltered();$('resCnt').textContent=rows.length+' case';renderTable(rows,$('casesTable'),true);}
+/* ═══ RENDER TABLE ═══ */
+function renderCasesTable() {
+  const allRows = getFiltered();
+  const total = allRows.length;
+  const pp = S.pg.perPage;
+  const totalPages = Math.max(1, Math.ceil(total / pp));
+  if (S.pg.cur > totalPages) S.pg.cur = totalPages;
+  const start = (S.pg.cur - 1) * pp;
+  const rows = allRows.slice(start, start + pp);
 
-function renderTable(cases,wrap,full){
-  if(!cases.length){wrap.innerHTML='<div class="empty-state"><p>Tidak ada case ditemukan.</p></div>';return;}
-  const si=(col)=>{const a=S.sort.col===col;const ar=S.sort.dir==='asc'?'↑':'↓';return`<span style="opacity:${a?1:.3}">${a?ar:'↕'}</span>`;};
-  let h=`<table><thead><tr><th style="width:32px"></th><th><span class="th-sort" onclick="setSort('dateIn')">Tanggal ${si('dateIn')}</span></th><th>Case ID</th><th>Kurir</th><th>Hub</th><th>Area</th><th><span class="th-sort" onclick="setSort('amount')">Amount ${si('amount')}</span></th><th>Nom. Rek Pnp</th><th>Status</th><th>Sub-Status</th><th><span class="th-sort" onclick="setSort('priority')">Priority ${si('priority')}</span></th>`;
-  if(full)h+=`<th><span class="th-sort" onclick="setSort('lastUpdate')">Last Update ${si('lastUpdate')}</span></th><th><span class="th-sort" onclick="setSort('runningDays')">Running ${si('runningDays')}</span></th><th>Assigned</th>`;
-  h+=`</tr></thead><tbody>`;
-  cases.forEach(c=>{
-    const selected=S.curId===c.caseId?'row-selected':'';
-    h+=`<tr class="${selected}" onclick="openDetailRow('${esc(c.caseId)}')">
-      <td style="padding:0 8px"><input type="checkbox" onclick="event.stopPropagation()" style="accent-color:var(--blue)"></td>
+  $('resCnt').textContent = total + ' case';
+  renderTable(rows, $('casesTable'), true);
+  renderPagination(total, totalPages);
+}
+
+function renderPagination(total, totalPages) {
+  const bar = $('paginationBar'); if (!bar) return;
+  if (total === 0) { bar.innerHTML = ''; return; }
+  const cur = S.pg.cur;
+  const pp = S.pg.perPage;
+  const start = (cur-1)*pp+1, end = Math.min(cur*pp, total);
+
+  // Page size selector
+  let html = `<div style="display:flex;align-items:center;gap:6px;">
+    <span style="font-size:11px;color:var(--t3)">Tampilkan</span>
+    <select class="pg-sel" onchange="S.pg.perPage=+this.value;S.pg.cur=1;renderCasesTable()">
+      ${[10,20,50,100].map(n=>`<option value="${n}"${n===pp?' selected':''}>${n}</option>`).join('')}
+    </select>
+    <span style="font-size:11px;color:var(--t3)">baris &nbsp;|&nbsp; ${start}–${end} dari ${total}</span>
+  </div>`;
+
+  // Page number buttons
+  html += `<div style="display:flex;align-items:center;gap:3px;">`;
+  html += `<button class="pg-btn" onclick="goPage(1)" ${cur===1?'disabled':''}>«</button>`;
+  html += `<button class="pg-btn" onclick="goPage(${cur-1})" ${cur===1?'disabled':''}>‹</button>`;
+
+  // Show max 7 page buttons with ellipsis
+  const pages = buildPageRange(cur, totalPages);
+  pages.forEach(p => {
+    if (p === '…') {
+      html += `<span style="color:var(--t3);padding:0 4px;font-size:12px;">…</span>`;
+    } else {
+      html += `<button class="pg-btn${p===cur?' active':''}" onclick="goPage(${p})">${p}</button>`;
+    }
+  });
+
+  html += `<button class="pg-btn" onclick="goPage(${cur+1})" ${cur===totalPages?'disabled':''}>›</button>`;
+  html += `<button class="pg-btn" onclick="goPage(${totalPages})" ${cur===totalPages?'disabled':''}>»</button>`;
+  html += `</div>`;
+  bar.innerHTML = html;
+}
+
+function buildPageRange(cur, total) {
+  if (total <= 7) return Array.from({length:total},(_,i)=>i+1);
+  const pages = [];
+  if (cur <= 4) {
+    for(let i=1;i<=5;i++) pages.push(i);
+    pages.push('…'); pages.push(total);
+  } else if (cur >= total-3) {
+    pages.push(1); pages.push('…');
+    for(let i=total-4;i<=total;i++) pages.push(i);
+  } else {
+    pages.push(1); pages.push('…');
+    pages.push(cur-1); pages.push(cur); pages.push(cur+1);
+    pages.push('…'); pages.push(total);
+  }
+  return pages;
+}
+
+function goPage(n) {
+  const all = getFiltered();
+  const totalPages = Math.max(1, Math.ceil(all.length / S.pg.perPage));
+  S.pg.cur = Math.max(1, Math.min(n, totalPages));
+  renderCasesTable();
+  // scroll table to top
+  const tbl = $('casesTable'); if (tbl) tbl.scrollTop = 0;
+}
+
+function renderTable(cases, wrap, full) {
+  if (!cases.length) { wrap.innerHTML = '<div class="empty-state"><p>Tidak ada case ditemukan.</p></div>'; return; }
+  const si = col => { const a=S.sort.col===col; return `<span style="opacity:${a?1:.3}">${a?(S.sort.dir==='asc'?'↑':'↓'):'↕'}</span>`; };
+  let h = `<table><thead><tr>
+    <th><span class="th-sort" onclick="setSort('dateIn')">Tgl Input ${si('dateIn')}</span></th>
+    <th><span class="th-sort" onclick="setSort('lastUpdate')">Last Update ${si('lastUpdate')}</span></th>
+    <th>Case ID</th>
+    <th>Kurir</th><th>Hub</th><th>Area</th>
+    <th><span class="th-sort" onclick="setSort('amount')">Amount ${si('amount')}</span></th>
+    <th>Nom. Rek Pnp</th><th>Status</th><th>Sub-Status</th>
+    <th><span class="th-sort" onclick="setSort('priority')">Priority ${si('priority')}</span></th>`;
+  if (full) h += `<th><span class="th-sort" onclick="setSort('runningDays')">Running ${si('runningDays')}</span></th><th>Assigned</th>`;
+  h += `</tr></thead><tbody>`;
+  cases.forEach(c => {
+    const sel = S.curId === c.caseId ? 'row-selected' : '';
+    h += `<tr class="${sel}" onclick="openDetailRow('${esc(c.caseId)}')">
       <td class="td3">${esc(c.dateIn||'—')}</td>
+      <td class="td3">${esc(c.lastUpdate||'—')}</td>
       <td class="td-id">${esc(c.caseId)}</td>
-      <td><div class="td-name">${esc(c.courierName)}</div><div class="td3">${esc(c.courierId)}</div></td>
+      <td><div class="td-name">${esc(c.courierName)}</div><div class="td-sub">${esc(c.courierId)}</div></td>
       <td class="td2">${esc(c.hub||'—')}</td>
       <td>${c.area?`<span class="chip chip-area">${esc(c.area)}</span>`:'<span class="td3">—</span>'}</td>
       <td class="td-amt">${fmtRp(c.amount)}</td>
@@ -883,447 +1102,760 @@ function renderTable(cases,wrap,full){
       <td>${sBadge(c.status)}</td>
       <td>${c.subStatus?`<span class="chip chip-sub" style="font-size:10px;">${esc(c.subStatus)}</span>`:'<span class="td3">—</span>'}</td>
       <td>${pBadge(c.priority)}</td>`;
-    if(full)h+=`<td class="td3">${esc(c.lastUpdate||'—')}</td><td class="td3">${c.runningDays||0}d</td><td class="td2">${esc(c.assignedTo||'—')}</td>`;
-    h+=`</tr>`;
+    if (full) h += `<td class="td3">${c.runningDays||0}d</td><td class="td2">${esc(c.assignedTo||'—')}</td>`;
+    h += `</tr>`;
   });
-  wrap.innerHTML=h+'</tbody></table>';
+  wrap.innerHTML = h + '</tbody></table>';
 }
 
-/* ════════════════════════════════
-   CASE DETAIL
-════════════════════════════════ */
-function openDetailRow(caseId){
-  S.curId=caseId;
-  nav('detail');
-  // Highlight selected row
-  document.querySelectorAll('tbody tr').forEach(tr=>{
-    tr.classList.toggle('row-selected',tr.cells[2]&&tr.cells[2].textContent===caseId);
-  });
+/* ═══ CASE DETAIL ═══ */
+function openDetailRow(caseId) {
+  S.curId = caseId;
+  history.replaceState(null, '', `#detail/${caseId}`);
+  nav('detail', true);
+  // [5] cell index 2 = Case ID (no checkbox col anymore)
+  document.querySelectorAll('tbody tr').forEach(tr => tr.classList.toggle('row-selected', tr.cells[2] && tr.cells[2].textContent.trim() === caseId));
 }
 
-function openDetail(caseId){
-  const c=S.allCases.find(x=>x.caseId===caseId);if(!c)return;
-  $('detBC').textContent='Cases / '+c.caseId;
-  $('caseIdBig').innerHTML=`${esc(c.caseId)} ${sBadge(c.status)} ${pBadge(c.priority)} ${c.subStatus?`<span class="chip chip-sub">${esc(c.subStatus)}</span>`:''}`;
+function openDetail(caseId) {
+  const c = S.allCases.find(x => x.caseId === caseId); if (!c) return;
+  $('detBC').textContent = 'Cases / ' + c.caseId;
+  $('caseIdBig').innerHTML = `${esc(c.caseId)} ${sBadge(c.status)} ${pBadge(c.priority)} ${c.subStatus?`<span class="chip chip-sub">${esc(c.subStatus)}</span>`:''}`;
+  const delBtn = $('btnDel'); if (delBtn && S.curUser?.role === 'superadmin') delBtn.style.display = '';
+  const pw = $('pageWrap');
+  pw.addEventListener('scroll', () => { $('caseHeader').classList.toggle('compact', pw.scrollTop > 40); }, {passive:true});
+  renderLI(c); renderDP(c); renderStatusSection(c);
 
-  // SA-only delete button
-  const delBtn=$('btnDel');if(delBtn&&S.curUser?.role==='superadmin')delBtn.style.display='';
-
-  // Collapsing header on scroll
-  const pw=$('pageWrap');
-  pw.addEventListener('scroll',()=>{$('caseHeader').classList.toggle('compact',pw.scrollTop>40);},{passive:true});
-
-  renderLI(c);renderDP(c);renderStatusSection(c);
-  loadNotes(caseId);loadHistory(caseId);loadEvidence(caseId);
+  // [12] Batch load: 1 call for notes + history + evidence
+  $('nhBody').innerHTML = spin(); $('chBody').innerHTML = spin(); $('euBody').innerHTML = spin();
+  google.script.run
+    .withSuccessHandler(res => {
+      if (!res.ok) { toast('Error loading detail: ' + res.message, 'error'); return; }
+      renderNotesUI(res.notes);
+      renderHistoryUI(res.history);
+      renderEvidenceUI(res.evidence);
+    })
+    .withFailureHandler(e => toast('Error: ' + e.message, 'error'))
+    .getCaseDetail(caseId);
 }
 
-/* ── LI: List Info Case (inline editable) */
-function renderLI(c){
-  const isSA=S.curUser?.role==='superadmin';
-  const row=(key,val,field,editable,renderVal)=>{
-    const displayVal=renderVal?renderVal(val):(val||'<span style="color:var(--t3)">—</span>');
-    const pencil=editable?`<button class="li-edit-btn" onclick="startEdit('${esc(field)}','${esc(String(val||''))}',this)" title="Edit">
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-    </button>`:'';
-    const roTag=!editable?`<span class="ro-badge">auto</span>`:'';
-    return`<div class="li-row" data-field="${esc(field)}">
+/* ═══ [4] LI INLINE EDIT — pencil → ✓/✗, dropdown for category & assignedTo ═══ */
+const PENCIL_SVG = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`;
+
+function renderLI(c) {
+  const isSA = S.curUser?.role === 'superadmin';
+  const row = (key, val, field, editable, renderVal) => {
+    const rawVal = String(val || '');
+    const displayVal = renderVal ? renderVal(val) : (rawVal ? esc(rawVal) : '<span style="color:var(--t3)">—</span>');
+    const controls = editable
+      ? `<div class="li-controls" id="lc-${esc(field)}"><button class="li-edit-btn" onclick="startEdit('${esc(field)}')" title="Edit">${PENCIL_SVG}</button></div>`
+      : '';
+    const roTag = !editable ? `<span class="ro-badge">auto</span>` : '';
+    return `<div class="li-row" data-field="${esc(field)}">
       <div class="li-key">${key} ${roTag}</div>
-      <div class="li-val ${editable?'':'readonly'}" id="lv-${esc(field)}">${displayVal}</div>
-      ${pencil}
+      <div class="li-val ${editable?'':'readonly'}" id="lv-${esc(field)}" data-rawval="${esc(rawVal)}">${displayVal}</div>
+      ${controls}
     </div>`;
   };
-  const fmtAmt=v=>v?`<span style="color:var(--green);font-weight:600">${fmtRp(v)}</span>`:'—';
-  $('liBody').innerHTML=
-    row('Case ID',c.caseId,'caseId',false)+
-    row('Tanggal Input',c.dateIn,'dateIn',false)+
-    row('ID Kurir',c.courierId,'courierId',isSA)+
-    row('Nama Kurir',c.courierName,'courierName',isSA)+
-    row('Hub',c.hub,'hub',true)+
-    row('Area',c.area,'area',isSA)+
-    row('Amount COD',c.amount,'amount',true,fmtAmt)+
-    row('Nominal Rek Pnp',c.rekAmt,'rekAmt',false,fmtAmt)+
-    row('Status Pending',c.statPend,'statPend',false)+
-    row('FDS (HubScore)',c.fdsHub,'fdsHub',false)+
-    row('Priority',c.priority,'priority',false,v=>pBadge(v))+
-    row('Kategori',c.category,'category',true,v=>v?`<span class="chip chip-sub">${esc(v)}</span>`:'—')+
-    row('Assigned To',c.assignedTo,'assignedTo',true)+
-    row('First Update',c.firstUpdate,'firstUpdate',true)+
-    row('Last Update',c.lastUpdate,'lastUpdate',false)+
-    row('Close Date',c.closeDate,'closeDate',false)+
-    row('Close Reason',c.closeReason,'closeReason',false)+
-    row('Running Days',(c.runningDays||0)+' hari','runningDays',false)+
-    row('Created By',c.createdBy,'createdBy',false)+
-    row('Updated By',c.updatedBy,'updatedBy',false);
+  const fmtAmt = v => v ? `<strong>${fmtRp(v)}</strong>` : '—'; // [7] white, no green
+  $('liBody').innerHTML =
+    row('Case ID',      c.caseId,     'caseId',     false) +
+    row('Tanggal Input',c.dateIn,     'dateIn',     false) +
+    row('ID Kurir',     c.courierId,  'courierId',  isSA) +
+    row('Nama Kurir',   c.courierName,'courierName',isSA) +
+    row('Hub',          c.hub,        'hub',        true) +
+    row('Area',         c.area,       'area',       isSA) +
+    row('Amount COD',   c.amount,     'amount',     true, fmtAmt) +
+    row('Nominal Rek Pnp',c.rekAmt,  'rekAmt',     false, fmtAmt) +
+    row('Status Pending',c.statPend,  'statPend',   false) +
+    row('FDS (HubScore)',c.fdsHub,    'fdsHub',     false) +
+    row('Priority',     c.priority,   'priority',   false, v => pBadge(v)) +
+    row('Kategori',     c.category,   'category',   true,  v => v ? `<span class="chip chip-sub">${esc(v)}</span>` : '—') +
+    row('Assigned To',  c.assignedTo, 'assignedTo', true) +
+    row('First Update', c.firstUpdate,'firstUpdate',true) +
+    row('Last Update',  c.lastUpdate, 'lastUpdate', false) +
+    row('Close Date',   c.closeDate,  'closeDate',  false) +
+    row('Close Reason', c.closeReason,'closeReason',false) +
+    row('Running Days', (c.runningDays||0)+' hari','runningDays',false) +
+    row('Created By',   c.createdBy,  'createdBy',  false) +
+    row('Updated By',   c.updatedBy,  'updatedBy',  false);
 }
 
-function startEdit(field,oldVal,btn){
-  const valEl=btn.parentElement.querySelector('.li-val');
-  if(!valEl)return;
-  const input=document.createElement('input');
-  input.className='li-input';input.value=oldVal;
-  valEl.innerHTML='';valEl.appendChild(input);
-  input.focus();
-  const save=()=>{
-    const newVal=input.value.trim();
-    if(newVal===oldVal){cancelEdit(field,oldVal);return;}
-    const upd={};upd[field]=newVal;
-    google.script.run.withSuccessHandler(res=>{
-      if(res.ok){toast('✓ Disimpan','ok');loadCases();setTimeout(()=>{const c=S.allCases.find(x=>x.caseId===S.curId);if(c){renderLI(c);$('caseIdBig').innerHTML=`${esc(c.caseId)} ${sBadge(c.status)} ${pBadge(c.priority)}`;renderStatusSection(c);}},600);}
-      else{toast(res.message,'error');cancelEdit(field,oldVal);}
-    }).withFailureHandler(e=>{toast(e.message,'error');cancelEdit(field,oldVal);}).updateCase(S.curId,upd);
-  };
-  const cancelEdit=(f,ov)=>{const el=$('lv-'+f);if(el)el.textContent=ov;};
-  input.addEventListener('keydown',e=>{if(e.key==='Enter')save();if(e.key==='Escape')cancelEdit(field,oldVal);});
-  input.addEventListener('blur',save);
-}
-
-/* ── Status flow & sub-status actions */
-function renderStatusSection(c){
-  const idx=SFLOW.indexOf(c.status);
-  // Flow bar
-  const flowHtml=SFLOW.map((s,i)=>{
-    const state=i<idx?'done':i===idx?'cur':'';
-    return`<div class="sf-node"><div class="sf-dot ${state}"></div><div class="sf-txt ${state}">${s.replace('On Investigation','On Inv.')}</div></div>${i<SFLOW.length-1?`<div class="sf-line ${i<idx?'done':''}"></div>`:''}`;
-  }).join('');
-  $('statusFlowBody').innerHTML=`<div class="status-flow">${flowHtml}</div>`;
-
-  // Action buttons
-  let acts='';
-  if(c.status==='Open'){
-    acts='<div style="padding:6px 14px 4px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);">Aksi Open</div><div class="ss-actions">';
-    OPEN_SS.forEach(ss=>acts+=`<button class="btn-ss-open" onclick="openSSModal('${esc(ss)}')">${esc(ss)}</button>`);
-    acts+=`<button class="btn-ss-close" onclick="openCloseModal()" style="margin-left:auto">Tutup Case</button>`;
-    acts+='</div>';
-  }else if(c.status==='On Investigation'){
-    acts='<div style="padding:6px 14px 4px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);">Aksi Investigasi</div><div class="ss-actions">';
-    INV_SS.forEach(ss=>acts+=`<button class="btn-ss-invest" onclick="openSSModal('${esc(ss)}')">${esc(ss)}</button>`);
-    acts+=`<button class="btn-ss-close" onclick="openCloseModal()" style="margin-left:auto">Tutup Case</button>`;
-    acts+='</div>';
-  }else if(c.status==='Case Close'){
-    acts=`<div style="padding:12px 14px;font-size:12px;color:var(--green);">✓ Case sudah ditutup. Alasan: <strong>${esc(c.closeReason||'—')}</strong></div>`;
+function startEdit(field) {
+  const valEl = $('lv-' + field);
+  const ctrl  = $('lc-' + field);
+  if (!valEl || !ctrl) return;
+  const oldVal = valEl.dataset.rawval || '';
+  let inputEl;
+  // [3] Category & AssignedTo → dropdown, not text input
+  if (field === 'category') {
+    inputEl = document.createElement('select');
+    inputEl.className = 'li-select';
+    S.cats.forEach(cat => {
+      const o = document.createElement('option');
+      o.value = cat; o.textContent = cat;
+      if (cat === oldVal) o.selected = true;
+      inputEl.appendChild(o);
+    });
+  } else if (field === 'assignedTo') {
+    inputEl = document.createElement('select');
+    inputEl.className = 'li-select';
+    const blank = document.createElement('option'); blank.value = ''; blank.textContent = '— Pilih —';
+    inputEl.appendChild(blank);
+    const c = S.allCases.find(x => x.caseId === S.curId);
+    const caseArea = c ? (c.area || '') : '';
+    const users = S.areaUsers.filter(u => u.role === 'superadmin' || !caseArea || u.area === caseArea);
+    (users.length ? users : S.areaUsers).forEach(u => {
+      const o = document.createElement('option');
+      o.value = u.display; o.textContent = u.display;
+      if (u.display === oldVal) o.selected = true;
+      inputEl.appendChild(o);
+    });
+  } else {
+    inputEl = document.createElement('input');
+    inputEl.type = 'text'; inputEl.className = 'li-input'; inputEl.value = oldVal;
   }
-  $('ssActionsBody').innerHTML=acts;
+  valEl.innerHTML = ''; valEl.appendChild(inputEl); if (inputEl.focus) inputEl.focus();
+  // [4] Replace pencil with ✓ / ✗
+  ctrl.innerHTML = `
+    <button class="li-save-btn" onclick="commitEdit('${esc(field)}')" title="Simpan">✓</button>
+    <button class="li-cancel-btn" onclick="cancelEditLI()" title="Batal">✗</button>`;
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); commitEdit(field); }
+    if (e.key === 'Escape') cancelEditLI();
+  });
 }
 
-/* ── DP: Detail Pribadi */
-function renderDP(c){
-  const row=(k,v,isLink)=>`<div class="dp-row"><div class="dp-key">${k}</div><div class="dp-val">${
-    isLink&&v?`<a href="${esc(v)}" target="_blank" class="btn btn-ghost btn-xs" style="display:inline-flex;">🔗 Buka KTP</a>`:esc(v||'—')}</div></div>`;
-  $('dpBody').innerHTML=
-    row('NIK',c.nik)+row('Email',c.email)+row('Telepon',c.telepon)+
-    row('Alamat',c.alamat)+row('KTP',c.ktp,true)+
-    `<div style="padding:8px 14px;"><hr class="divider" style="margin:4px 0;"><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin:8px 0 4px;">Kontak Darurat</div></div>`+
-    row('Nama Kondar',c.namaKondar)+row('Telepon Kondar',c.noKondar)+row('Hubungan',c.hubKondar)+
-    `<div style="padding:8px 14px;"><hr class="divider" style="margin:4px 0;"><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin:8px 0 4px;">Wilayah</div></div>`+
-    row('Lead Region',c.leadRegion)+row('PIC',c.pic)+row('Korlap',c.korlap)+row('City',c.city)+row('Province',c.province);
+function commitEdit(field) {
+  const valEl = $('lv-' + field);
+  const ctrl  = $('lc-' + field);
+  if (!valEl) return;
+  const inputEl = valEl.querySelector('input, select'); if (!inputEl) return;
+  const newVal = inputEl.value.trim();
+  const oldVal = valEl.dataset.rawval || '';
+  if (newVal === oldVal) { cancelEditLI(); return; }
+
+  // [2] Show loading spinner on save button while waiting
+  if (ctrl) ctrl.innerHTML = `<div class="spin" style="width:14px;height:14px;"></div>`;
+
+  const upd = {}; upd[field] = newVal;
+  google.script.run
+    .withSuccessHandler(res => {
+      if (res.ok) {
+        toast('✓ Disimpan', 'ok');
+        // [2] Reload cases, then immediately re-render LI with fresh data
+        google.script.run.withSuccessHandler(casesRes => {
+          if (casesRes.ok) {
+            S.allCases = casesRes.data || [];
+            renderCasesTable();
+            const c = S.allCases.find(x => x.caseId === S.curId);
+            if (c) {
+              renderLI(c);
+              $('caseIdBig').innerHTML = `${esc(c.caseId)} ${sBadge(c.status)} ${pBadge(c.priority)} ${c.subStatus?`<span class="chip chip-sub">${esc(c.subStatus)}</span>`:''}`;
+              renderStatusSection(c);
+            }
+          }
+        }).getCases();
+      } else {
+        toast(res.message, 'error');
+        cancelEditLI();
+      }
+    })
+    .withFailureHandler(e => { toast(e.message, 'error'); cancelEditLI(); })
+    .updateCase(S.curId, upd);
 }
 
-/* ── Notes */
-function loadNotes(caseId){
-  $('nhBody').innerHTML=spin();
-  google.script.run.withSuccessHandler(res=>{
-    if(!res.ok||!res.data.length){$('nhBody').innerHTML='<div class="empty-state" style="padding:20px;"><p>Belum ada notes.</p></div>';return;}
-    $('nhBody').innerHTML=res.data.map(n=>`<div class="nh-item"><div class="nh-meta"><span class="nh-by">${esc(n.by||'System')}</span><span class="nh-time">${esc(n.timestamp)}</span></div><div class="nh-text">${esc(n.note)}</div></div>`).join('');
-  }).getCaseNotes(caseId||S.curId);
+function cancelEditLI() {
+  // Re-render entire LI from cached data — simplest & safest
+  const c = S.allCases.find(x => x.caseId === S.curId); if (c) renderLI(c);
 }
 
-/* ── History */
-function loadHistory(caseId){
-  $('chBody').innerHTML=spin();
-  google.script.run.withSuccessHandler(res=>{
-    if(!res.ok||!res.data.length){$('chBody').innerHTML='<div class="empty-state" style="padding:20px;"><p>Belum ada riwayat.</p></div>';return;}
-    $('chBody').innerHTML=res.data.map(h=>`<div class="nh-item">
-      <div class="nh-meta"><span class="hist-action ha-${esc(h.action)}">${esc(h.action)}</span><span class="nh-time">${esc(h.timestamp)}</span></div>
-      ${h.field||h.newVal?`<div style="font-size:11px;color:var(--t2);margin-top:3px;display:flex;gap:5px;flex-wrap:wrap;">${h.field?`<span style="color:var(--t3)">${esc(h.field)}:</span>`:''} ${h.oldVal?`<span style="text-decoration:line-through;color:var(--red);opacity:.8">${esc(h.oldVal)}</span><span>→</span>`:''} <span style="color:var(--green)">${esc(h.newVal)}</span></div>`:'' }
-      ${h.extraJson?`<div style="font-size:10px;color:var(--t3);margin-top:3px;">${esc(h.extraJson.length>80?h.extraJson.substring(0,80)+'…':h.extraJson)}</div>`:''}
-      <div class="nh-time" style="margin-top:4px;">${esc(h.by||'System')}</div>
-    </div>`).join('');
-  }).getCaseHistory(caseId||S.curId);
+/* ═══ [10][3] STATUS FLOW — dots at top + [11] 2-button action bar ═══ */
+function renderStatusSection(c) {
+  const idx = SFLOW.indexOf(c.status);
+  // [10] Flow with dots + labels (v3 style preserved, moved to top of section)
+  const flowHtml = SFLOW.map((s, i) => {
+    const state = i < idx ? 'done' : i === idx ? 'cur' : '';
+    return `<div class="sf-node"><div class="sf-dot ${state}"></div><div class="sf-txt ${state}">${s.replace('On Investigation','On Inv.')}</div></div>${i < SFLOW.length-1 ? `<div class="sf-line ${i<idx?'done':''}"></div>` : ''}`;
+  }).join('');
+  $('statusFlowBody').innerHTML = `<div class="status-flow">${flowHtml}</div>`;
+
+  // [11] Action bar: BUAT AKSI dropdown + TUTUP KASUS
+  let acts = '';
+  if (c.status === 'Open' || c.status === 'On Investigation') {
+    const ssList = c.status === 'Open' ? OPEN_SS : INV_SS;
+    const menuItems = ssList.map(ss => `<button class="aksi-item" onclick="openSSFromMenu('${esc(ss)}')">${esc(ss)}</button>`).join('');
+    acts = `<div class="status-action-bar">
+      <div class="aksi-wrap">
+        <button class="btn-aksi" onclick="toggleAksiMenu(event)">⚡ Buat Aksi ▾</button>
+        <div class="aksi-menu hidden" id="aksiMenu">${menuItems}</div>
+      </div>
+      <button class="btn-tutup-kasus" onclick="openCloseModal()">🔒 Tutup Kasus</button>
+    </div>`;
+  } else if (c.status === 'Case Close') {
+    acts = `<div style="padding:12px 14px;font-size:12px;color:var(--green);">✓ Case sudah ditutup. Alasan: <strong>${esc(c.closeReason||'—')}</strong></div>`;
+  }
+  $('ssActionsBody').innerHTML = acts;
 }
 
-/* ── Evidence */
-function loadEvidence(caseId){
-  $('euBody').innerHTML=spin();
-  google.script.run.withSuccessHandler(res=>{
-    if(!res.ok||!res.data.length){$('euBody').innerHTML='<div class="empty-state" style="padding:20px;"><p>Belum ada evidence.<br>Klik + Tambah untuk menambahkan.</p></div>';return;}
-    const icons={url:'🔗',image:'🖼️',doc:'📄',pdf:'📋',default:'📎'};
-    const getIcon=type=>{if(type==='image')return icons.image;if(type==='pdf')return icons.pdf;if(type==='doc')return icons.doc;if(type==='url')return icons.url;return icons.default;};
-    $('euBody').innerHTML=`<div class="ev-gallery">${res.data.map(ev=>`
-      <div class="ev-card" onclick="window.open('${esc(ev.url||'#')}','_blank')">
-        <div class="ev-icon">${getIcon(ev.type)}</div>
-        <div class="ev-name" title="${esc(ev.filename||ev.url)}">${esc(ev.filename||'Link')}</div>
-        <div class="ev-date">${esc(ev.addedAt)}</div>
-      </div>`).join('')}</div>`;
-  }).getCaseEvidence(caseId||S.curId);
+function toggleAksiMenu(e) {
+  e.stopPropagation();
+  const menu = $('aksiMenu'); if (!menu) return;
+  menu.classList.toggle('hidden');
+}
+function openSSFromMenu(ss) {
+  const menu = $('aksiMenu'); if (menu) menu.classList.add('hidden');
+  openSSModal(ss);
 }
 
-/* ════════════════════════════════
-   MODALS: SUB-STATUS
-════════════════════════════════ */
-function openSSModal(ss){
-  S.ssCurrent=ss;
-  $('ssMTitle').textContent=ss;
-  $('ssMSub').textContent=OPEN_SS.includes(ss)?'Status akan berubah → On Investigation':ss==='LUNAS (PAID OFF)'?'Status akan berubah → Case Close':'';
-  let body='';
-  if(ss==='JANJI BAYAR (PTP)'){
-    body=`<div class="fg"><div class="flabel">Tanggal Janji Bayar<span class="req">*</span></div><input class="fi" id="ss-date" type="date"></div>`;
-  }else if(ss==='UPDATE TGL JANJI BAYAR (BROKEN PTP)'){
-    const c=S.allCases.find(x=>x.caseId===S.curId);
-    body=`<div class="fg" style="margin-bottom:10px;"><div class="flabel">Tanggal Lama (Broken PTP)</div><input class="fi" id="ss-old-date" type="date" disabled style="opacity:.5;cursor:not-allowed;" value=""></div>
-    <div class="fg"><div class="flabel">Tanggal Baru<span class="req">*</span></div><input class="fi" id="ss-date" type="date"></div>`;
-  }else if(ss==='CICIL (TERMIN)'){
-    body=`<div class="fg2">
+/* ═══ [6] DP — phone/address with action buttons ═══ */
+// SVG icons — consistent with sidebar style
+const SVG = {
+  phone: `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.41a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>`,
+  wa:    `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`,
+  copy:  `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`,
+  maps:  `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+  link:  `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`,
+  open:  `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`,
+  trash: `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>`,
+  file:  `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>`,
+  img:   `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>`,
+  pdf:   `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+};
+
+function renderDP(c) {
+  const plain = (k, v) => `<div class="dp-row"><div class="dp-key">${k}</div><div class="dp-val">${esc(v||'—')}</div></div>`;
+  const empty = v => !v || String(v).trim() === '' || String(v).trim() === '-' || String(v).trim() === '—';
+
+  const phoneRow = (k, num) => {
+    if (empty(num)) return plain(k, '');
+    const clean = String(num).replace(/\D/g,'');
+    const waNum = clean.startsWith('0') ? '62' + clean.substring(1) : clean;
+    return `<div class="dp-row"><div class="dp-key">${k}</div><div class="dp-val">
+      <div class="dp-val-content">${esc(num)}
+        <a href="tel:${esc(num)}" class="act-btn">${SVG.phone} Call</a>
+        <a href="https://wa.me/${waNum}" target="_blank" class="act-btn">${SVG.wa} WA</a>
+      </div></div></div>`;
+  };
+
+  const addrRow = (k, addr) => {
+    if (empty(addr)) return plain(k, '');
+    const short = addr.length > 45 ? addr.substring(0,45) + '…' : addr;
+    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addr)}`;
+    const safe = addr.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+    return `<div class="dp-row"><div class="dp-key">${k}</div><div class="dp-val">
+      <div class="dp-val-content"><span title="${esc(addr)}">${esc(short)}</span>
+        <button class="act-btn" onclick="navigator.clipboard.writeText('${safe}').then(()=>toast('Alamat disalin','ok'))">${SVG.copy} Copy</button>
+        <a href="${mapsUrl}" target="_blank" class="act-btn">${SVG.maps} Maps</a>
+      </div></div></div>`;
+  };
+
+  const linkRow = (k, url) => `<div class="dp-row"><div class="dp-key">${k}</div><div class="dp-val">${!empty(url)?`<a href="${esc(url)}" target="_blank" class="act-btn">${SVG.link} Buka KTP</a>`:'—'}</div></div>`;
+
+  $('dpBody').innerHTML =
+    plain('NIK', c.nik) +
+    plain('Email', c.email) +
+    phoneRow('Telepon', c.telepon) +
+    addrRow('Alamat', c.alamat) +
+    linkRow('KTP', c.ktp) +
+    `<div style="padding:8px 14px;"><hr class="divider" style="margin:4px 0;"><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin:8px 0 4px;">Kontak Darurat</div></div>` +
+    plain('Nama Kondar', c.namaKondar) +
+    phoneRow('Telepon Kondar', c.noKondar) +
+    plain('Hubungan', c.hubKondar) +
+    `<div style="padding:8px 14px;"><hr class="divider" style="margin:4px 0;"><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin:8px 0 4px;">Wilayah</div></div>` +
+    plain('Lead Region', c.leadRegion) + plain('PIC', c.pic) + plain('Korlap', c.korlap) +
+    plain('City', c.city) + plain('Province', c.province);
+}
+
+/* ═══ [12] RENDER NOTES / HISTORY / EVIDENCE (now called from batch) ═══ */
+function renderNotesUI(data) {
+  if (!data || !data.length) { $('nhBody').innerHTML = '<div class="empty-state" style="padding:20px;"><p>Belum ada notes.</p></div>'; return; }
+  $('nhBody').innerHTML = data.map(n => `<div class="nh-item"><div class="nh-meta"><span class="nh-by">${esc(n.by||'System')}</span><span class="nh-time">${esc(n.timestamp)}</span></div><div class="nh-text">${esc(n.note)}</div></div>`).join('');
+}
+
+function renderHistoryUI(data) {
+  if (!data || !data.length) { $('chBody').innerHTML = '<div class="empty-state" style="padding:20px;"><p>Belum ada riwayat.</p></div>'; return; }
+  $('chBody').innerHTML = data.map(h => `<div class="nh-item">
+    <div class="nh-meta"><span class="hist-action ha-${esc(h.action)}">${esc(h.action)}</span><span class="nh-time">${esc(h.timestamp)}</span></div>
+    ${h.field||h.newVal?`<div style="font-size:11px;color:var(--t2);margin-top:3px;display:flex;gap:5px;flex-wrap:wrap;">${h.field?`<span style="color:var(--t3)">${esc(h.field)}:</span>`:''} ${h.oldVal?`<span style="text-decoration:line-through;color:var(--red);opacity:.8">${esc(h.oldVal)}</span><span>→</span>`:''} <span style="color:var(--green)">${esc(h.newVal)}</span></div>`:''}
+    ${h.extraJson?`<div style="font-size:10px;color:var(--t3);margin-top:3px;">${esc(h.extraJson.length>80?h.extraJson.substring(0,80)+'…':h.extraJson)}</div>`:''}
+    <div class="nh-time" style="margin-top:4px;">${esc(h.by||'System')}</div>
+  </div>`).join('');
+}
+
+// Individual refresh after adding (calls original server functions directly)
+function refreshNotes()    { google.script.run.withSuccessHandler(r => { if (r.ok) renderNotesUI(r.data); }).getCaseNotes(S.curId); }
+function refreshEvidence() { google.script.run.withSuccessHandler(r => { if (r.ok) renderEvidenceUI(r.data); }).getCaseEvidence(S.curId); }
+function refreshHistory()  { google.script.run.withSuccessHandler(r => { if (r.ok) renderHistoryUI(r.data); }).getCaseHistory(S.curId); }
+
+/* ═══ SUB-STATUS MODAL ═══ */
+function openSSModal(ss) {
+  S.ssCurrent = ss;
+  $('ssMTitle').textContent = ss;
+  $('ssMSub').textContent = OPEN_SS.includes(ss) ? 'Status akan berubah → On Investigation' : ss === 'LUNAS (PAID OFF)' ? 'Status akan berubah → Case Close' : '';
+  let body = '';
+  if (ss === 'JANJI BAYAR (PTP)') {
+    // [9] DPD display for PTP
+    body = `<div class="fg">
+      <div class="flabel">Tanggal Janji Bayar<span class="req">*</span></div>
+      <input class="fi" id="ss-date" type="date" onchange="updateDPD('ss-date','ss-dpd')">
+      <div class="field-hint" id="ss-dpd" style="min-height:16px;font-weight:600;"></div>
+    </div>`;
+  } else if (ss === 'UPDATE TGL JANJI BAYAR (BROKEN PTP)') {
+    body = `<div class="fg" style="margin-bottom:10px;">
+      <div class="flabel">Tanggal Lama (Broken PTP)</div>
+      <input class="fi" id="ss-old-date" type="date" disabled style="opacity:.5;cursor:not-allowed;">
+    </div>
+    <div class="fg">
+      <div class="flabel">Tanggal Baru<span class="req">*</span></div>
+      <input class="fi" id="ss-date" type="date" onchange="updateDPD('ss-date','ss-dpd')">
+      <div class="field-hint" id="ss-dpd" style="min-height:16px;font-weight:600;"></div>
+    </div>`;
+  } else if (ss === 'CICIL (TERMIN)') {
+    body = `<div class="fg2">
       <div class="fg"><div class="flabel">Durasi (bulan)<span class="req">*</span></div><input class="fi" id="ss-dur" type="number" min="1" placeholder="6"></div>
       <div class="fg"><div class="flabel">Nominal/Bulan (Rp)<span class="req">*</span></div><input class="fi" id="ss-nom" type="number" placeholder="500000"></div>
       <div class="fg"><div class="flabel">Tanggal Mulai<span class="req">*</span></div><input class="fi" id="ss-start" type="date"></div>
-      <div class="fg"><div class="flabel">Pembayaran Tiap Tgl<span class="req">*</span></div><input class="fi" id="ss-paydate" type="number" min="1" max="31" placeholder="1"></div>
+      <div class="fg"><div class="flabel">Bayar Tiap Tgl<span class="req">*</span></div><input class="fi" id="ss-paydate" type="number" min="1" max="31" placeholder="1"></div>
     </div>`;
-  }else if(ss==='HOLD'){
-    body=`<div class="fg"><div class="flabel">Alasan Hold<span class="req">*</span></div><textarea class="ft" id="ss-reason" rows="3" placeholder="Tuliskan alasan hold…"></textarea></div>`;
-  }else if(ss==='PENYITAAN ASET'){
-    body=`<div class="fg2">
+  } else if (ss === 'HOLD') {
+    body = `<div class="fg"><div class="flabel">Alasan Hold<span class="req">*</span></div><textarea class="ft" id="ss-reason" rows="3" placeholder="Tuliskan alasan hold…"></textarea></div>`;
+  } else if (ss === 'PENYITAAN ASET') {
+    body = `<div class="fg2">
       <div class="fg full"><div class="flabel">Nama Barang<span class="req">*</span></div><input class="fi" id="ss-aset-nm" placeholder="e.g. Motor Honda Beat"></div>
       <div class="fg"><div class="flabel">Jenis</div><input class="fi" id="ss-aset-jenis" placeholder="Kendaraan, Elektronik…"></div>
       <div class="fg"><div class="flabel">Kondisi Saat Disita</div><input class="fi" id="ss-aset-kondisi" placeholder="Baik / Rusak ringan…"></div>
       <div class="fg"><div class="flabel">Disita Oleh</div><input class="fi" id="ss-aset-oleh" placeholder="Nama / Tim"></div>
       <div class="fg full"><div class="flabel">Lokasi Barang Disita</div><input class="fi" id="ss-aset-lokasi" placeholder="Alamat / Gudang…"></div>
     </div>`;
-  }else{
-    body=`<div style="font-size:13px;color:var(--t2);padding:4px 0;">Konfirmasi sub-status: <strong>${esc(ss)}</strong></div>`;
+  } else {
+    body = `<div style="font-size:13px;color:var(--t2);padding:4px 0;">Konfirmasi sub-status: <strong>${esc(ss)}</strong></div>`;
   }
-  $('ssMBody').innerHTML=body;
+  $('ssMBody').innerHTML = body;
   openM('ssModal');
 }
 
-function submitSS(){
-  const ss=S.ssCurrent;
-  let extra={};
-  if(ss==='JANJI BAYAR (PTP)'||ss==='UPDATE TGL JANJI BAYAR (BROKEN PTP)'){
-    const d=$('ss-date')?.value;if(!d){toast('Tanggal wajib diisi','error');return;}extra={date:d};
-  }else if(ss==='CICIL (TERMIN)'){
+/* [9] DPD calculation — positive DPD = overdue, negative = days remaining */
+function updateDPD(inputId, hintId) {
+  const dateEl = $(inputId), hintEl = $(hintId);
+  if (!dateEl || !hintEl) return;
+  const val = dateEl.value; if (!val) { hintEl.textContent = ''; return; }
+  const target = new Date(val); const today = new Date();
+  today.setHours(0,0,0,0); target.setHours(0,0,0,0);
+  const dpd = Math.round((today - target) / 86400000);
+  if (dpd === 0) { hintEl.textContent = 'DPD: 0 (Hari ini)'; hintEl.style.color = 'var(--yellow)'; }
+  else if (dpd > 0) { hintEl.textContent = `DPD: +${dpd} (lewat ${dpd} hari)`; hintEl.style.color = 'var(--red)'; }
+  else { hintEl.textContent = `DPD: ${dpd} (${Math.abs(dpd)} hari lagi)`; hintEl.style.color = 'var(--green)'; }
+}
+
+function submitSS() {
+  const ss = S.ssCurrent; let extra = {};
+  if (ss === 'JANJI BAYAR (PTP)' || ss === 'UPDATE TGL JANJI BAYAR (BROKEN PTP)') {
+    const d = $('ss-date')?.value; if (!d) { toast('Tanggal wajib diisi', 'error'); return; } extra = {date:d};
+  } else if (ss === 'CICIL (TERMIN)') {
     const dur=$('ss-dur')?.value,nom=$('ss-nom')?.value,st=$('ss-start')?.value,pd=$('ss-paydate')?.value;
-    if(!dur||!nom||!st||!pd){toast('Semua field wajib diisi','error');return;}extra={duration:dur,nominal:nom,startDate:st,paymentDay:pd};
-  }else if(ss==='HOLD'){
-    const r=$('ss-reason')?.value?.trim();if(!r){toast('Alasan wajib diisi','error');return;}extra={reason:r};
-  }else if(ss==='PENYITAAN ASET'){
-    const nm=$('ss-aset-nm')?.value?.trim();if(!nm){toast('Nama barang wajib diisi','error');return;}
-    extra={nama:nm,jenis:$('ss-aset-jenis')?.value,kondisi:$('ss-aset-kondisi')?.value,oleh:$('ss-aset-oleh')?.value,lokasi:$('ss-aset-lokasi')?.value};
+    if (!dur||!nom||!st||!pd) { toast('Semua field wajib diisi', 'error'); return; }
+    extra = {duration:dur,nominal:nom,startDate:st,paymentDay:pd};
+  } else if (ss === 'HOLD') {
+    const r = $('ss-reason')?.value?.trim(); if (!r) { toast('Alasan wajib diisi', 'error'); return; } extra = {reason:r};
+  } else if (ss === 'PENYITAAN ASET') {
+    const nm = $('ss-aset-nm')?.value?.trim(); if (!nm) { toast('Nama barang wajib diisi', 'error'); return; }
+    extra = {nama:nm,jenis:$('ss-aset-jenis')?.value,kondisi:$('ss-aset-kondisi')?.value,oleh:$('ss-aset-oleh')?.value,lokasi:$('ss-aset-lokasi')?.value};
   }
-  btnLoad('btnSS',true,'Menyimpan…');
-  google.script.run.withSuccessHandler(res=>{
-    btnLoad('btnSS',false,'Konfirmasi');
-    if(res.ok){toast('✓ '+res.message,'ok');closeM('ssModal');loadAll();setTimeout(()=>{const c=S.allCases.find(x=>x.caseId===S.curId);if(c){renderStatusSection(c);renderLI(c);$('caseIdBig').innerHTML=`${esc(c.caseId)} ${sBadge(c.status)} ${pBadge(c.priority)} ${c.subStatus?`<span class="chip chip-sub">${esc(c.subStatus)}</span>`:''}`;loadHistory(S.curId);}},700);}
-    else toast(res.message,'error');
-  }).withFailureHandler(e=>{btnLoad('btnSS',false,'Konfirmasi');toast(e.message,'error');}).applySubStatus(S.curId,ss,extra);
+  btnLoad('btnSS', true, 'Menyimpan…');
+  google.script.run.withSuccessHandler(res => {
+    btnLoad('btnSS', false, 'Konfirmasi');
+    if (res.ok) {
+      toast('✓ ' + res.message, 'ok'); closeM('ssModal'); loadAll();
+      setTimeout(() => { const c = S.allCases.find(x => x.caseId === S.curId); if (c) { renderStatusSection(c); renderLI(c); $('caseIdBig').innerHTML = `${esc(c.caseId)} ${sBadge(c.status)} ${pBadge(c.priority)} ${c.subStatus?`<span class="chip chip-sub">${esc(c.subStatus)}</span>`:''}`;} }, 700);
+    } else toast(res.message, 'error');
+  }).withFailureHandler(e => { btnLoad('btnSS', false, 'Konfirmasi'); toast(e.message, 'error'); }).applySubStatus(S.curId, ss, extra);
 }
 
-/* ════════════════════════════════
-   MODAL: CLOSE CASE
-════════════════════════════════ */
-function openCloseModal(){
-  const sel=$('closeReason');sel.innerHTML=S.closeReasons.map(r=>`<option>${esc(r)}</option>`).join('');
-  $('closeOtherWrap').style.display='none';$('closeNotes').value='';
-  openM('closeModal');
+/* ═══ CLOSE CASE ═══ */
+function openCloseModal() {
+  const sel = $('closeReason'); sel.innerHTML = S.closeReasons.map(r => `<option>${esc(r)}</option>`).join('');
+  $('closeOtherWrap').style.display = 'none'; $('closeNotes').value = ''; openM('closeModal');
 }
-function submitClose(){
-  let reason=$('closeReason').value;
-  if(reason==='Other'){reason=$('closeOtherText').value.trim()||'Other';}
-  const notes=$('closeNotes').value.trim();
-  btnLoad('btnClose',true,'Menutup…');
-  google.script.run.withSuccessHandler(res=>{
-    btnLoad('btnClose',false,'Tutup Case');
-    if(res.ok){toast('✓ Case ditutup','ok');closeM('closeModal');loadAll();setTimeout(()=>{const c=S.allCases.find(x=>x.caseId===S.curId);if(c){renderStatusSection(c);renderLI(c);$('caseIdBig').innerHTML=`${esc(c.caseId)} ${sBadge(c.status)} ${pBadge(c.priority)}`;loadHistory(S.curId);}},700);}
-    else toast(res.message,'error');
-  }).withFailureHandler(e=>{btnLoad('btnClose',false,'Tutup Case');toast(e.message,'error');}).closeCase(S.curId,reason,notes);
+function submitClose() {
+  let reason = $('closeReason').value;
+  if (reason === 'Other') reason = $('closeOtherText').value.trim() || 'Other';
+  const notes = $('closeNotes').value.trim();
+  btnLoad('btnClose', true, 'Menutup…');
+  google.script.run.withSuccessHandler(res => {
+    btnLoad('btnClose', false, 'Tutup Case');
+    if (res.ok) {
+      toast('✓ Case ditutup', 'ok'); closeM('closeModal'); loadAll();
+      setTimeout(() => { const c = S.allCases.find(x => x.caseId === S.curId); if (c) { renderStatusSection(c); renderLI(c); } }, 700);
+    } else toast(res.message, 'error');
+  }).withFailureHandler(e => { btnLoad('btnClose', false, 'Tutup Case'); toast(e.message, 'error'); }).closeCase(S.curId, reason, notes);
 }
 
-/* ════════════════════════════════
-   MODAL: EVIDENCE
-════════════════════════════════ */
-function openEvidenceModal(ctx){
-  $('evUrl').value='';$('evName').value='';$('evDesc').value='';
+/* ═══ EVIDENCE ═══ */
+let _evMode = 'url';
+let _evFiles = []; // [2] array for multiple files
+
+function openEvidenceModal() {
+  _evMode = 'url'; _evFiles = [];
+  $('evUrl').value=''; $('evName').value=''; $('evDesc').value='';
+  const fd=$('evFileDesc'); if(fd) fd.value='';
+  const fi=$('evFile'); if(fi) fi.value='';
+  renderFileList();
+  const p=$('evProgress'); if(p) p.style.display='none';
+  switchEvTab('url');
   openM('evModal');
 }
-function submitEvidence(){
-  const url=$('evUrl').value.trim();if(!url){toast('URL wajib diisi','error');return;}
-  const name=$('evName').value.trim(),desc=$('evDesc').value.trim();
-  if(!S.curId){toast('Tidak ada case aktif','error');return;}
-  btnLoad('btnEv',true,'Menyimpan…');
-  google.script.run.withSuccessHandler(res=>{
-    btnLoad('btnEv',false,'Simpan');
-    if(res.ok){toast('✓ Evidence ditambahkan','ok');closeM('evModal');loadEvidence(S.curId);}
-    else toast(res.message,'error');
-  }).withFailureHandler(e=>{btnLoad('btnEv',false,'Simpan');toast(e.message,'error');}).addEvidence(S.curId,'url',url,name,desc);
+
+function switchEvTab(mode) {
+  _evMode = mode;
+  $('evPanelUrl').style.display  = mode==='url'  ? '' : 'none';
+  $('evPanelFile').style.display = mode==='file' ? '' : 'none';
+  $('evTabUrl').style.background  = mode==='url'  ? 'var(--blue)' : 'var(--bg-e)';
+  $('evTabUrl').style.color       = mode==='url'  ? '#fff'        : 'var(--t2)';
+  $('evTabFile').style.background = mode==='file' ? 'var(--blue)' : 'var(--bg-e)';
+  $('evTabFile').style.color      = mode==='file' ? '#fff'        : 'var(--t2)';
 }
 
-/* ════════════════════════════════
-   MODAL: NOTE
-════════════════════════════════ */
-function openAddNote(){$('noteText').value='';openM('noteModal');}
-function submitNote(){
-  const note=$('noteText').value.trim();if(!note){toast('Note kosong','error');return;}
-  btnLoad('btnNote',true,'Menyimpan…');
-  google.script.run.withSuccessHandler(res=>{
-    btnLoad('btnNote',false,'Simpan Note');
-    if(res.ok){toast('✓ Note ditambahkan','ok');closeM('noteModal');loadNotes(S.curId);loadCases();}
-    else toast(res.message,'error');
-  }).withFailureHandler(e=>{btnLoad('btnNote',false,'Simpan Note');toast(e.message,'error');}).addNote(S.curId,note);
+// [2] Accept multiple files
+function onEvFileSelect(input) {
+  const incoming = Array.from(input.files);
+  const maxBytes = 4.5 * 1024 * 1024;
+  incoming.forEach(file => {
+    if (_evFiles.length >= 5) { toast('Maksimal 5 file sekaligus', 'error'); return; }
+    if (file.size > maxBytes) { toast(`${file.name}: melebihi 4.5 MB`, 'error'); return; }
+    if (_evFiles.some(f => f.name===file.name && f.size===file.size)) return; // skip dupe
+    _evFiles.push(file);
+  });
+  input.value = ''; // reset so same file can be re-added
+  renderFileList();
 }
 
-/* ════════════════════════════════
-   ADD CASE
-════════════════════════════════ */
-function submitAdd(){
-  const cid=v('a-cid'),cnm=v('a-cnm'),amt=v('a-amt');
-  if(!cid||!cnm||!amt){toast('ID Kurir, Nama, dan Amount wajib diisi','error');return;}
-  btnLoad('btnAdd',true,'Membuat…');
-  const data={courierId:cid,courierName:cnm,hub:v('a-hub'),area:v('a-area'),amount:parseFloat(amt)||0,firstUpdate:v('a-fup'),status:v('a-stat'),category:v('a-cat'),assignedTo:v('a-ato'),notes:v('a-nts')};
-  google.script.run.withSuccessHandler(res=>{
-    btnLoad('btnAdd',false,'Buat Case');
-    if(res.ok){toast('✓ '+res.message,'ok');nav('cases');loadAll();}else toast(res.message,'error');
-  }).withFailureHandler(e=>{btnLoad('btnAdd',false,'Buat Case');toast(e.message,'error');}).addCase(data);
-}
-function prevPrio(){
-  const amt=parseFloat($('a-amt')?.value)||0;
-  const p=calcP(amt);const el=$('prioPreview');if(!el)return;
-  el.textContent=p;el.style.color=p==='High'?'var(--red)':p==='Medium'?'var(--yellow)':'var(--green)';
-}
-function calcP(amount){
-  const sorted=[...S.thresholds].sort((a,b)=>b.amountMin-a.amountMin);
-  for(const t of sorted){if(amount>=t.amountMin)return t.label;}
-  return 'Low';
+function removeEvFile(idx) {
+  _evFiles.splice(idx, 1);
+  renderFileList();
 }
 
-/* ════════════════════════════════
-   DELETE
-════════════════════════════════ */
-function confirmDel(){
-  $('confTitle').textContent='Hapus Case';$('confBody').textContent='Hapus case '+S.curId+'? Tindakan ini tidak dapat dibatalkan.';
-  S.dlgCb=()=>{
-    google.script.run.withSuccessHandler(res=>{if(res.ok){toast('Case dihapus','ok');closeM('confModal');nav('cases');loadAll();}else toast(res.message,'error');}).deleteCase(S.curId);
+function clearEvFile() {
+  _evFiles = [];
+  const fi=$('evFile'); if(fi) fi.value='';
+  renderFileList();
+}
+
+function getFileIcon(mime) {
+  if (!mime) return SVG.file;
+  const m = String(mime).toLowerCase();
+  if (m.startsWith('image/')) return SVG.img;
+  if (m==='application/pdf') return SVG.pdf;
+  return SVG.file;
+}
+
+function renderFileList() {
+  const c=$('evFileList'); if(!c) return;
+  if (!_evFiles.length) { c.style.display='none'; c.innerHTML=''; return; }
+  c.style.display='block';
+  c.innerHTML = _evFiles.map((f,i)=>`
+    <div class="ev-file-item">
+      <span style="color:var(--t3);flex-shrink:0;display:flex">${getFileIcon(f.type)}</span>
+      <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:var(--t1);">${esc(f.name)}</span>
+      <span style="font-size:10px;color:var(--t3);flex-shrink:0;">${(f.size/1024).toFixed(0)} KB</span>
+      <button onclick="removeEvFile(${i})" class="icon-btn danger" title="Hapus">${SVG.trash}</button>
+    </div>`).join('');
+  const btn=$('btnEv'); if(btn) btn.textContent=`Upload ${_evFiles.length} File`;
+}
+
+// [2] Recursive sequential upload
+function _uploadNext(files, desc, idx, successCount, onAllDone) {
+  if (idx >= files.length) { onAllDone(successCount); return; }
+  const file = files[idx];
+  const pct = Math.round((idx / files.length) * 80 + 10);
+  $('evProgressTxt').textContent = `Mengupload ${idx+1}/${files.length}: ${file.name}…`;
+  $('evProgressBar').style.width = pct + '%';
+  const reader = new FileReader();
+  reader.onload = e => {
+    const b64 = e.target.result.split(',')[1];
+    google.script.run
+      .withSuccessHandler(res => {
+        if (res.ok) {
+          _uploadNext(files, desc, idx+1, successCount+1, onAllDone);
+        } else {
+          toast(`Gagal: ${file.name} — ${res.message}`, 'error');
+          _uploadNext(files, desc, idx+1, successCount, onAllDone); // continue others
+        }
+      })
+      .withFailureHandler(err => {
+        toast(`Error: ${file.name} — ${err.message}`, 'error');
+        _uploadNext(files, desc, idx+1, successCount, onAllDone);
+      })
+      .addEvidenceFile(S.curId, b64, file.type, file.name, desc);
   };
-  $('confOk').onclick=()=>{closeM('confModal');if(S.dlgCb)S.dlgCb();};
+  reader.onerror = () => {
+    toast(`Gagal baca: ${file.name}`, 'error');
+    _uploadNext(files, desc, idx+1, successCount, onAllDone);
+  };
+  reader.readAsDataURL(file);
+}
+
+function submitEvidence() {
+  if (!S.curId) { toast('Tidak ada case aktif', 'error'); return; }
+
+  if (_evMode === 'url') {
+    const url = $('evUrl').value.trim();
+    if (!url) { toast('URL wajib diisi', 'error'); return; }
+    btnLoad('btnEv', true, 'Menyimpan…');
+    google.script.run.withSuccessHandler(res => {
+      btnLoad('btnEv', false, 'Simpan');
+      if (res.ok) { toast('✓ Evidence ditambahkan', 'ok'); closeM('evModal'); refreshEvidence(); }
+      else toast(res.message, 'error');
+    }).withFailureHandler(e => { btnLoad('btnEv', false, 'Simpan'); toast(e.message, 'error'); })
+      .addEvidence(S.curId, 'url', url, $('evName').value.trim(), $('evDesc').value.trim());
+
+  } else {
+    if (!_evFiles.length) { toast('Pilih minimal 1 file', 'error'); return; }
+    const desc = ($('evFileDesc').value||'').trim();
+    btnLoad('btnEv', true, 'Mengupload…');
+    $('evProgress').style.display = '';
+    $('evProgressBar').style.width = '5%';
+    $('evProgressTxt').textContent = 'Mempersiapkan…';
+    _uploadNext([..._evFiles], desc, 0, 0, successCount => {
+      $('evProgressBar').style.width = '100%';
+      $('evProgressTxt').textContent = `✓ ${successCount} dari ${_evFiles.length} file berhasil`;
+      btnLoad('btnEv', false, 'Simpan');
+      if (successCount > 0) {
+        setTimeout(() => { closeM('evModal'); refreshEvidence(); }, 700);
+        toast(`✓ ${successCount} file diupload`, 'ok');
+      }
+    });
+  }
+}
+
+/* ═══ EVIDENCE RENDER — with preview button ═══ */
+// Extract Drive file ID from url
+function _driveId(url) {
+  const m = String(url||'').match(/\/d\/([a-zA-Z0-9_-]+)/);
+  return m ? m[1] : null;
+}
+// Is this an image evidence?
+function _isImg(ev) {
+  if (ev.type === 'image') return true;
+  return /\.(png|jpe?g|gif|webp|bmp|svg)(\?.*)?$/i.test(ev.url||'') ||
+         /\.(png|jpe?g|gif|webp|bmp)(\?.*)?$/i.test(ev.filename||'');
+}
+// Is this a PDF?
+function _isPdf(ev) {
+  return ev.type === 'pdf' || /\.pdf(\?.*)?$/i.test(ev.url||'') || /\.pdf$/i.test(ev.filename||'');
+}
+
+function renderEvidenceUI(data) {
+  if (!data || !data.length) {
+    $('euBody').innerHTML = '<div class="empty-state" style="padding:20px;"><p>Belum ada evidence.<br>Klik + Tambah.</p></div>'; return;
+  }
+  const isSA = S.curUser?.role === 'superadmin';
+
+  // SVG file type icon
+  const typeIcon = ev => {
+    if (ev.type==='image'||_isImg(ev)) return SVG.img;
+    if (ev.type==='pdf'||_isPdf(ev))   return SVG.pdf;
+    return SVG.file;
+  };
+
+  // [3] List style
+  $('euBody').innerHTML = `<div class="ev-list">${data.map((ev, i) => {
+    const safeUrl = esc(ev.url||'#');
+    const safeFilename = JSON.stringify(ev.filename||ev.url||'');
+    const safeUrlJson  = JSON.stringify(ev.url||'');
+    const delBtn = isSA
+      ? `<button class="icon-btn danger" title="Hapus" onclick="deleteEvidenceItem(${safeUrlJson})">${SVG.trash}</button>`
+      : '';
+    return `<div class="ev-row">
+      <div class="ev-row-icon" style="color:var(--t3)">${typeIcon(ev)}</div>
+      <div class="ev-row-info">
+        <div class="ev-row-name" title="${esc(ev.filename||ev.url)}">${esc(ev.filename||'Link')}</div>
+        <div class="ev-row-meta">${esc(ev.addedAt||'')}${ev.addedBy?' · '+esc(ev.addedBy):''}</div>
+      </div>
+      <div class="ev-row-acts">
+        <a href="${safeUrl}" target="_blank" class="icon-btn" title="Buka">${SVG.open}</a>
+        ${delBtn}
+      </div>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+// [2] Delete evidence — superadmin only
+function deleteEvidenceItem(url) {
+  if (!S.curId || !url) return;
+  if (S.curUser?.role !== 'superadmin') { toast('Hanya superadmin yang dapat menghapus evidence.', 'error'); return; }
+  $('confTitle').textContent = 'Hapus Evidence';
+  $('confBody').textContent = 'Hapus evidence ini? Tindakan tidak dapat dibatalkan.';
+  S.dlgCb = () => {
+    google.script.run
+      .withSuccessHandler(r => {
+        if (r.ok) { toast('Evidence dihapus', 'ok'); refreshEvidence(); }
+        else toast(r.message, 'error');
+      })
+      .withFailureHandler(e => toast(e.message, 'error'))
+      .deleteEvidence(S.curId, url);
+  };
+  $('confOk').onclick = () => { closeM('confModal'); if (S.dlgCb) S.dlgCb(); };
   openM('confModal');
 }
 
-/* ════════════════════════════════
-   ANALYTICS
-════════════════════════════════ */
-function renderAnalytics(){
-  const g=$('anContent');
-  if(!S.allCases.length){g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><p>Belum ada data.</p></div>';return;}
+// [1] Preview removed — Drive iframe/thumbnail blocked by X-Frame-Options
+// previewEvidence and closeLightbox kept but unused (lightbox HTML still in DOM)
+function previewEvidence(idx, url, caption) { window.open(url, '_blank'); }
+function closeLightbox() { $('lightboxBack').classList.remove('open'); }
+
+/* ═══ NOTE ═══ */
+function openAddNote() { $('noteText').value = ''; openM('noteModal'); }
+function submitNote() {
+  const note = $('noteText').value.trim(); if (!note) { toast('Note kosong', 'error'); return; }
+  btnLoad('btnNote', true, 'Menyimpan…');
+  google.script.run.withSuccessHandler(res => {
+    btnLoad('btnNote', false, 'Simpan Note');
+    if (res.ok) { toast('✓ Note ditambahkan', 'ok'); closeM('noteModal'); refreshNotes(); loadCases(); }
+    else toast(res.message, 'error');
+  }).withFailureHandler(e => { btnLoad('btnNote', false, 'Simpan Note'); toast(e.message, 'error'); }).addNote(S.curId, note);
+}
+
+/* ═══ ADD CASE ═══ */
+function submitAdd() {
+  const cid=v('a-cid'),cnm=v('a-cnm'),amt=v('a-amt');
+  if (!cid||!cnm||!amt) { toast('ID Kurir, Nama, dan Amount wajib diisi', 'error'); return; }
+  btnLoad('btnAdd', true, 'Membuat…');
+  const data = {courierId:cid,courierName:cnm,hub:v('a-hub'),area:v('a-area'),amount:parseFloat(amt)||0,firstUpdate:v('a-fup'),status:v('a-stat'),category:v('a-cat'),assignedTo:v('a-ato'),notes:v('a-nts')};
+  google.script.run.withSuccessHandler(res => {
+    btnLoad('btnAdd', false, 'Buat Case');
+    if (res.ok) { toast('✓ ' + res.message, 'ok'); nav('cases'); loadAll(); } else toast(res.message, 'error');
+  }).withFailureHandler(e => { btnLoad('btnAdd', false, 'Buat Case'); toast(e.message, 'error'); }).addCase(data);
+}
+
+function prevPrio() {
+  const amt = parseFloat($('a-amt')?.value)||0;
+  const p = calcP(amt); const el = $('prioPreview'); if (!el) return;
+  el.textContent = p; el.style.color = p==='High'?'var(--red)':p==='Medium'?'var(--yellow)':'var(--green)';
+}
+function calcP(amount) {
+  const sorted = [...S.thresholds].sort((a,b) => b.amountMin - a.amountMin);
+  for (const t of sorted) { if (amount >= t.amountMin) return t.label; }
+  return 'Low';
+}
+
+/* ═══ DELETE ═══ */
+function confirmDel() {
+  $('confTitle').textContent = 'Hapus Case'; $('confBody').textContent = 'Hapus case ' + S.curId + '? Tindakan ini tidak dapat dibatalkan.';
+  S.dlgCb = () => { google.script.run.withSuccessHandler(res => { if (res.ok) { toast('Case dihapus','ok'); closeM('confModal'); nav('cases'); loadAll(); } else toast(res.message,'error'); }).deleteCase(S.curId); };
+  $('confOk').onclick = () => { closeM('confModal'); if (S.dlgCb) S.dlgCb(); };
+  openM('confModal');
+}
+
+/* ═══ ANALYTICS ═══ */
+function renderAnalytics() {
+  const g = $('anContent');
+  if (!S.allCases.length) { g.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><p>Belum ada data.</p></div>'; return; }
   const bySt={'Open':0,'On Investigation':0,'Case Close':0,'Escalated':0};
-  const byPr={'High':0,'Medium':0,'Low':0};
-  const byArea={},byCat={};
-  S.allCases.forEach(c=>{
-    if(c.status in bySt)bySt[c.status]++;if(c.priority in byPr)byPr[c.priority]++;
-    const a=c.area||'—';byArea[a]=(byArea[a]||0)+1;
-    const cat=c.category||'—';byCat[cat]=(byCat[cat]||0)+1;
+  const byPr={'High':0,'Medium':0,'Low':0}; const byArea={},byCat={};
+  S.allCases.forEach(c => {
+    if (c.status in bySt) bySt[c.status]++; if (c.priority in byPr) byPr[c.priority]++;
+    const a=c.area||'—'; byArea[a]=(byArea[a]||0)+1; const cat=c.category||'—'; byCat[cat]=(byCat[cat]||0)+1;
   });
   const topArea=Object.entries(byArea).sort((a,b)=>b[1]-a[1]).slice(0,6);
   const topCat=Object.entries(byCat).sort((a,b)=>b[1]-a[1]).slice(0,6);
   const mxSt=Math.max(...Object.values(bySt)),mxPr=Math.max(...Object.values(byPr));
   const stC={'Open':'var(--yellow)','On Investigation':'#f97316','Case Close':'var(--green)','Escalated':'var(--red)'};
   const prC={'High':'var(--red)','Medium':'var(--yellow)','Low':'var(--green)'};
-  const br=(l,v,mx,c)=>`<div class="br"><div class="bl" title="${esc(l)}">${esc(l)}</div><div class="bt"><div class="bf" style="width:${mx?v/mx*100:0}%;background:${c}"></div></div><div class="bv">${v}</div></div>`;
+  const br=(l,vl,mx,c)=>`<div class="br"><div class="bl" title="${esc(l)}">${esc(l)}</div><div class="bt"><div class="bf" style="width:${mx?vl/mx*100:0}%;background:${c}"></div></div><div class="bv">${vl}</div></div>`;
   const tot=S.allCases.length,closed=bySt['Case Close'];
   const totAmt=S.allCases.filter(c=>c.status!=='Case Close').reduce((s,c)=>s+(parseFloat(c.amount)||0),0);
   g.innerHTML=`
-    <div class="an-card"><div class="an-ttl">Distribusi Status</div>${Object.entries(bySt).map(([k,v])=>br(k,v,mxSt,stC[k])).join('')}</div>
-    <div class="an-card"><div class="an-ttl">Priority Breakdown</div>${Object.entries(byPr).map(([k,v])=>br(k,v,mxPr,prC[k])).join('')}</div>
-    <div class="an-card"><div class="an-ttl">Cases per Area</div>${topArea.length?topArea.map(([k,v])=>br(k,v,topArea[0][1],'var(--blue)')).join(''):'<div class="empty-state" style="padding:10px 0;"><p>Belum ada data area</p></div>'}</div>
-    <div class="an-card"><div class="an-ttl">Kategori Fraud</div>${topCat.length?topCat.map(([k,v])=>br(k,v,topCat[0][1],'var(--purple)')).join(''):'<div class="empty-state" style="padding:10px 0;"><p>Belum ada kategori</p></div>'}</div>
-    <div class="an-card" style="grid-column:1/-1">
-      <div class="an-ttl">Summary</div>
+    <div class="an-card"><div class="an-ttl">Distribusi Status</div>${Object.entries(bySt).map(([k,vl])=>br(k,vl,mxSt,stC[k])).join('')}</div>
+    <div class="an-card"><div class="an-ttl">Priority Breakdown</div>${Object.entries(byPr).map(([k,vl])=>br(k,vl,mxPr,prC[k])).join('')}</div>
+    <div class="an-card"><div class="an-ttl">Cases per Area</div>${topArea.length?topArea.map(([k,vl])=>br(k,vl,topArea[0][1],'var(--blue)')).join(''):'<div class="empty-state" style="padding:10px 0;"><p>Belum ada data area</p></div>'}</div>
+    <div class="an-card"><div class="an-ttl">Kategori Fraud</div>${topCat.length?topCat.map(([k,vl])=>br(k,vl,topCat[0][1],'var(--purple)')).join(''):'<div class="empty-state" style="padding:10px 0;"><p>Belum ada kategori</p></div>'}</div>
+    <div class="an-card" style="grid-column:1/-1"><div class="an-ttl">Summary</div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
         <div style="background:var(--bg-e);border-radius:var(--r);padding:14px;"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:6px;">Resolution Rate</div><div style="font-size:22px;font-weight:700;color:var(--green)">${tot?Math.round(closed/tot*100):0}%</div><div style="font-size:11px;color:var(--t3);margin-top:3px">${closed}/${tot} case selesai</div></div>
         <div style="background:var(--bg-e);border-radius:var(--r);padding:14px;"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:6px;">Amount Aktif</div><div style="font-size:17px;font-weight:700;color:var(--blue)">${fmtRp(totAmt,true)}</div><div style="font-size:11px;color:var(--t3);margin-top:3px">Pending recovery</div></div>
         <div style="background:var(--bg-e);border-radius:var(--r);padding:14px;"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:6px;">High Priority Open</div><div style="font-size:22px;font-weight:700;color:var(--red)">${S.allCases.filter(c=>c.priority==='High'&&c.status!=='Case Close').length}</div><div style="font-size:11px;color:var(--t3);margin-top:3px">Perlu tindakan</div></div>
-      </div>
-    </div>`;
+      </div></div>`;
 }
 
-/* ════════════════════════════════
-   ADMIN: USERS
-════════════════════════════════ */
-function loadUsers(){
-  $('usersTable').innerHTML=spin();
-  google.script.run.withSuccessHandler(res=>{
-    if(!res.ok||!res.data.length){$('usersTable').innerHTML='<div class="empty-state" style="padding:20px;"><p>Belum ada user.</p></div>';return;}
-    $('usersTable').innerHTML=`<table><thead><tr><th>Email</th><th>Role</th><th>Area</th><th>Added By</th><th>Added At</th><th></th></tr></thead><tbody>${res.data.map(u=>`
-      <tr><td>${esc(u.email)}</td><td><span class="chip ${u.role==='superadmin'?'chip-high':'chip-area'}">${esc(u.role)}</span></td>
-      <td class="td2">${esc(u.area||'—')}</td><td class="td3">${esc(u.addedBy||'—')}</td><td class="td3">${esc(u.addedAt||'—')}</td>
-      <td><button class="btn btn-danger-ghost btn-xs" onclick="removeUser('${esc(u.email)}')">Hapus</button></td></tr>`).join('')}</tbody></table>`;
+/* ═══ ADMIN: USERS ═══ */
+function loadUsers() {
+  $('usersTable').innerHTML = spin();
+  google.script.run.withSuccessHandler(res => {
+    if (!res.ok || !res.data.length) { $('usersTable').innerHTML = '<div class="empty-state" style="padding:20px;"><p>Belum ada user.</p></div>'; return; }
+    $('usersTable').innerHTML = `<table><thead><tr><th>Email</th><th>Username</th><th>Role</th><th>Area</th><th>Added At</th><th></th></tr></thead><tbody>${res.data.map(u => `
+      <tr>
+        <td>${esc(u.email)}</td>
+        <td class="td2">${esc(u.username||'—')}</td>
+        <td><span class="chip ${u.role==='superadmin'?'chip-high':'chip-area'}">${esc(u.role)}</span></td>
+        <td class="td2">${esc(u.area||'—')}</td>
+        <td class="td3">${esc(u.addedAt||'—')}</td>
+        <td><button class="btn btn-danger-ghost btn-xs" onclick="removeUser('${esc(u.email)}')">Hapus</button></td>
+      </tr>`).join('')}</tbody></table>`;
   }).getUsers();
 }
-function submitAddUser(){
-  const email=v('au-email'),role=v('au-role'),area=v('au-area');
-  if(!email){toast('Email wajib diisi','error');return;}
-  btnLoad('btnAU',true,'Menambah…');
-  google.script.run.withSuccessHandler(res=>{btnLoad('btnAU',false,'Tambah User');if(res.ok){toast('✓ '+res.message,'ok');$('au-email').value='';$('au-area').value='';loadUsers();}else toast(res.message,'error');}).addUser({email,role,area});
+
+function submitAddUser() {
+  const email=v('au-email'),role=v('au-role'),area=v('au-area'),username=v('au-username');
+  if (!email) { toast('Email wajib diisi', 'error'); return; }
+  btnLoad('btnAU', true, 'Menambah…');
+  google.script.run.withSuccessHandler(res => {
+    btnLoad('btnAU', false, 'Tambah User');
+    if (res.ok) {
+      toast('✓ ' + res.message, 'ok');
+      $('au-email').value=''; $('au-username').value=''; $('au-area').value='';
+      loadUsers(); loadAreaUsers(); // refresh users cache
+    } else toast(res.message, 'error');
+  }).addUser({email, role, area, username});
 }
-function removeUser(email){
-  $('confTitle').textContent='Hapus User';$('confBody').textContent='Hapus user '+email+'?';
-  S.dlgCb=()=>{google.script.run.withSuccessHandler(res=>{if(res.ok){toast('User dihapus','ok');loadUsers();}else toast(res.message,'error');}).removeUser(email);};
-  $('confOk').onclick=()=>{closeM('confModal');if(S.dlgCb)S.dlgCb();};
+
+function removeUser(email) {
+  $('confTitle').textContent='Hapus User'; $('confBody').textContent='Hapus user '+email+'?';
+  S.dlgCb = () => { google.script.run.withSuccessHandler(res => { if (res.ok) { toast('User dihapus','ok'); loadUsers(); loadAreaUsers(); } else toast(res.message,'error'); }).removeUser(email); };
+  $('confOk').onclick = () => { closeM('confModal'); if (S.dlgCb) S.dlgCb(); };
   openM('confModal');
 }
 
-/* ════════════════════════════════
-   ADMIN: CONFIG
-════════════════════════════════ */
-function renderCatTags(){
-  $('catTags').innerHTML=S.cats.map((c,i)=>`<span class="config-tag">${esc(c)}<button class="tag-del" onclick="removeCat(${i})">×</button></span>`).join('');
-}
-function addCatTag(){const val=$('addCatInput').value.trim();if(!val||S.cats.includes(val)){toast('Nama sudah ada atau kosong','error');return;}S.cats.push(val);$('addCatInput').value='';renderCatTags();populateCatFilter();}
-function removeCat(i){S.cats.splice(i,1);renderCatTags();populateCatFilter();}
-function saveCats(){btnLoad('btnSaveCat',true,'Menyimpan…');google.script.run.withSuccessHandler(res=>{btnLoad('btnSaveCat',false,'Simpan Kategori');if(res.ok)toast('✓ Kategori disimpan','ok');else toast(res.message,'error');}).saveCategories(S.cats);}
+/* ═══ ADMIN: CONFIG ═══ */
+function renderCatTags() { $('catTags').innerHTML=S.cats.map((c,i)=>`<span class="config-tag">${esc(c)}<button class="tag-del" onclick="removeCat(${i})">×</button></span>`).join(''); }
+function addCatTag() { const val=$('addCatInput').value.trim();if(!val||S.cats.includes(val)){toast('Sudah ada atau kosong','error');return;}S.cats.push(val);$('addCatInput').value='';renderCatTags();populateCatFilter(); }
+function removeCat(i) { S.cats.splice(i,1); renderCatTags(); populateCatFilter(); }
+function saveCats() { btnLoad('btnSaveCat',true,'Menyimpan…');google.script.run.withSuccessHandler(res=>{btnLoad('btnSaveCat',false,'Simpan Kategori');if(res.ok)toast('✓ Kategori disimpan','ok');else toast(res.message,'error');}).saveCategories(S.cats); }
 
-function renderCloseTags(){
-  $('closeTags').innerHTML=S.closeReasons.map((r,i)=>`<span class="config-tag">${esc(r)}<button class="tag-del" onclick="removeClose(${i})">×</button></span>`).join('');
-}
-function addCloseTag(){const val=$('addCloseInput').value.trim();if(!val||S.closeReasons.includes(val)){toast('Sudah ada atau kosong','error');return;}S.closeReasons.push(val);$('addCloseInput').value='';renderCloseTags();}
-function removeClose(i){S.closeReasons.splice(i,1);renderCloseTags();}
-function saveClose(){btnLoad('btnSaveClose',true,'Menyimpan…');google.script.run.withSuccessHandler(res=>{btnLoad('btnSaveClose',false,'Simpan Close Reasons');if(res.ok)toast('✓ Disimpan','ok');else toast(res.message,'error');}).saveCloseReasons(S.closeReasons);}
+function renderCloseTags() { $('closeTags').innerHTML=S.closeReasons.map((r,i)=>`<span class="config-tag">${esc(r)}<button class="tag-del" onclick="removeClose(${i})">×</button></span>`).join(''); }
+function addCloseTag() { const val=$('addCloseInput').value.trim();if(!val||S.closeReasons.includes(val)){toast('Sudah ada atau kosong','error');return;}S.closeReasons.push(val);$('addCloseInput').value='';renderCloseTags(); }
+function removeClose(i) { S.closeReasons.splice(i,1); renderCloseTags(); }
+function saveClose() { btnLoad('btnSaveClose',true,'Menyimpan…');google.script.run.withSuccessHandler(res=>{btnLoad('btnSaveClose',false,'Simpan Close Reasons');if(res.ok)toast('✓ Disimpan','ok');else toast(res.message,'error');}).saveCloseReasons(S.closeReasons); }
 
-function renderThresholds(){
-  $('threshRows').innerHTML=S.thresholds.map((t,i)=>`<div style="display:flex;align-items:center;gap:8px;">
+function renderThresholds() {
+  $('threshRows').innerHTML = S.thresholds.map((t,i) => `<div style="display:flex;align-items:center;gap:8px;">
     <span style="font-size:11px;color:var(--t3);width:80px">Amount ≥</span>
     <input class="fi" type="number" value="${t.amountMin}" style="width:120px;padding:5px 9px;" oninput="S.thresholds[${i}].amountMin=parseFloat(this.value)||0">
     <span style="color:var(--t3)">→</span>
-    <select class="fs" style="width:100px;padding:5px 9px;" onchange="S.thresholds[${i}].label=this.value">${['High','Medium','Low'].map(v=>`<option${v===t.label?' selected':''}>${v}</option>`).join('')}</select>
+    <select class="fs" style="width:100px;padding:5px 9px;" onchange="S.thresholds[${i}].label=this.value">${['High','Medium','Low'].map(vl=>`<option${vl===t.label?' selected':''}>${vl}</option>`).join('')}</select>
     ${pBadge(t.label)}
     <button class="btn btn-danger-ghost btn-xs" onclick="S.thresholds.splice(${i},1);renderThresholds()">✕</button>
   </div>`).join('');
 }
-function saveThresh(){btnLoad('btnSaveThresh',true,'Menyimpan…');google.script.run.withSuccessHandler(res=>{btnLoad('btnSaveThresh',false,'Simpan Threshold');if(res.ok){toast('✓ Threshold disimpan','ok');}else toast(res.message,'error');}).saveThresholds(S.thresholds);}
+function saveThresh() { btnLoad('btnSaveThresh',true,'Menyimpan…');google.script.run.withSuccessHandler(res=>{btnLoad('btnSaveThresh',false,'Simpan Threshold');if(res.ok)toast('✓ Threshold disimpan','ok');else toast(res.message,'error');}).saveThresholds(S.thresholds); }
 
-/* ════════════════════════════════
-   HELPERS
-════════════════════════════════ */
-function openM(id){$(id).classList.add('open');}
-function closeM(id){$(id).classList.remove('open');}
-function $(id){return document.getElementById(id);}
-function v(id){const el=$(id);return el?el.value.trim():'';}
-function spin(){return'<div class="loading"><div class="spin"></div>Memuat…</div>';}
-function btnLoad(id,l,lbl){const b=$(id);if(!b)return;b.disabled=l;b.textContent=l?lbl:lbl;}
+/* ═══ HELPERS ═══ */
+function openM(id)  { $(id).classList.add('open'); }
+function closeM(id) { $(id).classList.remove('open'); }
+function $(id)      { return document.getElementById(id); }
+function v(id)      { const el=$(id); return el?el.value.trim():''; }
+function spin()     { return '<div class="loading"><div class="spin"></div>Memuat…</div>'; }
+function btnLoad(id,l,lbl) { const b=$(id);if(!b)return;b.disabled=l;b.textContent=lbl; }
 
-function fmtRp(val,short=false){
-  const n=parseFloat(val);if(isNaN(n)||val===''||val==null)return'—';
+function fmtRp(val, short=false) {
+  const n=parseFloat(val); if(isNaN(n)||val===''||val==null) return'—';
   if(short){if(n>=1e9)return'Rp '+(n/1e9).toFixed(1)+'M';if(n>=1e6)return'Rp '+(n/1e6).toFixed(1)+'jt';if(n>=1e3)return'Rp '+(n/1e3).toFixed(0)+'rb';}
-  return'Rp '+Math.round(n).toLocaleString('id-ID');
+  return 'Rp '+Math.round(n).toLocaleString('id-ID');
 }
-
-function sBadge(s){
-  const m={'Open':'chip-open','On Investigation':'chip-invest','Case Close':'chip-close','Escalated':'chip-escalated'};
-  return`<span class="chip ${m[s]||''}">${esc(s||'—')}</span>`;
-}
-function pBadge(p){
-  const m={'High':'chip-high','Medium':'chip-medium','Low':'chip-low'};
-  return`<span class="chip ${m[p]||''}">${esc(p||'—')}</span>`;
-}
-function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function toast(msg,type='info'){
+function sBadge(s) { const m={'Open':'chip-open','On Investigation':'chip-invest','Case Close':'chip-close','Escalated':'chip-escalated'}; return`<span class="chip ${m[s]||''}">${esc(s||'—')}</span>`; }
+function pBadge(p) { const m={'High':'chip-high','Medium':'chip-medium','Low':'chip-low'}; return`<span class="chip ${m[p]||''}">${esc(p||'—')}</span>`; }
+function esc(s) { return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function toast(msg, type='info') {
   const w=$('toastWrap'),t=document.createElement('div');
   t.className=`toast ${type==='ok'?'t-ok':type==='error'?'t-err':'t-inf'}`;t.textContent=msg;
   w.appendChild(t);setTimeout(()=>t.remove(),4200);
