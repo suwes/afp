@@ -19,6 +19,31 @@
   --r:4px; --r-m:6px; --r-l:8px;
   --sw:232px; --th:48px; --tr:.13s ease;
 }
+/* ═══ LIGHT MODE ═══ */
+html.light{
+  --bg:#f4f5f7; --bg-s:#ffffff; --bg-c:#ffffff; --bg-e:#f0f1f3; --bg-h:rgba(0,0,0,.04);
+  --bd:rgba(0,0,0,.1); --bd2:rgba(0,0,0,.18);
+  --t1:rgba(0,0,0,.88); --t2:rgba(0,0,0,.55); --t3:rgba(0,0,0,.38);
+  --blue:#2563eb; --blue-bg:rgba(37,99,235,.1);
+  --green:#16a34a; --green-bg:rgba(22,163,74,.1);
+  --yellow:#d97706; --yellow-bg:rgba(217,119,6,.1);
+  --red:#dc2626; --red-bg:rgba(220,38,38,.1);
+  --purple:#7c3aed; --purple-bg:rgba(124,58,237,.1);
+}
+/* theme toggle btn */
+.theme-btn{width:30px;height:30px;border-radius:var(--r);background:transparent;border:none;color:var(--t2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr);}
+.theme-btn:hover{background:var(--bg-h);color:var(--t1);}
+/* PIN input group */
+.pin-group{display:flex;gap:8px;justify-content:center;margin:16px 0;}
+.pin-digit{width:42px;height:52px;text-align:center;font-size:22px;font-weight:700;background:var(--bg-e);border:1px solid var(--bd);color:var(--t1);border-radius:var(--r-m);outline:none;transition:border-color var(--tr);-webkit-text-security:disc;}
+.pin-digit:focus{border-color:var(--blue);}
+/* Fraudster badge */
+.fraudster-badge{display:flex;align-items:center;gap:6px;padding:10px 14px;background:rgba(239,68,68,.06);border-bottom:1px solid rgba(239,68,68,.15);}
+.fraudster-flag{display:flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--red);border-radius:50%;flex-shrink:0;}
+.fr-hist-row{display:flex;align-items:center;gap:8px;padding:6px 14px;border-bottom:1px solid rgba(255,255,255,.04);font-size:11px;}
+.fr-hist-row:last-child{border-bottom:none;}
+html.light .pin-digit{background:var(--bg-e);}
+html.light .fraudster-badge{background:rgba(220,38,38,.05);border-color:rgba(220,38,38,.15);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'Inter',-apple-system,sans-serif;font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased;}
 
@@ -381,6 +406,9 @@ a:hover{text-decoration:underline;}
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--t3);flex-shrink:0"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <input type="text" id="tbSearch" placeholder="Cari Case ID, Kurir… (Enter)" oninput="onTbSearch()" onkeydown="onTbSearchKey(event)">
     </div>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Ganti mode">
+      <svg id="themeIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
     <button class="tb-btn" onclick="refreshAll()" title="Refresh"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></button>
   </div>
 
@@ -469,6 +497,15 @@ a:hover{text-decoration:underline;}
 
         <!-- RIGHT COLUMN -->
         <div class="col-right">
+          <!-- Fraudster Info (FR) — v3.2 -->
+          <div class="section" id="frSection">
+            <div class="section-head">
+              <span class="section-label">Database Fraudster</span>
+              <button class="btn btn-ghost btn-xs sa-only" id="btnSaveFr" onclick="openFrModal()" style="display:none">+ Tandai</button>
+            </div>
+            <div id="frBody"><div class="loading"><div class="spin"></div></div></div>
+          </div>
+
           <div class="section" id="dpSection">
             <div class="section-head"><span class="section-label">Detail Pribadi <span class="ro-badge">Lookup</span></span></div>
             <div id="dpBody"></div>
@@ -658,6 +695,21 @@ a:hover{text-decoration:underline;}
   </div>
 </div>
 
+<!-- FRAUDSTER MODAL -->
+<div class="backdrop" id="frModal">
+  <div class="modal modal-w400">
+    <div class="mhdr"><div><div class="mtitle" id="frModalTitle">Tandai sebagai Fraudster</div><div class="msub" id="frModalSub"></div></div><button class="mclose" onclick="closeM('frModal')">✕</button></div>
+    <div class="mbody">
+      <div class="fg" style="margin-bottom:12px;"><div class="flabel">Nama Fraudster<span class="req">*</span></div><input class="fi" id="frName" placeholder="Nama lengkap"></div>
+      <div class="fg"><div class="flabel">Catatan</div><textarea class="ft" id="frNotes" rows="3" placeholder="Modus, keterangan tambahan…"></textarea></div>
+    </div>
+    <div class="mftr">
+      <button class="btn btn-ghost btn-sm" onclick="closeM('frModal')">Batal</button>
+      <button class="btn btn-red btn-sm" onclick="submitFraudster()" id="btnFr" style="background:var(--red);color:#fff;">Simpan</button>
+    </div>
+  </div>
+</div>
+
 <!-- ADD NOTE MODAL -->
 <div class="backdrop" id="noteModal">
   <div class="modal modal-w400">
@@ -676,20 +728,69 @@ a:hover{text-decoration:underline;}
   </div>
 </div>
 
-<!-- LOGIN OVERLAY — shown when no session detected -->
+<!-- LOGIN OVERLAY — multi-step: email → PIN / set PIN -->
 <div class="login-overlay" id="loginOverlay" style="display:none;">
   <div class="login-box">
     <div class="login-logo">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
     </div>
     <div class="login-title">Anti Fraud Portal</div>
-    <div class="login-sub">Masukkan email Google Workspace Anda yang terdaftar untuk mengakses portal ini.</div>
-    <div class="fg" style="text-align:left;margin-bottom:12px;">
-      <div class="flabel">Email<span class="req">*</span></div>
-      <input class="fi" id="loginEmail" type="email" placeholder="nama@perusahaan.com"
-        onkeydown="if(event.key==='Enter')doLogin()">
+
+    <!-- STEP 1: Email -->
+    <div id="loginStep1">
+      <div class="login-sub">Masukkan email terdaftar untuk akses portal.</div>
+      <div class="fg" style="text-align:left;margin-bottom:12px;">
+        <div class="flabel">Email<span class="req">*</span></div>
+        <input class="fi" id="loginEmail" type="email" placeholder="nama@perusahaan.com"
+          onkeydown="if(event.key==='Enter')doLoginStep1()">
+      </div>
+      <button class="btn btn-blue" style="width:100%;justify-content:center;padding:10px;" onclick="doLoginStep1()" id="btnLogin">Lanjut →</button>
     </div>
-    <button class="btn btn-blue" style="width:100%;justify-content:center;padding:10px;" onclick="doLogin()" id="btnLogin">Masuk</button>
+
+    <!-- STEP 2: Enter PIN -->
+    <div id="loginStep2" style="display:none;">
+      <div class="login-sub" id="loginStep2Sub">Masukkan PIN 6 angka Anda.</div>
+      <div class="pin-group" id="pinInputGroup">
+        <input class="pin-digit" type="tel" maxlength="1" id="pin0" oninput="onPinInput(0)" onkeydown="onPinKey(event,0)">
+        <input class="pin-digit" type="tel" maxlength="1" id="pin1" oninput="onPinInput(1)" onkeydown="onPinKey(event,1)">
+        <input class="pin-digit" type="tel" maxlength="1" id="pin2" oninput="onPinInput(2)" onkeydown="onPinKey(event,2)">
+        <input class="pin-digit" type="tel" maxlength="1" id="pin3" oninput="onPinInput(3)" onkeydown="onPinKey(event,3)">
+        <input class="pin-digit" type="tel" maxlength="1" id="pin4" oninput="onPinInput(4)" onkeydown="onPinKey(event,4)">
+        <input class="pin-digit" type="tel" maxlength="1" id="pin5" oninput="onPinInput(5)" onkeydown="onPinKey(event,5)">
+      </div>
+      <button class="btn btn-blue" style="width:100%;justify-content:center;padding:10px;" onclick="doLoginStep2()" id="btnPin">Masuk</button>
+      <div style="margin-top:8px;text-align:center;">
+        <button onclick="backToEmail()" style="background:transparent;border:none;color:var(--t3);font-size:11px;cursor:pointer;font-family:inherit;">← Ganti email</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Set new PIN -->
+    <div id="loginStep3" style="display:none;">
+      <div class="login-sub">Buat PIN 6 angka untuk keamanan akun Anda. PIN ini akan digunakan setiap login.</div>
+      <div style="font-size:11px;font-weight:600;color:var(--t3);margin-bottom:6px;text-align:center;">PIN BARU</div>
+      <div class="pin-group">
+        <input class="pin-digit" type="tel" maxlength="1" id="np0" oninput="onNewPinInput(0)" onkeydown="onNewPinKey(event,0)">
+        <input class="pin-digit" type="tel" maxlength="1" id="np1" oninput="onNewPinInput(1)" onkeydown="onNewPinKey(event,1)">
+        <input class="pin-digit" type="tel" maxlength="1" id="np2" oninput="onNewPinInput(2)" onkeydown="onNewPinKey(event,2)">
+        <input class="pin-digit" type="tel" maxlength="1" id="np3" oninput="onNewPinInput(3)" onkeydown="onNewPinKey(event,3)">
+        <input class="pin-digit" type="tel" maxlength="1" id="np4" oninput="onNewPinInput(4)" onkeydown="onNewPinKey(event,4)">
+        <input class="pin-digit" type="tel" maxlength="1" id="np5" oninput="onNewPinInput(5)" onkeydown="onNewPinKey(event,5)">
+      </div>
+      <div style="font-size:11px;font-weight:600;color:var(--t3);margin-bottom:6px;text-align:center;">KONFIRMASI PIN</div>
+      <div class="pin-group">
+        <input class="pin-digit" type="tel" maxlength="1" id="cp0" oninput="onConfPinInput(0)" onkeydown="onConfPinKey(event,0)">
+        <input class="pin-digit" type="tel" maxlength="1" id="cp1" oninput="onConfPinInput(1)" onkeydown="onConfPinKey(event,1)">
+        <input class="pin-digit" type="tel" maxlength="1" id="cp2" oninput="onConfPinInput(2)" onkeydown="onConfPinKey(event,2)">
+        <input class="pin-digit" type="tel" maxlength="1" id="cp3" oninput="onConfPinInput(3)" onkeydown="onConfPinKey(event,3)">
+        <input class="pin-digit" type="tel" maxlength="1" id="cp4" oninput="onConfPinInput(4)" onkeydown="onConfPinKey(event,4)">
+        <input class="pin-digit" type="tel" maxlength="1" id="cp5" oninput="onConfPinInput(5)" onkeydown="onConfPinKey(event,5)">
+      </div>
+      <button class="btn btn-blue" style="width:100%;justify-content:center;padding:10px;" onclick="doSetPin()" id="btnSetPin">Simpan PIN & Masuk</button>
+      <div style="margin-top:8px;text-align:center;">
+        <button onclick="backToEmail()" style="background:transparent;border:none;color:var(--t3);font-size:11px;cursor:pointer;font-family:inherit;">← Ganti email</button>
+      </div>
+    </div>
+
     <div class="login-err" id="loginErr"></div>
   </div>
 </div>
@@ -749,55 +850,114 @@ document.addEventListener('DOMContentLoaded', () => {
     zone.addEventListener('click', e => { if (e.target !== $('evFile')) $('evFile').click(); });
   }
   checkSession();
+  initTheme(); // [4] restore saved theme
 });
 
 // ★ v3.1.1: Check if there's an active session first
 function checkSession() {
   google.script.run
     .withSuccessHandler(u => {
-      if (!u || !u.authorized) {
-        showLoginOverlay();
-      } else {
-        hideLoginOverlay();
-        applyUserUI(u);
-        loadAll(true); // true = restore hash after load
-      }
+      if (!u || !u.authorized) { showLoginOverlay(); }
+      else { hideLoginOverlay(); applyUserUI(u); loadAll(true); }
     })
     .withFailureHandler(() => showLoginOverlay())
     .getCurrentUser();
 }
 
 function showLoginOverlay() {
-  const ol = $('loginOverlay');
-  if (ol) { ol.style.display = 'flex'; }
+  $('loginOverlay').style.display='flex';
+  showLoginStep(1);
 }
-function hideLoginOverlay() {
-  const ol = $('loginOverlay');
-  if (ol) ol.style.display = 'none';
+function hideLoginOverlay() { $('loginOverlay').style.display='none'; }
+
+function showLoginStep(n) {
+  $('loginStep1').style.display = n===1?'':'none';
+  $('loginStep2').style.display = n===2?'':'none';
+  $('loginStep3').style.display = n===3?'':'none';
+  $('loginErr').textContent = '';
+  if (n===2) setTimeout(()=>{ const p=$('pin0'); if(p) p.focus(); },50);
+  if (n===3) setTimeout(()=>{ const p=$('np0'); if(p) p.focus(); },50);
 }
 
-// ★ v3.1.1: Login via email — calls verifyUserByEmail on server
-function doLogin() {
-  const emailVal = ($('loginEmail').value || '').trim();
-  if (!emailVal) { $('loginErr').textContent = 'Email tidak boleh kosong.'; return; }
-  $('loginErr').textContent = '';
+function backToEmail() {
+  _loginEmail = '';
+  clearPinInputs();
+  showLoginStep(1);
+  setTimeout(()=>{ const e=$('loginEmail'); if(e) e.focus(); },50);
+}
+
+let _loginEmail = '';
+
+// Step 1 — verify email
+function doLoginStep1() {
+  const emailVal = ($('loginEmail').value||'').trim();
+  if (!emailVal) { $('loginErr').textContent='Email tidak boleh kosong.'; return; }
+  $('loginErr').textContent='';
   btnLoad('btnLogin', true, 'Memverifikasi…');
   google.script.run
     .withSuccessHandler(u => {
-      btnLoad('btnLogin', false, 'Masuk');
-      if (!u || !u.authorized) {
-        $('loginErr').textContent = 'Email tidak terdaftar atau tidak memiliki akses.';
-        return;
+      btnLoad('btnLogin', false, 'Lanjut →');
+      if (!u || !u.authorized) { $('loginErr').textContent='Email tidak terdaftar.'; return; }
+      _loginEmail = u.email;
+      if (u.needsSetPin) {
+        // First time — set PIN
+        $('loginStep2Sub') && ($('loginStep2Sub').textContent='');
+        showLoginStep(3);
+      } else {
+        // Has PIN — enter PIN
+        $('loginStep2Sub').textContent='Masukkan PIN 6 angka untuk: ' + u.email;
+        showLoginStep(2);
       }
-      hideLoginOverlay();
-      applyUserUI(u);
-      loadAll(false); // fresh login → go to dashboard, no hash restore
     })
-    .withFailureHandler(e => {
-      btnLoad('btnLogin', false, 'Masuk');
-      $('loginErr').textContent = 'Gagal: ' + (e.message || 'Coba lagi.');
-    })
+    .withFailureHandler(e => { btnLoad('btnLogin',false,'Lanjut →'); $('loginErr').textContent='Error: '+(e.message||'Coba lagi.'); })
     .verifyUserByEmail(emailVal);
+}
+
+// PIN input helpers
+function getPinVal(prefix) {
+  return [0,1,2,3,4,5].map(i=>{ const el=$(prefix+i); return el?el.value:''; }).join('');
+}
+function clearPinInputs() {
+  ['pin','np','cp'].forEach(p=>{ for(let i=0;i<6;i++){ const el=$(p+i); if(el) el.value=''; }});
+}
+function onPinInput(i)    { if($('pin'+i).value) { const nx=$('pin'+(i+1)); if(nx) nx.focus(); } if(getPinVal('pin').length===6) doLoginStep2(); }
+function onPinKey(e,i)    { if(e.key==='Backspace'&&!$('pin'+i).value){ const pv=$('pin'+(i-1)); if(pv) pv.focus(); } if(e.key==='Enter') doLoginStep2(); }
+function onNewPinInput(i) { if($('np'+i).value){ const nx=$('np'+(i+1)); if(nx) nx.focus(); else $('cp0')&&$('cp0').focus(); } }
+function onNewPinKey(e,i) { if(e.key==='Backspace'&&!$('np'+i).value){ const pv=$('np'+(i-1)); if(pv) pv.focus(); } if(e.key==='Enter') doSetPin(); }
+function onConfPinInput(i){ if($('cp'+i).value){ const nx=$('cp'+(i+1)); if(nx) nx.focus(); else doSetPin(); } }
+function onConfPinKey(e,i){ if(e.key==='Backspace'&&!$('cp'+i).value){ const pv=$('cp'+(i-1)); if(pv) pv.focus(); } if(e.key==='Enter') doSetPin(); }
+
+// Step 2 — verify existing PIN
+function doLoginStep2() {
+  const pin = getPinVal('pin');
+  if (pin.length!==6||!/^\d{6}$/.test(pin)) { $('loginErr').textContent='Masukkan 6 angka PIN.'; return; }
+  $('loginErr').textContent='';
+  btnLoad('btnPin', true, 'Memverifikasi…');
+  google.script.run
+    .withSuccessHandler(r => {
+      btnLoad('btnPin', false, 'Masuk');
+      if (!r||!r.ok) { $('loginErr').textContent=r?.message||'PIN salah.'; clearPinInputs(); $('pin0')&&$('pin0').focus(); return; }
+      hideLoginOverlay(); applyUserUI(r); loadAll(false);
+    })
+    .withFailureHandler(e => { btnLoad('btnPin',false,'Masuk'); $('loginErr').textContent='Error: '+(e.message||'Coba lagi.'); })
+    .verifyPin(_loginEmail, pin);
+}
+
+// Step 3 — set new PIN
+function doSetPin() {
+  const np = getPinVal('np'), cp = getPinVal('cp');
+  if (np.length!==6||!/^\d{6}$/.test(np)) { $('loginErr').textContent='PIN harus 6 angka.'; return; }
+  if (np!==cp) { $('loginErr').textContent='Konfirmasi PIN tidak cocok.'; ['cp0','cp1','cp2','cp3','cp4','cp5'].forEach(id=>{ const el=$(id); if(el)el.value=''; }); $('cp0')&&$('cp0').focus(); return; }
+  $('loginErr').textContent='';
+  btnLoad('btnSetPin', true, 'Menyimpan…');
+  google.script.run
+    .withSuccessHandler(r => {
+      btnLoad('btnSetPin', false, 'Simpan PIN & Masuk');
+      if (!r||!r.ok) { $('loginErr').textContent=r?.message||'Gagal menyimpan PIN.'; return; }
+      hideLoginOverlay(); applyUserUI(r); loadAll(false);
+    })
+    .withFailureHandler(e => { btnLoad('btnSetPin',false,'Simpan PIN & Masuk'); $('loginErr').textContent='Error: '+(e.message||'Coba lagi.'); })
+    .setUserPin(_loginEmail, np);
 }
 
 function applyUserUI(u) {
@@ -1122,11 +1282,20 @@ function openDetail(caseId) {
   $('detBC').textContent = 'Cases / ' + c.caseId;
   $('caseIdBig').innerHTML = `${esc(c.caseId)} ${sBadge(c.status)} ${pBadge(c.priority)} ${c.subStatus?`<span class="chip chip-sub">${esc(c.subStatus)}</span>`:''}`;
   const delBtn = $('btnDel'); if (delBtn && S.curUser?.role === 'superadmin') delBtn.style.display = '';
+  // Show SA fraudster button
+  const frBtn = $('btnSaveFr'); if (frBtn && S.curUser?.role === 'superadmin') frBtn.style.display = '';
   const pw = $('pageWrap');
   pw.addEventListener('scroll', () => { $('caseHeader').classList.toggle('compact', pw.scrollTop > 40); }, {passive:true});
   renderLI(c); renderDP(c); renderStatusSection(c);
 
-  // [12] Batch load: 1 call for notes + history + evidence
+  // Load fraudster info for this courier
+  $('frBody').innerHTML = spin();
+  google.script.run
+    .withSuccessHandler(renderFraudsterPanel)
+    .withFailureHandler(() => { $('frBody').innerHTML = '<div class="empty-state" style="padding:12px;"><p>Gagal memuat data.</p></div>'; })
+    .getFraudsterInfo(c.courierId);
+
+  // Batch load: notes + history + evidence
   $('nhBody').innerHTML = spin(); $('chBody').innerHTML = spin(); $('euBody').innerHTML = spin();
   google.script.run
     .withSuccessHandler(res => {
@@ -1838,6 +2007,128 @@ function renderThresholds() {
   </div>`).join('');
 }
 function saveThresh() { btnLoad('btnSaveThresh',true,'Menyimpan…');google.script.run.withSuccessHandler(res=>{btnLoad('btnSaveThresh',false,'Simpan Threshold');if(res.ok)toast('✓ Threshold disimpan','ok');else toast(res.message,'error');}).saveThresholds(S.thresholds); }
+
+/* ═══ FRAUDSTER PANEL ═══ */
+function renderFraudsterPanel(res) {
+  const c = S.allCases.find(x => x.caseId === S.curId);
+  const courierId = c ? c.courierId : '';
+  const isSA = S.curUser?.role === 'superadmin';
+
+  if (!res || !res.ok) {
+    $('frBody').innerHTML = '<div class="empty-state" style="padding:12px;font-size:11px;"><p>Gagal memuat data.</p></div>';
+    return;
+  }
+
+  const { fraudster, historicalCases } = res;
+  let html = '';
+
+  if (fraudster) {
+    // Show red flag banner
+    html += `<div class="fraudster-badge">
+      <div class="fraudster-flag"><svg width="10" height="10" viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15" stroke="#fff" stroke-width="2"/></svg></div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:12px;font-weight:600;color:var(--red);">${esc(fraudster.name)}</div>
+        <div style="font-size:10px;color:var(--t3);">ID: ${esc(fraudster.courierId)} · Ditandai: ${esc(fraudster.addedAt)}</div>
+        ${fraudster.notes?`<div style="font-size:11px;color:var(--t2);margin-top:2px;">${esc(fraudster.notes)}</div>`:''}
+      </div>
+      ${isSA?`<button class="icon-btn danger" title="Hapus dari DB" onclick="deleteFraudsterItem('${esc(fraudster.courierId)}')">${SVG.trash}</button>`:''}
+    </div>`;
+  } else {
+    html += `<div style="padding:10px 14px;font-size:11px;color:var(--t3);border-bottom:1px solid var(--bd);">
+      Tidak ada dalam database fraudster.${isSA?' Klik <strong>+ Tandai</strong> untuk menambahkan.':''}
+    </div>`;
+  }
+
+  // Historical cases
+  if (historicalCases && historicalCases.length > 1) {
+    html += `<div style="padding:6px 14px 3px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);">Riwayat Case (${historicalCases.length})</div>`;
+    historicalCases.forEach(hc => {
+      const isCurrent = hc.caseId === S.curId;
+      html += `<div class="fr-hist-row${isCurrent?' row-selected':''}" style="${isCurrent?'font-weight:600;':''}cursor:${isCurrent?'default':'pointer'}" onclick="${isCurrent?'':'navToCase(\''+esc(hc.caseId)+'\')'}">
+        <span class="td-id" style="font-size:10px;min-width:90px">${esc(hc.caseId)}</span>
+        <span style="flex:1;color:var(--t2);font-size:10px;">${esc(hc.category||'—')}</span>
+        <span style="color:var(--t2);font-size:10px;white-space:nowrap">${fmtRp(hc.amount)}</span>
+        <span style="margin-left:6px">${sBadge(hc.status)}</span>
+      </div>`;
+    });
+  } else if (!historicalCases || historicalCases.length === 0) {
+    html += `<div style="padding:10px 14px;font-size:11px;color:var(--t3);">Belum ada riwayat case.</div>`;
+  }
+
+  $('frBody').innerHTML = html;
+}
+
+function navToCase(caseId) {
+  S.curId = caseId;
+  history.replaceState(null,'',`#detail/${caseId}`);
+  nav('detail', true);
+}
+
+function openFrModal() {
+  const c = S.allCases.find(x => x.caseId === S.curId); if (!c) return;
+  $('frModalTitle').textContent = 'Tandai sebagai Fraudster';
+  $('frModalSub').textContent   = c.courierName + ' (' + c.courierId + ')';
+  $('frName').value  = c.courierName || '';
+  $('frNotes').value = '';
+  openM('frModal');
+}
+
+function submitFraudster() {
+  const c = S.allCases.find(x => x.caseId === S.curId); if (!c) return;
+  const name  = $('frName').value.trim();
+  const notes = $('frNotes').value.trim();
+  if (!name) { toast('Nama wajib diisi', 'error'); return; }
+  btnLoad('btnFr', true, 'Menyimpan…');
+  google.script.run
+    .withSuccessHandler(r => {
+      btnLoad('btnFr', false, 'Simpan');
+      if (r.ok) {
+        toast('✓ ' + r.message, 'ok'); closeM('frModal');
+        // Reload fraudster panel
+        google.script.run.withSuccessHandler(renderFraudsterPanel).getFraudsterInfo(c.courierId);
+      } else toast(r.message, 'error');
+    })
+    .withFailureHandler(e => { btnLoad('btnFr',false,'Simpan'); toast(e.message,'error'); })
+    .saveFraudster(c.courierId, name, notes);
+}
+
+function deleteFraudsterItem(courierId) {
+  $('confTitle').textContent = 'Hapus Fraudster';
+  $('confBody').textContent  = 'Hapus ' + courierId + ' dari database fraudster?';
+  S.dlgCb = () => {
+    google.script.run
+      .withSuccessHandler(r => {
+        if (r.ok) {
+          toast('Data dihapus dari database', 'ok');
+          google.script.run.withSuccessHandler(renderFraudsterPanel).getFraudsterInfo(courierId);
+        } else toast(r.message, 'error');
+      })
+      .withFailureHandler(e => toast(e.message, 'error'))
+      .deleteFraudster(courierId);
+  };
+  $('confOk').onclick = () => { closeM('confModal'); if (S.dlgCb) S.dlgCb(); };
+  openM('confModal');
+}
+
+/* ═══ THEME TOGGLE ═══ */
+function toggleTheme() {
+  const isLight = document.documentElement.classList.toggle('light');
+  localStorage.setItem('afp_theme', isLight ? 'light' : 'dark');
+  updateThemeIcon(isLight);
+}
+function updateThemeIcon(isLight) {
+  const btn = $('themeIcon'); if (!btn) return;
+  // Dark mode → show moon; Light mode → show sun
+  btn.innerHTML = isLight
+    ? '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>'
+    : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+}
+function initTheme() {
+  const saved = localStorage.getItem('afp_theme');
+  const isLight = saved === 'light';
+  if (isLight) document.documentElement.classList.add('light');
+  updateThemeIcon(isLight);
+}
 
 /* ═══ HELPERS ═══ */
 function openM(id)  { $(id).classList.add('open'); }
