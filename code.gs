@@ -54,12 +54,16 @@ const N = { TIMESTAMP:1,CASE_ID:2,NOTE:3,BY:4,_TOTAL:4 };
 const EV = { CASE_ID:1,TYPE:2,URL:3,FILENAME:4,DESCRIPTION:5,ADDED_BY:6,ADDED_AT:7,_TOTAL:7 };
 
 // ── USERS columns
-// ★ NEW v3.1: USERNAME added at col 6 (backward-compatible — existing rows return '' for username)
-const U = { EMAIL:1, ROLE:2, AREA:3, ADDED_BY:4, ADDED_AT:5, USERNAME:6, _TOTAL:6 };
+// ★ v3.1: USERNAME at col 6 | ★ v3.2: PIN_HASH at col 7
+const U = { EMAIL:1, ROLE:2, AREA:3, ADDED_BY:4, ADDED_AT:5, USERNAME:6, PIN_HASH:7, _TOTAL:7 };
 
 // ── CONFIG columns (unchanged)
 const P  = { AMOUNT_MIN:1, LABEL:2, SORT:3, _TOTAL:3 };
 const CF = { LABEL:1, ACTIVE:2, SORT:3, _TOTAL:3 };
+
+// ── FRAUDSTERS columns
+const SH_FRAUDSTERS = 'FRAUDSTERS';
+const FR = { COURIER_ID:1, NAME:2, NOTES:3, ADDED_BY:4, ADDED_AT:5, _TOTAL:5 };
 
 // ═══════════════════════════════
 //  SPREADSHEET RESOLVER (unchanged)
@@ -118,31 +122,101 @@ function _getWebAppUrl() {
 }
 
 // ═══════════════════════════════
-//  AUTH
+//  AUTH  (v3.2: PIN layer added)
 // ═══════════════════════════════
 
-// ★ v3.1.1: Verify email from client login, store in UserCache for session
-// Security: email must exist in USERS sheet to be granted access.
-// Cache expires in 6 hours; user must re-login after that.
+// Simple hash: SHA-256 via Utilities.computeDigest, returned as hex string
+function _hashPin(pin) {
+  const raw = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, String(pin));
+  return raw.map(b => (b < 0 ? b + 256 : b).toString(16).padStart(2,'0')).join('');
+}
+
+// Step 1 — verify email exists, returns pin status
+// Returns: { authorized, email, role, area, username, needsPin, needsSetPin }
 function verifyUserByEmail(email) {
-  if (!email || !String(email).trim()) return { email:'', role:null, area:null, authorized:false, username:'' };
+  if (!email || !String(email).trim()) return { authorized:false };
   const clean = String(email).trim().toLowerCase();
   try {
     const sheet = _ss().getSheetByName(SH_USERS);
-    // If USERS sheet empty/missing → first-run mode, allow as superadmin
+    // Empty users sheet → first-run superadmin, no PIN required
     if (!sheet || sheet.getLastRow() < 2) {
       try { CacheService.getUserCache().put('afp_user_email', clean, 21600); } catch(ce){}
-      return { email:clean, role:'superadmin', area:'ALL', authorized:true, username:'' };
+      return { email:clean, role:'superadmin', area:'ALL', authorized:true, username:'', needsPin:false, needsSetPin:false };
     }
     const rows = sheet.getRange(2, 1, sheet.getLastRow()-1, U._TOTAL).getValues();
     const f = rows.find(r => String(r[U.EMAIL-1]).trim().toLowerCase() === clean);
-    if (!f) return { email:clean, role:null, area:null, authorized:false, username:'' };
-    // Valid user → cache for session
-    try { CacheService.getUserCache().put('afp_user_email', clean, 21600); } catch(ce){}
-    return { email:clean, role:f[U.ROLE-1], area:f[U.AREA-1], authorized:true, username:f[U.USERNAME-1]||'' };
+    if (!f) return { email:clean, authorized:false };
+    const hasPin = f.length >= U.PIN_HASH && f[U.PIN_HASH-1] && String(f[U.PIN_HASH-1]).trim() !== '';
+    // Don't cache yet — wait for PIN verification
+    return {
+      email   : clean,
+      role    : f[U.ROLE-1],
+      area    : f[U.AREA-1],
+      username: f[U.USERNAME-1] || '',
+      authorized: true,
+      needsPin   : hasPin,     // has PIN set → must enter PIN
+      needsSetPin: !hasPin     // no PIN yet → must set new PIN
+    };
   } catch(e) {
-    return { email:clean, role:null, area:null, authorized:false, username:'' };
+    return { email:clean, authorized:false, message:e.message };
   }
+}
+
+// Step 2a — set PIN for first time
+function setUserPin(email, pin) {
+  if (!email || !pin || String(pin).length !== 6 || !/^\d{6}$/.test(String(pin)))
+    return { ok:false, message:'PIN harus 6 angka.' };
+  const clean = String(email).trim().toLowerCase();
+  try {
+    const sheet = _ss().getSheetByName(SH_USERS);
+    if (!sheet || sheet.getLastRow() < 2) return { ok:false, message:'User tidak ditemukan.' };
+    const rows = sheet.getDataRange().getValues();
+    for (let i = 1; i < rows.length; i++) {
+      if (String(rows[i][U.EMAIL-1]).trim().toLowerCase() === clean) {
+        sheet.getRange(i+1, U.PIN_HASH).setValue(_hashPin(pin));
+        try { CacheService.getUserCache().put('afp_user_email', clean, 21600); } catch(ce){}
+        const f = rows[i];
+        return { ok:true, email:clean, role:f[U.ROLE-1], area:f[U.AREA-1], username:f[U.USERNAME-1]||'', authorized:true };
+      }
+    }
+    return { ok:false, message:'User tidak ditemukan.' };
+  } catch(e) { return { ok:false, message:e.message }; }
+}
+
+// Step 2b — verify PIN
+function verifyPin(email, pin) {
+  if (!email || !pin) return { ok:false, message:'Email atau PIN kosong.' };
+  const clean = String(email).trim().toLowerCase();
+  try {
+    const sheet = _ss().getSheetByName(SH_USERS);
+    if (!sheet || sheet.getLastRow() < 2) return { ok:false, message:'User tidak ditemukan.' };
+    const rows = sheet.getRange(2, 1, sheet.getLastRow()-1, U._TOTAL).getValues();
+    const f = rows.find(r => String(r[U.EMAIL-1]).trim().toLowerCase() === clean);
+    if (!f) return { ok:false, message:'User tidak ditemukan.' };
+    const stored = f.length >= U.PIN_HASH ? String(f[U.PIN_HASH-1]||'').trim() : '';
+    if (stored !== _hashPin(String(pin))) return { ok:false, message:'PIN salah.' };
+    // PIN correct → store session
+    try { CacheService.getUserCache().put('afp_user_email', clean, 21600); } catch(ce){}
+    return { ok:true, email:clean, role:f[U.ROLE-1], area:f[U.AREA-1], username:f[U.USERNAME-1]||'', authorized:true };
+  } catch(e) { return { ok:false, message:e.message }; }
+}
+
+// Reset own PIN (superadmin can reset any user's PIN)
+function resetUserPin(targetEmail) {
+  const user = getCurrentUser(); if (!user.authorized) return { ok:false, message:'Unauthorized.' };
+  const clean = String(targetEmail||'').trim().toLowerCase();
+  if (user.role !== 'superadmin' && user.email !== clean) return { ok:false, message:'Unauthorized.' };
+  try {
+    const sheet = _ss().getSheetByName(SH_USERS);
+    const rows  = sheet.getDataRange().getValues();
+    for (let i = 1; i < rows.length; i++) {
+      if (String(rows[i][U.EMAIL-1]).trim().toLowerCase() === clean) {
+        sheet.getRange(i+1, U.PIN_HASH).setValue('');
+        return { ok:true, message:'PIN direset. User harus set PIN baru saat login berikutnya.' };
+      }
+    }
+    return { ok:false, message:'User tidak ditemukan.' };
+  } catch(e) { return { ok:false, message:e.message }; }
 }
 
 // ★ v3.1.1: Clear session cache (logout)
@@ -152,21 +226,12 @@ function clearUserSession() {
 }
 
 function getCurrentUser() {
-  // 1. Try native session (works when deployed as "Execute as: User accessing web app")
   let email = '';
   try { email = Session.getActiveUser().getEmail() || ''; } catch(e){}
-
-  // 2. ★ v3.1.1: Fallback → UserCache (populated by client-side login verifyUserByEmail)
-  //    Works with "Execute as: Me" deployment where getActiveUser() returns empty.
   if (!email) {
-    try {
-      const cached = CacheService.getUserCache().get('afp_user_email');
-      if (cached) email = cached;
-    } catch(ce){}
+    try { const cached = CacheService.getUserCache().get('afp_user_email'); if (cached) email = cached; } catch(ce){}
   }
-
   if (!email) return { email:'', role:null, area:null, authorized:false, username:'' };
-
   try {
     const sheet = _ss().getSheetByName(SH_USERS);
     if (!sheet || sheet.getLastRow() < 2)
@@ -175,9 +240,7 @@ function getCurrentUser() {
     const f = rows.find(r => String(r[U.EMAIL-1]).trim().toLowerCase() === email.toLowerCase());
     if (!f) return { email, role:null, area:null, authorized:false, username:'' };
     return { email, role:f[U.ROLE-1], area:f[U.AREA-1], authorized:true, username:f[U.USERNAME-1]||'' };
-  } catch(e) {
-    return { email, role:'superadmin', area:'ALL', authorized:true, username:'' };
-  }
+  } catch(e) { return { email, role:'superadmin', area:'ALL', authorized:true, username:'' }; }
 }
 
 // ═══════════════════════════════
@@ -280,7 +343,7 @@ function fullResetAllSheets() {
     ui.ButtonSet.YES_NO);
   if (r !== ui.Button.YES) return;
 
-  const sheetsToClear = [SH_CASES, SH_HISTORY, SH_NOTES, SH_EVIDENCE, SH_USERS, SH_PRIORITY, SH_CATS, SH_CLOSE_R];
+  const sheetsToClear = [SH_CASES, SH_HISTORY, SH_NOTES, SH_EVIDENCE, SH_USERS, SH_PRIORITY, SH_CATS, SH_CLOSE_R, SH_FRAUDSTERS];
   sheetsToClear.forEach(name => {
     const sh = ss.getSheetByName(name);
     if (sh) { ss.deleteSheet(sh); }
@@ -316,22 +379,33 @@ function _ensureExtras(ss) {
     se.getRange(1,1,1,EV._TOTAL).setValues([['Case ID','Type','URL','Filename','Description','Added By','Added At']]);
     _fmtHdr(se, EV._TOTAL, '#0d1117');
   }
-  // USERS — ★ v3.1: header now includes USERNAME
+  // USERS — ★ v3.2: header now includes USERNAME + PIN_HASH
   let su = ss.getSheetByName(SH_USERS);
   if (!su) {
     su = ss.insertSheet(SH_USERS);
-    // USERNAME at col 6 (after ADDED_AT)
-    su.getRange(1,1,1,U._TOTAL).setValues([['Email','Role','Area','Added By','Added At','Username']]);
+    su.getRange(1,1,1,U._TOTAL).setValues([['Email','Role','Area','Added By','Added At','Username','PIN Hash']]);
     _fmtHdr(su, U._TOTAL, '#0d1117');
     _dropdown(su, U.ROLE, 500, ['superadmin','user']);
-    su.setColumnWidth(1, 220);
-    su.setColumnWidth(6, 160);
+    su.setColumnWidth(1, 220); su.setColumnWidth(6, 140); su.setColumnWidth(7, 120);
   } else {
-    // Backward compat: if existing USERS sheet has 5 cols, add USERNAME header
+    // Backward compat: add USERNAME if missing
     if (su.getLastColumn() < 6) {
       su.getRange(1, 6).setValue('Username').setBackground('#0d1117').setFontColor('#fff').setFontWeight('bold');
-      su.setColumnWidth(6, 160);
+      su.setColumnWidth(6, 140);
     }
+    // Add PIN_HASH col if missing
+    if (su.getLastColumn() < 7) {
+      su.getRange(1, 7).setValue('PIN Hash').setBackground('#0d1117').setFontColor('#fff').setFontWeight('bold');
+      su.setColumnWidth(7, 120);
+    }
+  }
+  // FRAUDSTERS ★ v3.2
+  let sfr = ss.getSheetByName(SH_FRAUDSTERS);
+  if (!sfr) {
+    sfr = ss.insertSheet(SH_FRAUDSTERS);
+    sfr.getRange(1,1,1,FR._TOTAL).setValues([['Courier ID','Nama Fraudster','Catatan','Added By','Added At']]);
+    _fmtHdr(sfr, FR._TOTAL, '#3a0a0a');
+    sfr.setColumnWidth(1, 130); sfr.setColumnWidth(2, 180); sfr.setColumnWidth(3, 280);
   }
   // PRIORITY_CONFIG
   let sp = ss.getSheetByName(SH_PRIORITY);
@@ -919,8 +993,8 @@ function addUser(data) {
       if (ex.some(e => String(e).toLowerCase() === data.email.toLowerCase()))
         return { ok:false, message:'Email sudah terdaftar.' };
     }
-    // Row: Email | Role | Area | AddedBy | AddedAt | Username
-    sh.appendRow([data.email, data.role||'user', data.area||'', user.email, new Date(), data.username||'']);
+    // Row: Email | Role | Area | AddedBy | AddedAt | Username | PIN_HASH(empty)
+    sh.appendRow([data.email, data.role||'user', data.area||'', user.email, new Date(), data.username||'', '']);
     return { ok:true, message:'User ' + data.email + ' ditambahkan.' };
   } catch(e) { return { ok:false, message:e.message }; }
 }
@@ -950,16 +1024,27 @@ function _displayName(user) {
   return (user.username && user.username.trim()) ? user.username.trim() : (user.email || 'System');
 }
 
+// ★ v3.2: New Case ID format: DDMMYYXXXX (10 digits, e.g. 0806250001)
+// DD=day, MM=month, YY=2-digit year, XXXX=4-digit seq for that day
 function _genId(sheet) {
-  const n = new Date(), yy = n.getFullYear(),
-        mm = String(n.getMonth()+1).padStart(2,'0'),
-        dd = String(n.getDate()).padStart(2,'0');
-  const px = `AFP-${yy}${mm}${dd}`; let max = 0;
+  const n  = new Date();
+  const dd = String(n.getDate()).padStart(2,'0');
+  const mm = String(n.getMonth()+1).padStart(2,'0');
+  const yy = String(n.getFullYear()).slice(-2);
+  const prefix = `${dd}${mm}${yy}`; // e.g. "080625"
+  let max = 0;
   const last = sheet.getLastRow();
-  if (last > 1) sheet.getRange(2, C.CASE_ID, last-1).getValues().flat().forEach(id => {
-    if (String(id).startsWith(px)) { const s = parseInt(String(id).split('-').pop()) || 0; if (s > max) max = s; }
-  });
-  return `${px}-${String(max+1).padStart(3,'0')}`;
+  if (last > 1) {
+    sheet.getRange(2, C.CASE_ID, last-1).getValues().flat().forEach(id => {
+      const s = String(id||'');
+      // Match new format DDMMYYXXXX
+      if (s.startsWith(prefix) && s.length === 10 && /^\d{10}$/.test(s)) {
+        const seq = parseInt(s.slice(6)) || 0;
+        if (seq > max) max = seq;
+      }
+    });
+  }
+  return `${prefix}${String(max+1).padStart(4,'0')}`;
 }
 
 function _log(caseId, action, field, ov, nv, extra, user) {
@@ -1029,6 +1114,66 @@ function _fmtDT(v) {
   if (!v) return '';
   if (v instanceof Date) { if (isNaN(v.getTime())) return ''; return Utilities.formatDate(v, Session.getScriptTimeZone(), 'dd MMM yyyy HH:mm'); }
   return String(v);
+}
+
+// ═══════════════════════════════
+//  FRAUDSTER DATABASE  (v3.2)
+// ═══════════════════════════════
+
+function getFraudsterInfo(courierId) {
+  try {
+    const ss  = _ss();
+    const sfr = ss.getSheetByName(SH_FRAUDSTERS);
+    let fraudster = null;
+    if (sfr && sfr.getLastRow() > 1) {
+      const rows = sfr.getRange(2, 1, sfr.getLastRow()-1, FR._TOTAL).getValues();
+      const f = rows.find(r => String(r[FR.COURIER_ID-1]).trim() === String(courierId).trim());
+      if (f) fraudster = { courierId:f[FR.COURIER_ID-1], name:f[FR.NAME-1], notes:f[FR.NOTES-1], addedBy:f[FR.ADDED_BY-1], addedAt:_fmtD(f[FR.ADDED_AT-1]) };
+    }
+    const cs = ss.getSheetByName(SH_CASES);
+    let historicalCases = [];
+    if (cs && cs.getLastRow() > 1) {
+      historicalCases = cs.getRange(2,1,cs.getLastRow()-1,C._TOTAL).getValues()
+        .filter(r => String(r[C.COURIER_ID-1]).trim() === String(courierId).trim() && r[C.CASE_ID-1])
+        .map(r => ({ caseId:r[C.CASE_ID-1], dateIn:_fmtD(r[C.DATE_IN-1]), amount:r[C.AMOUNT-1], category:r[C.CATEGORY-1], status:r[C.STATUS-1], subStatus:r[C.SUB_STATUS-1] }))
+        .sort((a,b)=>{const da=new Date(a.dateIn||0),db=new Date(b.dateIn||0);return db-da;});
+    }
+    return { ok:true, fraudster, historicalCases };
+  } catch(e) { return { ok:false, message:e.message }; }
+}
+
+function saveFraudster(courierId, name, notes) {
+  try {
+    const user = getCurrentUser(); if (!user.authorized) return { ok:false, message:'Unauthorized.' };
+    if (!courierId||!name) return { ok:false, message:'Courier ID dan Nama wajib diisi.' };
+    const sfr = _ss().getSheetByName(SH_FRAUDSTERS);
+    if (!sfr) return { ok:false, message:'Sheet FRAUDSTERS tidak ditemukan. Jalankan Setup.' };
+    if (sfr.getLastRow() > 1) {
+      const rows = sfr.getDataRange().getValues();
+      for (let i=1;i<rows.length;i++) {
+        if (String(rows[i][FR.COURIER_ID-1]).trim()===String(courierId).trim()) {
+          sfr.getRange(i+1,FR.NAME).setValue(name); sfr.getRange(i+1,FR.NOTES).setValue(notes||'');
+          return { ok:true, message:'Data fraudster diperbarui.', isNew:false };
+        }
+      }
+    }
+    sfr.appendRow([courierId, name, notes||'', _displayName(user), new Date()]);
+    return { ok:true, message:'Fraudster ditambahkan ke database.', isNew:true };
+  } catch(e) { return { ok:false, message:e.message }; }
+}
+
+function deleteFraudster(courierId) {
+  try {
+    const user = getCurrentUser(); if (user.role!=='superadmin') return { ok:false, message:'Unauthorized.' };
+    const sfr = _ss().getSheetByName(SH_FRAUDSTERS);
+    const rows = sfr.getDataRange().getValues();
+    for (let i=1;i<rows.length;i++) {
+      if (String(rows[i][FR.COURIER_ID-1]).trim()===String(courierId).trim()) {
+        sfr.deleteRow(i+1); return { ok:true, message:'Fraudster dihapus dari database.' };
+      }
+    }
+    return { ok:false, message:'Data tidak ditemukan.' };
+  } catch(e) { return { ok:false, message:e.message }; }
 }
 
 function checkSetup() {
